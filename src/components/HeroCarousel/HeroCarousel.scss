@@ -1,0 +1,160 @@
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ================================
+   SLIDE TRACK (REAL SLIDING)
+================================ */
+.hero-track {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================================
+   SINGLE SLIDE
+================================ */
+.hero-slide {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Center content vertically */
+.hero-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ================================
+   TEXT
+================================ */
+.hero-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+/* ================================
+   IMAGE
+================================ */
+.hero-image-col {
+  display: none;
+}
+
+.hero-image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+/* Desktop only image */
+@media (min-width: 992px) {
+  .hero-image-col {
+    display: block;
+  }
+}
+
+/* ================================
+   NAVIGATION BUTTONS
+================================ */
+.hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  background: none;
+  &:hover{
+    border: solid;
+  }
+}
+
+.hero-prev {
+  left: 1rem;
+}
+
+.hero-next {
+  right: 1rem;
+}
+
+/* ================================
+   INDICATORS
+================================ */
+.hero-indicators {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+
+  button {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    border: none;
+    background: rgba(13, 110, 253, 0.3);
+    transition: all 0.4s ease;
+    cursor: pointer;
+
+    &.active {
+      width: 2rem;
+      background: var(--bs-primary);
+    }
+  }
+}
+
+/* ================================
+   MOBILE POLISH
+================================ */
+@media (max-width: 991px) {
+  .hero-carousel {
+    text-align: center;
+  }
+
+  .hero-title,
+  .hero-description {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 280px;
+  }
+  .hero-action-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}

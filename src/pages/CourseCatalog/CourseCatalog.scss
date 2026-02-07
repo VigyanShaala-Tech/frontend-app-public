@@ -1,0 +1,63 @@
+.course-catalog-page {
+  min-height: 100vh;
+}
+.filter-bar {
+  div{
+    .filter-container{
+      .filter-dropdown{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.search-bar {
+  position: relative;
+
+  .form-control {
+    padding-left: 2.5rem;
+  }
+
+  .fa-search {
+    position: absolute;
+    top: 30%;
+    left: 1.5rem;
+  }
+}
+
+.active-filters {
+  .badge {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+.no-results {
+  background: var(--light); 
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .filter-bar .d-flex {
+    flex-direction: column !important;
+    gap: 1rem;
+  }
+  .filter-bar{
+    div{
+      .d-flex{
+        margin-top: 1rem;
+      }
+      div{
+        .btn-group{
+          margin-inline-end: var(--pgn-spacing-form-control-gutter);
+        }
+      }
+    }
+  }
+
+  .search-bar {
+    margin-bottom: 1rem;
+  }
+}

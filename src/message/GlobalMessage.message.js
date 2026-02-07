@@ -1,0 +1,637 @@
+import { defineMessages } from '@edx/frontend-platform/i18n';
+
+const messages = defineMessages({
+  'catalog.title': {
+    id: 'catalog.title',
+    defaultMessage: 'Explore Our Courses',
+    description: 'Main heading of the course catalog page',
+  },
+  'catalog.subtitle': {
+    id: 'catalog.subtitle',
+    defaultMessage: 'Discover high-quality STEM courses designed to help you build in-demand skills and advance your career.',
+    description: 'Subtitle under the main heading',
+  },
+  'catalog.search.placeholder': {
+    id: 'catalog.search.placeholder',
+    defaultMessage: 'Search courses, instructors...',
+    description: 'Placeholder for search input',
+  },
+  'catalog.filter.allCategories': {
+    id: 'catalog.filter.allCategories',
+    defaultMessage: 'All Categories',
+    description: 'Default option in category dropdown',
+  },
+  'catalog.filter.allLevels': {
+    id: 'catalog.filter.allLevels',
+    defaultMessage: 'All Levels',
+    description: 'Default option in level dropdown',
+  },
+  'catalog.filter.allSubjects': {
+    id: 'catalog.filter.allSubjects',
+    defaultMessage: 'All Subjects',
+    description: 'Default option in subject dropdown',
+  },
+  'catalog.activeFilters.label': {
+    id: 'catalog.activeFilters.label',
+    defaultMessage: 'Active filters:',
+    description: 'Label before active filter badges',
+  },
+  'catalog.clearAll.label': {
+    id: 'catalog.clearAll.label',
+    defaultMessage: 'Clear all',
+    description: 'Text to clear all filters',
+  },
+  'catalog.noResults.title': {
+    id: 'catalog.noResults.title',
+    defaultMessage: 'No courses found',
+    description: 'Message when no courses match filters',
+  },
+  'catalog.noResults.action': {
+    id: 'catalog.noResults.action',
+    defaultMessage: 'Clear filters',
+    description: 'Button to reset filters on no results',
+  },
+  'catalog.results.showing': {
+    id: 'catalog.results.showing',
+    defaultMessage: 'Showing {perPage} of {count} {count, plural, one {course} other {courses}}',
+    description: 'Showing X courses message with plural support',
+  },
+  'catalog.view.grid': {
+    id: 'catalog.view.grid',
+    defaultMessage: 'Grid',
+    description: 'Label for grid view button',
+  },
+  'catalog.view.list': {
+    id: 'catalog.view.list',
+    defaultMessage: 'List',
+    description: 'Label for list view button',
+  },
+  'catalog.course.enroll': {
+    id: 'catalog.course.enroll',
+    defaultMessage: 'Enroll Now',
+    description: 'Button text on course cards',
+  },
+
+  // ----------------------------------------course about page-----------------------------------------
+
+  // Page title & meta
+  'courseAbout.title': {
+    id: 'courseAbout.title',
+    defaultMessage: 'Course Details',
+    description: 'Page title for course about/detail page',
+  },
+  'courseAbout.enrollNow': {
+    id: 'courseAbout.enrollNow',
+    defaultMessage: 'Enroll Now',
+    description: 'Enroll button text',
+  },
+
+  // Tabs
+  'courseAbout.tab.overview': {
+    id: 'courseAbout.tab.overview',
+    defaultMessage: 'Overview',
+    description: 'Tab label for course overview',
+  },
+  'courseAbout.tab.curriculum': {
+    id: 'courseAbout.tab.curriculum',
+    defaultMessage: 'Curriculum',
+    description: 'Tab label for course curriculum',
+  },
+  'courseAbout.tab.instructor': {
+    id: 'courseAbout.tab.instructor',
+    defaultMessage: 'Instructor',
+    description: 'Tab label for instructor info',
+  },
+  'courseAbout.tab.reviews': {
+    id: 'courseAbout.tab.reviews',
+    defaultMessage: 'Reviews',
+    description: 'Tab label for student reviews',
+  },
+
+  // Overview section
+  'courseAbout.whatYouWillLearn': {
+    id: 'courseAbout.whatYouWillLearn',
+    defaultMessage: 'What You Will Learn',
+    description: 'Heading for features/learning outcomes',
+  },
+  'courseAbout.courseDescription': {
+    id: 'courseAbout.courseDescription',
+    defaultMessage: 'Course Description',
+    description: 'Heading for detailed course description',
+  },
+
+  // Curriculum section
+  'courseAbout.courseCurriculum': {
+    id: 'courseAbout.courseCurriculum',
+    defaultMessage: 'Course Curriculum',
+    description: 'Heading for curriculum section',
+  },
+
+  // Instructor section
+  'courseAbout.instructor': {
+    id: 'courseAbout.instructor',
+    defaultMessage: 'Instructor',
+    description: 'Heading for instructor section',
+  },
+
+  // Reviews section
+  'courseAbout.studentReviews': {
+    id: 'courseAbout.studentReviews',
+    defaultMessage: 'Student Reviews',
+    description: 'Heading for reviews section',
+  },
+
+  // Sidebar / sticky card
+  'courseAbout.duration': {
+    id: 'courseAbout.duration',
+    defaultMessage: '{duration} of content',
+    description: 'Duration display in sidebar',
+  },
+  'courseAbout.level': {
+    id: 'courseAbout.level',
+    defaultMessage: '{level}',
+    description: 'Level display in sidebar',
+  },
+  'courseAbout.exercises': {
+    id: 'courseAbout.exercises',
+    defaultMessage: '100+ coding exercises',
+    description: 'Feature bullet in sidebar',
+  },
+  'courseAbout.certificate': {
+    id: 'courseAbout.certificate',
+    defaultMessage: 'Certificate of completion',
+    description: 'Feature bullet in sidebar',
+  },
+
+  // Breadcrumb
+  'courseAbout.breadcrumb.home': {
+    id: 'courseAbout.breadcrumb.home',
+    defaultMessage: 'Home',
+    description: 'Breadcrumb link to home',
+  },
+  'courseAbout.breadcrumb.courses': {
+    id: 'courseAbout.breadcrumb.courses',
+    defaultMessage: 'Courses',
+    description: 'Breadcrumb link to courses list',
+  },
+
+  //--------------------About-us page --------------------------------------------
+  // Page title & meta
+  'about.title': {
+    id: 'about.title',
+    defaultMessage: 'About VigyanShaala',
+    description: 'Main heading of the About Us page',
+  },
+  'about.subtitle': {
+    id: 'about.subtitle',
+    defaultMessage: 'Empowering learners worldwide with quality education and practical skills',
+    description: 'Subtitle under the main heading',
+  },
+
+  // Breadcrumb
+  'about.breadcrumb.home': {
+    id: 'about.breadcrumb.home',
+    defaultMessage: 'Home',
+    description: 'Breadcrumb link to home',
+  },
+  'about.breadcrumb.about': {
+    id: 'about.breadcrumb.about',
+    defaultMessage: 'About Us',
+    description: 'Current page in breadcrumb',
+  },
+
+  // Who We Are section
+  'about.whoWeAre.badge': {
+    id: 'about.whoWeAre.badge',
+    defaultMessage: 'Who We Are',
+    description: 'Badge label above section title',
+  },
+  'about.whoWeAre.heading': {
+    id: 'about.whoWeAre.heading',
+    defaultMessage: 'Transforming Education, One Learner at a Time',
+    description: 'Main heading of Who We Are section',
+  },
+  'about.whoWeAre.description1': {
+    id: 'about.whoWeAre.description1',
+    defaultMessage: 'VigyanShaala was founded with a simple mission: to make quality education accessible to everyone. We believe that knowledge should have no boundaries, and every individual deserves the opportunity to learn and grow.',
+    description: 'First paragraph of Who We Are',
+  },
+  'about.whoWeAre.description2': {
+    id: 'about.whoWeAre.description2',
+    defaultMessage: 'Our platform brings together world-class instructors, cutting-edge technology, and a supportive community to create an unparalleled learning experience. Whether you\'re looking to start a new career, upgrade your skills, or explore new interests, VigyanShaala is here to guide you on your journey.',
+    description: 'Second paragraph of Who We Are',
+  },
+  'about.whoWeAre.exploreButton': {
+    id: 'about.whoWeAre.exploreButton',
+    defaultMessage: 'Explore Courses',
+    description: 'Button text to explore courses',
+  },
+
+  // Stats section
+  'about.stats.students': {
+    id: 'about.stats.students',
+    defaultMessage: 'Happy Students',
+    description: 'Label for students stat',
+  },
+  'about.stats.instructors': {
+    id: 'about.stats.instructors',
+    defaultMessage: 'Expert Instructors',
+    description: 'Label for instructors stat',
+  },
+  'about.stats.courses': {
+    id: 'about.stats.courses',
+    defaultMessage: 'Courses Available',
+    description: 'Label for courses stat',
+  },
+  'about.stats.countries': {
+    id: 'about.stats.countries',
+    defaultMessage: 'Countries Reached',
+    description: 'Label for countries stat',
+  },
+
+  // Why Choose Us / Features section
+  'about.features.badge': {
+    id: 'about.features.badge',
+    defaultMessage: 'Why Choose Us',
+    description: 'Badge above features section',
+  },
+  'about.features.heading': {
+    id: 'about.features.heading',
+    defaultMessage: 'What Sets Us Apart',
+    description: 'Main heading of features section',
+  },
+  'about.features.subheading': {
+    id: 'about.features.subheading',
+    defaultMessage: 'We\'re committed to providing the best learning experience for our students',
+    description: 'Subheading under features heading',
+  },
+  'about.features.expertLed': {
+    id: 'about.features.expertLed',
+    defaultMessage: 'Expert-Led Learning',
+    description: 'Feature title: Expert-Led Learning',
+  },
+  'about.features.expertLedDesc': {
+    id: 'about.features.expertLedDesc',
+    defaultMessage: 'Learn from industry professionals with real-world experience.',
+    description: 'Description for Expert-Led Learning feature',
+  },
+  'about.features.studentCentric': {
+    id: 'about.features.studentCentric',
+    defaultMessage: 'Student-Centric Approach',
+    description: 'Feature title: Student-Centric Approach',
+  },
+  'about.features.studentCentricDesc': {
+    id: 'about.features.studentCentricDesc',
+    defaultMessage: 'Our courses are designed with your success in mind.',
+    description: 'Description for Student-Centric Approach feature',
+  },
+  'about.features.careerGrowth': {
+    id: 'about.features.careerGrowth',
+    defaultMessage: 'Career Growth',
+    description: 'Feature title: Career Growth',
+  },
+  'about.features.careerGrowthDesc': {
+    id: 'about.features.careerGrowthDesc',
+    defaultMessage: 'Skills that help you advance in your professional journey.',
+    description: 'Description for Career Growth feature',
+  },
+  'about.features.qualityContent': {
+    id: 'about.features.qualityContent',
+    defaultMessage: 'Quality Content',
+    description: 'Feature title: Quality Content',
+  },
+  'about.features.qualityContentDesc': {
+    id: 'about.features.qualityContentDesc',
+    defaultMessage: 'Carefully curated curriculum updated regularly.',
+    description: 'Description for Quality Content feature',
+  },
+
+  // Mission & Vision
+  'about.mission.heading': {
+    id: 'about.mission.heading',
+    defaultMessage: 'Our Mission',
+    description: 'Heading for Mission section',
+  },
+  'about.mission.text': {
+    id: 'about.mission.text',
+    defaultMessage: 'To democratize education by providing accessible, high-quality learning experiences that empower individuals to achieve their personal and professional goals. We strive to bridge the gap between traditional education and the skills demanded by the modern workforce.',
+    description: 'Mission statement text',
+  },
+  'about.vision.heading': {
+    id: 'about.vision.heading',
+    defaultMessage: 'Our Vision',
+    description: 'Heading for Vision section',
+  },
+  'about.vision.text': {
+    id: 'about.vision.text',
+    defaultMessage: 'To become the world\'s most trusted and impactful online learning platform, where anyone, anywhere can access the education they need to transform their lives. We envision a future where learning knows no boundaries and opportunity is truly equal.',
+    description: 'Vision statement text',
+  },
+
+  //----------------contact us page ----------------------------
+
+  'contact.title': {
+    id: 'contact.title',
+    defaultMessage: 'Get in Touch',
+    description: 'Main heading of the Contact Us page',
+  },
+  'contact.subtitle': {
+    id: 'contact.subtitle',
+    defaultMessage: 'Have questions? We\'d love to hear from you. Send us a message and we\'ll respond as soon as possible.',
+    description: 'Subtitle under the main heading',
+  },
+
+  // Breadcrumb
+  'contact.breadcrumb.home': {
+    id: 'contact.breadcrumb.home',
+    defaultMessage: 'Home',
+    description: 'Breadcrumb link to home',
+  },
+  'contact.breadcrumb.contact': {
+    id: 'contact.breadcrumb.contact',
+    defaultMessage: 'Contact Us',
+    description: 'Current page in breadcrumb',
+  },
+
+  // Contact info
+  'contact.info.heading': {
+    id: 'contact.info.heading',
+    defaultMessage: 'Contact Information',
+    description: 'Heading above contact details',
+  },
+  'contact.info.subheading': {
+    id: 'contact.info.subheading',
+    defaultMessage: 'Let\'s Start a Conversation',
+    description: 'Subheading for contact info',
+  },
+  'contact.info.description': {
+    id: 'contact.info.description',
+    defaultMessage: 'We\'re here to help and answer any question you might have. We look forward to hearing from you.',
+    description: 'Description text under subheading',
+  },
+  'contact.info.address.title': {
+    id: 'contact.info.address.title',
+    defaultMessage: 'Our Address',
+    description: 'Title for address card',
+  },
+  'contact.info.address.text': {
+    id: 'contact.info.address.text',
+    defaultMessage: '123 Education Lane, Knowledge City New Delhi 110001, India',
+    description: 'Address text',
+  },
+  'contact.info.email.title': {
+    id: 'contact.info.email.title',
+    defaultMessage: 'Email Us',
+    description: 'Title for email card',
+  },
+  'contact.info.email.text': {
+    id: 'contact.info.email.text',
+    defaultMessage: 'info@vigyanshaala.com',
+    description: 'Email addresses',
+  },
+  'contact.info.phone.title': {
+    id: 'contact.info.phone.title',
+    defaultMessage: 'Call Us',
+    description: 'Title for phone card',
+  },
+  'contact.info.phone.text': {
+    id: 'contact.info.phone.text',
+    defaultMessage: '+91 98765 43210',
+    description: 'Phone numbers',
+  },
+
+  // Form fields
+  'contact.form.heading': {
+    id: 'contact.form.heading',
+    defaultMessage: 'Send us a Message',
+    description: 'Heading above the contact form',
+  },
+  'contact.form.name.label': {
+    id: 'contact.form.name.label',
+    defaultMessage: 'Full Name',
+    description: 'Label for name input',
+  },
+  'contact.form.name.placeholder': {
+    id: 'contact.form.name.placeholder',
+    defaultMessage: 'John Doe',
+    description: 'Placeholder for name input',
+  },
+  'contact.form.email.label': {
+    id: 'contact.form.email.label',
+    defaultMessage: 'Email Address',
+    description: 'Label for email input',
+  },
+  'contact.form.email.placeholder': {
+    id: 'contact.form.email.placeholder',
+    defaultMessage: 'john@example.com',
+    description: 'Placeholder for email input',
+  },
+  'contact.form.phone.label': {
+    id: 'contact.form.phone.label',
+    defaultMessage: 'Phone Number',
+    description: 'Label for phone input',
+  },
+  'contact.form.phone.placeholder': {
+    id: 'contact.form.phone.placeholder',
+    defaultMessage: '+91 98765 43210',
+    description: 'Placeholder for phone input',
+  },
+  'contact.form.subject.label': {
+    id: 'contact.form.subject.label',
+    defaultMessage: 'Subject',
+    description: 'Label for subject dropdown',
+  },
+  'contact.form.subject.placeholder': {
+    id: 'contact.form.subject.placeholder',
+    defaultMessage: 'Select a subject',
+    description: 'Placeholder option in subject dropdown',
+  },
+  'contact.form.subject.general': {
+    id: 'contact.form.subject.general',
+    defaultMessage: 'General Inquiry',
+    description: 'Subject option',
+  },
+  'contact.form.subject.courses': {
+    id: 'contact.form.subject.courses',
+    defaultMessage: 'Course Information',
+    description: 'Subject option',
+  },
+  'contact.form.subject.support': {
+    id: 'contact.form.subject.support',
+    defaultMessage: 'Technical Support',
+    description: 'Subject option',
+  },
+  'contact.form.subject.partnership': {
+    id: 'contact.form.subject.partnership',
+    defaultMessage: 'Partnership',
+    description: 'Subject option',
+  },
+  'contact.form.message.label': {
+    id: 'contact.form.message.label',
+    defaultMessage: 'Message',
+    description: 'Label for message textarea',
+  },
+  'contact.form.message.placeholder': {
+    id: 'contact.form.message.placeholder',
+    defaultMessage: 'Write your message here...',
+    description: 'Placeholder for message textarea',
+  },
+  'contact.form.submit': {
+    id: 'contact.form.submit',
+    defaultMessage: 'Send Message',
+    description: 'Submit button text',
+  },
+  //===============================================================================================================
+  //---------------------------------------------home-page---------------------------------------------------------
+  //===============================================================================================================
+
+  'home.hero.firsttitle': {
+    id: 'home.hero.firsttitle',
+    defaultMessage: 'Grow your career',
+    description: 'Main hero title part 1',
+  },
+  'home.hero.firsthighlight': {
+    id: 'home.hero.firsthighlight',
+    defaultMessage: 'IN STEM',
+    description: 'Highlighted part of hero title',
+  },
+  'home.hero.firstdescription': {
+    id: 'home.hero.firstdescription',
+    defaultMessage: 'Calling EVERY Woman pursuing STEM - Science, Technology, Engineering, Maths Degree to be part of an inspiring global community and make your next leap into higher education or job.',
+    description: 'Hero description text',
+  },
+  'home.hero.secondtitle': {
+    id: 'home.hero.secondtitle',
+    defaultMessage: 'Learn from Industry',
+    description: 'Main hero title part 1',
+  },
+  'home.hero.secondhighlight': {
+    id: 'home.hero.secondhighlight',
+    defaultMessage: 'Experts',
+    description: 'Highlighted part of hero title',
+  },
+  'home.hero.seconddescription': {
+    id: 'home.hero.seconddescription',
+    defaultMessage: 'Access world-class education from renowned instructors and gain practical knowledge that sets you apart.',
+    description: 'Hero description text',
+  },
+  'home.hero.getStarted': {
+    id: 'home.hero.getStarted',
+    defaultMessage: 'Get Started',
+    description: 'Primary button in hero',
+  },
+  'home.hero.learnMore': {
+    id: 'home.hero.learnMore',
+    defaultMessage: 'Learn More',
+    description: 'Secondary button in hero',
+  },
+
+  'home.trusted.heading': {
+    id: 'home.trusted.heading',
+    defaultMessage: 'Some of the places our Mentors are from',
+    description: 'Heading for trusted companies section',
+  },
+  'home.trusted.subheading': {
+    id: 'home.trusted.subheading',
+    defaultMessage: 'Our mentors come from world-class organizations across the globe',
+    description: 'Subheading for trusted companies',
+  },
+
+  'home.categories.badge': {
+    id: 'home.categories.badge',
+    defaultMessage: 'Categories',
+    description: 'Badge above categories section',
+  },
+  'home.categories.heading': {
+    id: 'home.categories.heading',
+    defaultMessage: 'Explore Our Categories',
+    description: 'Main heading for categories',
+  },
+  'home.categories.subheading': {
+    id: 'home.categories.subheading',
+    defaultMessage: 'Discover a wide range of courses across multiple disciplines. Whether you are looking to advance your career or explore new interests, we have something for everyone.',
+    description: 'Subheading for categories',
+  },
+  'home.categories.browseAll': {
+    id: 'home.categories.browseAll',
+    defaultMessage: 'Browse All Courses',
+    description: 'Button to browse all courses',
+  },
+
+  'home.courses.heading': {
+    id: 'home.courses.heading',
+    defaultMessage: 'Explore Our Popular Courses',
+    description: 'Heading for featured courses carousel',
+  },
+  'home.courses.subheading': {
+    id: 'home.courses.subheading',
+    defaultMessage: 'Start your learning journey with our most popular courses taught by industry experts',
+    description: 'Subheading for featured courses',
+  },
+  'home.courses.exploreAll': {
+    id: 'home.courses.exploreAll',
+    defaultMessage: 'Explore All Courses',
+    description: 'CTA button below courses carousel',
+  },
+
+  'home.success.heading': {
+    id: 'home.success.heading',
+    defaultMessage: 'Hear from Our Achievers',
+    description: 'Heading for success story section',
+  },
+  'home.success.subheading': {
+    id: 'home.success.subheading',
+    defaultMessage: 'Discover how VigyanShaala has transformed careers and empowered learners',
+    description: 'Subheading for success story',
+  },
+
+  'home.experts.badge': {
+    id: 'home.experts.badge',
+    defaultMessage: 'Our Instructors',
+    description: 'Badge above experts section',
+  },
+  'home.experts.heading': {
+    id: 'home.experts.heading',
+    defaultMessage: 'Meet Our Expert Instructors',
+    description: 'Main heading for experts section',
+  },
+  'home.experts.subheading': {
+    id: 'home.experts.subheading',
+    defaultMessage: 'Learn from industry leaders and academic experts',
+    description: 'Subheading for experts',
+  },
+
+  'home.community.heading': {
+    id: 'home.community.heading',
+    defaultMessage: 'Join Our Growing Community',
+    description: 'Heading for community section',
+  },
+  'home.community.subheading': {
+    id: 'home.community.subheading',
+    defaultMessage: 'Be part of a vibrant learning community that supports and inspires each other',
+    description: 'Subheading for community',
+  },
+  'home.community.stat': {
+    id: 'home.community.stat',
+    defaultMessage: 'Over 25,000+ happy learners have transformed their careers with VigyanShaala',
+    description: 'Community stats text',
+  },
+
+  'home.testimonials.badge': {
+    id: 'home.testimonials.badge',
+    defaultMessage: 'Testimonials',
+    description: 'Badge above testimonials',
+  },
+  'home.testimonials.heading': {
+    id: 'home.testimonials.heading',
+    defaultMessage: 'What Our Students Say',
+    description: 'Main heading for testimonials',
+  },
+  'home.testimonials.subheading': {
+    id: 'home.testimonials.subheading',
+    defaultMessage: 'Real stories from real learners who have achieved success with VigyanShaala',
+    description: 'Subheading for testimonials',
+  },
+});
+
+export default messages;

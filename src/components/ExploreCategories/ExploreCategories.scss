@@ -1,0 +1,77 @@
+.explore-categories {
+  padding: 6rem 0 !important;
+
+  .badge {
+    font-size: 14px;
+    line-height: 1.25;
+    padding: .25rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    max-width: 512px;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    transition: all 0.3s ease;
+    padding-top: 4rem;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .rounded {
+      width: 4rem;
+      height: 4rem;
+      transition: all 0.3s ease;
+      border-color: currentColor !important; 
+    }
+
+    h5 {
+      font-size: .875rem;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+  }
+
+  .btn-primary {
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+  }
+
+  .explore-categories-text{
+    min-width: 50%;
+  }
+
+  @media (max-width: 992px) {
+    padding: 3rem 0;
+
+    h2 {
+      font-size: 1.875rem;
+    }
+
+    .lead {
+      font-size: 1rem;
+    }
+
+    .card .rounded-circle {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .row > div {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

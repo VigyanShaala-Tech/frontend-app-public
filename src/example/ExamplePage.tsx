@@ -27,9 +27,9 @@ const ExamplePage = () => {
   };
 
   return (
-    <div className="container py-5 d-flex flex-column align-items-center">
-      <h2 className="mb-4">Contact Us</h2>
-      <Form onSubmit={handleSubmit} className="w-100" style={{ maxWidth: '500px' }}>
+    <div className="container py-5 d-flex flex-column align-items-center justify-content-center" style={{height:"82vh", fontSize:"85px"}}>
+      <h1 className="mb-4" style={{fontSize:"85px"}}>Abhi decide nhi hua hai</h1>
+      {/* <Form onSubmit={handleSubmit} className="w-100" style={{ maxWidth: '500px' }}>
         <Form.Group controlId="name" className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -77,7 +77,7 @@ const ExamplePage = () => {
             type="submit"
           />
         </div>
-      </Form>
+      </Form> */}
     </div>
   );
 };
