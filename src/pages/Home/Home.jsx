@@ -6,9 +6,9 @@ import TrustedCompanies from '../../components/TrustedCompanies/TrustedCompanies
 import ExploreCategories from '../../components/ExploreCategories/ExploreCategories';
 import CoursesCarousel from '../../components/CoursesCarousel/CoursesCarousel';
 import SuccessStory from '../../components/SuccessStory/SuccessStory';
-// import MeetExperts from '../../components/MeetExperts/MeetExperts';
-// import CommunitySection from '../../components/CommunitySection/CommunitySection';
-// import Testimonials from '../../components/Testimonials/Testimonials';
+import MeetExperts from '../../components/MeetExperts/MeetExperts';
+import CommunitySection from '../../components/CommunitySection/CommunitySection';
+import Testimonials from '../../components/Testimonials/Testimonials';
 
 import './Home.scss';
 
@@ -22,9 +22,9 @@ const Home = () => {
       <ExploreCategories />
       <CoursesCarousel />
       <SuccessStory />
-      {/* <MeetExperts /> */}
-      {/* <CommunitySection /> */}
-      {/* <Testimonials /> */}
+      <MeetExperts />
+      <CommunitySection />
+      <Testimonials />
     </div>
   );
 };

@@ -44,6 +44,9 @@
     }
   }
 
+  .course-card-wrapper{
+    width: 365px !important;
+  }
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -73,6 +76,11 @@
   @media (max-width: 576px) {
     .flex-shrink-0 {
       width: 280px !important;
+    }
+    .course-card-wrapper{
+      display: flex;
+      align-items: center;
+      width: 398px !important;
     }
   }
 }

@@ -33,6 +33,10 @@
       box-shadow: var(--shadow-lg);
     }
   }
+  .map-fullscreen-toggle-button{
+    top: 0;
+    right: 0;
+  }
   .contact-info-subheading{
     font-size: 1.875rem;
   }
@@ -53,7 +57,7 @@
 
     &:hover {
       background: #ffffff;
-      transform: translateX(12px); // 👈 slides right
+      transform: translateX(12px);
       border-radius: .75rem;
     }
   }
@@ -80,6 +84,8 @@
   }
   .full-screen-map button {
     z-index: 1100;
+    top: 0;
+    right: 0;
   }
   iframe{
     border: none;

@@ -246,7 +246,7 @@ const Contact = () => {
             {/* Fullscreen Toggle Button */}
             <button
               type="button"
-              className="position-absolute top-0 end-0 m-3 btn btn-light rounded-circle p-2 shadow-sm"
+              className="map-fullscreen-toggle-button position-absolute m-3 btn btn-light rounded-circle p-2 shadow-sm"
               onClick={() => setIsMapFullscreen(true)}
               title="Fullscreen Map"
               aria-label="Open map in fullscreen"
@@ -274,7 +274,7 @@ const Contact = () => {
         >
           <button
             type="button"
-            className="position-absolute top-0 end-0 m-4 btn btn-light rounded-circle p-3 shadow"
+            className="position-absolute m-4 btn btn-light rounded-circle p-3 shadow"
             onClick={() => setIsMapFullscreen(false)}
             aria-label="Close fullscreen map"
           >

@@ -64,41 +64,44 @@ const ExploreCategories = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <section className="explore-categories">
-      <div className="container d-flex flex-direction-column ">
-        {/* Heading Section */}
-        <div className="explore-categories-text text-left my-auto">
-        <span className="badge bg-primary text-white mb-3">
-            {formatMessage(messages['home.categories.badge'])}
-        </span>
-        <h2 className="mb-3">
-            {formatMessage(messages['home.categories.heading'])}
-        </h2>
-        <p className="text-muted text-align-left lead">
-            {formatMessage(messages['home.categories.subheading'])}
-        </p>
-        {/* Browse All Button */}
-        <div className="text-left mt-5">
-            <button className="btn btn-primary">
+    <section className="explore-categories py-5">
+      <div className="container">
+        <div className="row align-items-center g-5">
+          {/* Left Text Column - full width on mobile/tablet */}
+          <div className="col-lg-6 explore-categories-text text-lg-left text-center text-md-left">
+            <span className="badge bg-primary text-white mb-3">
+              {formatMessage(messages['home.categories.badge'])}
+            </span>
+            <h2 className="mb-3">
+              {formatMessage(messages['home.categories.heading'])}
+            </h2>
+            <p className="text-muted lead mb-4 mb-lg-5">
+              {formatMessage(messages['home.categories.subheading'])}
+            </p>
+            {/* Browse All Button */}
+            <div className="browse-category-btn text-center text-lg-left">
+              <button className="btn btn-primary">
                 {formatMessage(messages['home.categories.browseAll'])}
-            </button>
-        </div>
-        </div>
+              </button>
+            </div>
+          </div>
 
-        {/* Categories Grid */}
-        <div className="explore-categories-card row g-4">
-            {categories.map((category, idx) => (
-                <div key={idx} className="col-6 col-md-4 col-lg-3 mb-3">
-                    <div className="card text-center px-4 py-5 border-0">
-                        <div className={`rounded border d-flex align-items-center justify-content-center w-12 h-12 mx-auto mb-4 ${category.colorClass}`}>
-                            <FontAwesomeIcon icon={category.icon} size="lg" />
-                        </div>
-                        <h5 className="mb-0">{category.name}</h5>
+          {/* Right Categories Grid */}
+          <div className="col-lg-6 explore-categories-card">
+            <div className="row g-4">
+              {categories.map((category, idx) => (
+                <div key={idx} className="col-6 col-md-3 col-lg-3 mb-3">
+                  <div className="card text-center px-3 py-4 h-100">
+                    <div className={`rounded border d-flex align-items-center justify-content-center w-12 h-12 mx-auto mb-3 ${category.colorClass}`}>
+                      <FontAwesomeIcon icon={category.icon} size="lg" />
                     </div>
+                    <h5 className="mb-0">{category.name}</h5>
+                  </div>
                 </div>
-            ))}
+              ))}
+            </div>
+          </div>
         </div>
-
       </div>
     </section>
   );

@@ -148,8 +148,7 @@ const CoursesCarousel = () => {
             {courses.map((course) => (
               <div
                 key={course.id}
-                className="flex-shrink-0 mr-4 py-3"
-                style={{ width: '420px' }}
+                className="flex-shrink-0 mr-4 py-3 course-card-wrapper"
               >
                 <CourseCard course={course} layout="grid" />
               </div>

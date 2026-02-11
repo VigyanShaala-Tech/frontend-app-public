@@ -1,22 +1,23 @@
 .success-story {
-  padding: 4rem 0;
+  padding: 6rem 0 !important;
 
   .badge {
     font-size: 0.875rem;
-    padding: 0.4rem 0.9rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 999px;
+    line-height: 1.25;
   }
 
   h2 {
-    font-size: 2.25rem;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 1.3;
   }
 
   .lead {
-    font-size: 1.125rem;
-    max-width: 720px;
-    margin: 0 auto 2.5rem;
+    font-size: 1rem;
+    max-width: 768px;
+    margin: 0 auto !important;
   }
 
   .card {
@@ -25,6 +26,21 @@
     overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
+
+    .play-button-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      .video-play-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+      }
+    }
 
     &:hover {
       transform: translateY(-6px);
@@ -39,18 +55,64 @@
       }
     }
 
-    .bg-gradient-to-t {
-      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    .text-overlay-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+
+      h4 {
+        font-size: 1.5rem;
+      }
+      p {
+        max-width: 672px;
+      }
     }
   }
 
-  .position-absolute {
-    transition: all 0.3s ease;
+  /* Video Modal Styles */
+  .video-open-model {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
   }
 
-  .rounded-circle.bg-primary {
-    width: 5rem;
-    height: 5rem;
+  .video-modal-content {
+    position: relative;
+    width: 55vw;
+    height: 60vh;
+    max-width: 960px;
+    max-height: 540px;
+  }
+
+  .video-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 0.75rem;
+    overflow: hidden;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .video-close-btn {
+    top: 2rem;
+    right: 2rem;
+    width: 2.75rem;
+    height: 2.75rem;
   }
 
   @media (max-width: 992px) {
@@ -60,13 +122,20 @@
       font-size: 1.875rem;
     }
 
-    .lead {
-      font-size: 1rem;
-    }
-
     .card .rounded-circle.bg-primary {
       width: 4rem;
       height: 4rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .video-modal-content {
+      width: 90vw;
+      height: 50vh;
+    }
+
+    .video-close-btn {
+      right: -2.5rem;
     }
   }
 

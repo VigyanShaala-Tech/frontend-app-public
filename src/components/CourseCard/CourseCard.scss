@@ -45,6 +45,13 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .text-muted {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 }
 
 /* ============================================================================

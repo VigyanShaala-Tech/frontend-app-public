@@ -51,10 +51,30 @@ const messages = defineMessages({
     defaultMessage: 'Clear filters',
     description: 'Button to reset filters on no results',
   },
+  'catalog.loading': {
+    id: 'catalog.loading',
+    defaultMessage: 'Loading courses...',
+    description: 'Loading indicator text while fetching courses',
+  },
+  'catalog.error.fetch': {
+    id: 'catalog.error.fetch',
+    defaultMessage: 'Failed to load courses. Please try again later.',
+    description: 'Error message when course fetch fails',
+  },
+  'catalog.retry': {
+    id: 'catalog.retry',
+    defaultMessage: 'Retry',
+    description: 'Button text to retry loading courses after error',
+  },
   'catalog.results.showing': {
     id: 'catalog.results.showing',
     defaultMessage: 'Showing {perPage} of {count} {count, plural, one {course} other {courses}}',
     description: 'Showing X courses message with plural support',
+  },
+  'catalog.results.showing': {
+    id: 'catalog.results.showing',
+    defaultMessage: 'Showing {count, number} {count, plural, one {course} other {courses}}',
+    description: 'Shows total number of matching courses (backend paginated)',
   },
   'catalog.view.grid': {
     id: 'catalog.view.grid',
@@ -581,7 +601,7 @@ const messages = defineMessages({
   },
   'home.success.subheading': {
     id: 'home.success.subheading',
-    defaultMessage: 'Discover how VigyanShaala has transformed careers and empowered learners',
+    defaultMessage: 'Discover how VigyanShaala has transformed careers and empowered thousands of learners to achieve their dreams',
     description: 'Subheading for success story',
   },
 
@@ -597,7 +617,7 @@ const messages = defineMessages({
   },
   'home.experts.subheading': {
     id: 'home.experts.subheading',
-    defaultMessage: 'Learn from industry leaders and academic experts',
+    defaultMessage: 'Learn from industry leaders and academic experts who bring real-world experience to every lesson',
     description: 'Subheading for experts',
   },
 
@@ -615,6 +635,22 @@ const messages = defineMessages({
     id: 'home.community.stat',
     defaultMessage: 'Over 25,000+ happy learners have transformed their careers with VigyanShaala',
     description: 'Community stats text',
+  },
+    // Community Section - additional translatable strings
+  'home.community.badge': {
+    id: 'home.community.badge',
+    defaultMessage: 'Our Community',
+    description: 'Badge label above community section',
+  },
+  'home.community.happyStudents': {
+    id: 'home.community.happyStudents',
+    defaultMessage: 'Happy Students',
+    description: 'Heading inside community card',
+  },
+  'home.community.avatarPlus': {
+    id: 'home.community.avatarPlus',
+    defaultMessage: '+25k',
+    description: 'Avatar count text inside community card',
   },
 
   'home.testimonials.badge': {

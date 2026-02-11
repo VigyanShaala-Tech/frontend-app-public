@@ -4,7 +4,7 @@
   .badge {
     font-size: 14px;
     line-height: 1.25;
-    padding: .25rem 0.75rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 999px;
   }
 
@@ -17,12 +17,20 @@
   .lead {
     font-size: 1.125rem;
     max-width: 512px;
-    margin-bottom: 2rem;
   }
 
+  .btn-primary {
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+  }
+
+  /* ===== CARD ===== */
   .card {
     transition: all 0.3s ease;
-    padding-top: 4rem;
+    background: var(--white);
+    border: none;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
 
     &:hover {
       transform: translateY(-6px);
@@ -33,45 +41,77 @@
       width: 4rem;
       height: 4rem;
       transition: all 0.3s ease;
-      border-color: currentColor !important; 
+      border-color: currentColor !important;
     }
 
     h5 {
-      font-size: .875rem;
+      font-size: 0.875rem;
       font-weight: 600;
       margin-bottom: 0;
     }
   }
 
-  .btn-primary {
-    padding: 0.75rem 2rem;
-    font-weight: 500;
-  }
+  /* ===== RESPONSIVE ===== */
 
-  .explore-categories-text{
-    min-width: 50%;
-  }
-
+  /* Tablet (≤ 992px) */
   @media (max-width: 992px) {
-    padding: 3rem 0;
+    padding: 4rem 0 !important;
+
+    h2 {
+      font-size: 2.25rem;
+    }
+
+    .lead {
+      font-size: 1rem;
+    }
+    .explore-categories-text{
+      text-align: center !important;
+    }
+
+    .card .rounded {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    /* Text full width on top, grid below */
+    .explore-categories-text {
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* Mobile (≤ 576px) */
+  @media (max-width: 576px) {
+    padding: 3rem 0 !important;
 
     h2 {
       font-size: 1.875rem;
     }
 
     .lead {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
-    .card .rounded-circle {
+    .card {
+      padding: 1.5rem 1rem;
+    }
+
+    .card .rounded {
       width: 3rem;
       height: 3rem;
     }
-  }
 
-  @media (max-width: 576px) {
-    .row > div {
-      margin-bottom: 1.5rem;
+    h5 {
+      font-size: 0.85rem;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+    }
+
+    /* Text left aligned on mobile */
+    .explore-categories-text {
+      text-align: left !important;
     }
   }
 }
