@@ -17,7 +17,8 @@
     max-width: 576px;
     margin: 0 auto;
   }
-  .navigation-arrow-container{
+
+  .navigation-arrow-container {
     width: 100%;
     display: flex;
     align-items: center;
@@ -44,9 +45,21 @@
     }
   }
 
-  .course-card-wrapper{
-    width: 365px !important;
+  /* ──────────────────────────────────────────────
+     Main carousel container
+  ──────────────────────────────────────────────── */
+  .d-flex.overflow-auto {
+    gap: 1.5rem;           /* consistent gap between cards */
+    padding: 0 1px;        /* tiny padding to prevent edge clipping */
+    scroll-padding-left: 1rem;   /* nicer scroll start position */
+    scroll-padding-right: 1rem;
   }
+
+  .course-card-wrapper {
+    flex: 0 0 auto;        /* important: prevent growing/shrinking unexpectedly */
+    width: 365px;          /* desktop base width */
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -56,6 +69,19 @@
     }
   }
 
+  /* ──────────────────────────────────────────────
+     Responsive visible cards control
+  ──────────────────────────────────────────────── */
+
+  /* Desktop — show 3 cards */
+  @media (min-width: 993px) {
+    .course-card-wrapper {
+      width: calc((100% - 4 * 1.5rem) / 3) !important;  /* 3 cards + 2 gaps */
+      // max-width: 365px;   /* don't let them get ridiculously wide on 4K */
+    }
+  }
+
+  /* Tablet — show 2 cards (≈ 576px – 992px) */
   @media (max-width: 992px) {
     padding: 3rem 0;
 
@@ -71,16 +97,26 @@
       width: 2.5rem;
       height: 2.5rem;
     }
+
+    .course-card-wrapper {
+      width: calc((100% - 3rem) / 2) !important;   /* 2 cards + 1 gap */
+      // max-width: 340px;
+    }
   }
 
+  /* Mobile — show 1 card */
   @media (max-width: 576px) {
-    .flex-shrink-0 {
-      width: 280px !important;
+    .course-card-wrapper {
+      width: 100% !important;
+      max-width: 380px;
+      margin: 0 auto;
     }
-    .course-card-wrapper{
-      display: flex;
-      align-items: center;
-      width: 398px !important;
+
+    /* Optional: make arrows smaller or hide if only 1 card fits */
+    .carousel-arrow {
+      width: 2.2rem;
+      height: 2.2rem;
+      font-size: 0.9rem;
     }
   }
 }

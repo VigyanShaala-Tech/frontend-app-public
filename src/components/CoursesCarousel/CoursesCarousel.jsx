@@ -9,84 +9,12 @@ import {
 import CourseCard from '../CourseCard/CourseCard';
 import messages from '../../message/GlobalMessage.message';
 import { useNavigate } from 'react-router-dom';
+import { getConfig } from '@edx/frontend-platform';
+import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
+
 
 
 import './CoursesCarousel.scss';
-
-const courses = [
-  {
-    id: 1,
-    title: 'Complete Python Bootcamp',
-    description: 'Master Python programming from scratch with hands-on projects and real-world applications.',
-    rating: 4.9,
-    reviews: 2340,
-    instructor: 'Dr. Sarah Johnson',
-    category: 'Development',
-    duration: '42 hours',
-    level: 'Beginner to Advanced',
-    image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800',
-  },
-  {
-    id: 2,
-    title: 'Data Science Fundamentals',
-    description: 'Learn data analysis, visualization, and machine learning concepts with practical exercises.',
-    rating: 4.8,
-    reviews: 1890,
-    instructor: 'Prof. Michael Chen',
-    category: 'Data Science',
-    duration: '50 hours',
-    level: 'Intermediate',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
-  },
-  {
-    id: 3,
-    title: 'Business Communication',
-    description: 'Enhance your professional communication skills for the modern workplace.',
-    rating: 4.7,
-    reviews: 1560,
-    instructor: 'Dr. Emily Roberts',
-    category: 'Business',
-    duration: '25 hours',
-    level: 'Beginner',
-    image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800',
-  },
-  {
-    id: 4,
-    title: 'UI/UX Design Mastery',
-    description: 'Create stunning user interfaces and seamless user experiences from concept to prototype.',
-    rating: 4.9,
-    reviews: 2100,
-    instructor: 'Alex Thompson',
-    category: 'Design',
-    duration: '45 hours',
-    level: 'Intermediate',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800',
-  },
-  {
-    id: 5,
-    title: 'Financial Literacy 101',
-    description: 'Build a strong foundation in personal finance and investment strategies.',
-    rating: 4.6,
-    reviews: 980,
-    instructor: 'James Wilson',
-    category: 'Finance',
-    duration: '20 hours',
-    level: 'Beginner',
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800',
-  },
-  {
-    id: 6,
-    title: 'Content Marketing Strategy',
-    description: 'Learn to create compelling content that drives engagement and conversions.',
-    rating: 4.8,
-    reviews: 1340,
-    instructor: 'Lisa Anderson',
-    category: 'Marketing',
-    duration: '35 hours',
-    level: 'Intermediate',
-    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800',
-  },
-];
 
 const CoursesCarousel = () => {
   const { formatMessage } = useIntl();
@@ -94,7 +22,7 @@ const CoursesCarousel = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const navigate = useNavigate();
-
+  const [courses, setCourses] = useState([]);
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -116,10 +44,43 @@ const CoursesCarousel = () => {
   };
 
   useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await getAuthenticatedHttpClient().get(
+          `${getConfig().LMS_BASE_URL}/api/v1/catalog/courses/`
+        );
+
+        if (response.status === 200 && response.data?.results) {
+          const mappedCourses = response.data.results.map((item) => ({
+            id: item.id || item.course_id,
+            title: item.name,
+            description: item.short_description,
+            category: item.category,
+            level: item.level,
+            duration: item.effort,
+            rating: item.rating,
+            reviews: item.no_of_reviews,
+            instructor: item.instructor_name,
+            image: item.media?.image?.large,
+          }));
+
+          setCourses(mappedCourses);
+        } 
+      } catch (err) {
+        console.error('Courses fetch failed:', err);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+
+
+  useEffect(() => {
     checkScroll();
     window.addEventListener('resize', checkScroll);
     return () => window.removeEventListener('resize', checkScroll);
-  }, []);
+  }, [courses]);
 
   return (
     <section className="courses-carousel py-5">

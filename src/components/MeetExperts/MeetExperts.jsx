@@ -7,60 +7,60 @@ import messages from '../../message/GlobalMessage.message';
 
 import './MeetExperts.scss';
 
-// Experts data (same as your lovable code)
-const experts = [
-  {
-    id: 1,
-    name: 'Dr. Priya Sharma',
-    subject: 'Python & Data Science',
-    image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=500&fit=crop',
-  },
-  {
-    id: 2,
-    name: 'Prof. Rajesh Kumar',
-    subject: 'Machine Learning',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop',
-  },
-  {
-    id: 3,
-    name: 'Dr. Ananya Desai',
-    subject: 'Business Strategy',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=500&fit=crop',
-  },
-  {
-    id: 4,
-    name: 'Vikram Mehta',
-    subject: 'UI/UX Design',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop',
-  },
-  {
-    id: 5,
-    name: 'Dr. Kavita Reddy',
-    subject: 'Finance & Analytics',
-    image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=500&fit=crop',
-  },
-  {
-    id: 6,
-    name: 'Arjun Nair',
-    subject: 'Digital Marketing',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop',
-  },
-  {
-    id: 7,
-    name: 'Sneha Gupta',
-    subject: 'Content Writing',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop',
-  },
-  {
-    id: 8,
-    name: 'Rohan Patel',
-    subject: 'Web Development',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=500&fit=crop',
-  },
-];
-
 const MeetExperts = () => {
   const { formatMessage } = useIntl();
+
+  // Experts data – name and subject are now translatable
+  const experts = [
+    {
+      id: 1,
+      nameKey: 'home.experts.expert1.name',
+      subjectKey: 'home.experts.expert1.subject',
+      image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=500&fit=crop',
+    },
+    {
+      id: 2,
+      nameKey: 'home.experts.expert2.name',
+      subjectKey: 'home.experts.expert2.subject',
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop',
+    },
+    {
+      id: 3,
+      nameKey: 'home.experts.expert3.name',
+      subjectKey: 'home.experts.expert3.subject',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=500&fit=crop',
+    },
+    {
+      id: 4,
+      nameKey: 'home.experts.expert4.name',
+      subjectKey: 'home.experts.expert4.subject',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop',
+    },
+    {
+      id: 5,
+      nameKey: 'home.experts.expert5.name',
+      subjectKey: 'home.experts.expert5.subject',
+      image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=500&fit=crop',
+    },
+    {
+      id: 6,
+      nameKey: 'home.experts.expert6.name',
+      subjectKey: 'home.experts.expert6.subject',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop',
+    },
+    {
+      id: 7,
+      nameKey: 'home.experts.expert7.name',
+      subjectKey: 'home.experts.expert7.subject',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop',
+    },
+    {
+      id: 8,
+      nameKey: 'home.experts.expert8.name',
+      subjectKey: 'home.experts.expert8.subject',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=500&fit=crop',
+    },
+  ];
 
   return (
     <section className="meet-experts">
@@ -68,7 +68,7 @@ const MeetExperts = () => {
         {/* Heading Section */}
         <div className="text-center mb-5">
           <span className="badge bg-primary text-white mb-3">
-            Our Instructors
+            {formatMessage(messages['home.experts.badge'])}
           </span>
           <h2 className="mb-3">
             {formatMessage(messages['home.experts.heading'])}
@@ -87,17 +87,17 @@ const MeetExperts = () => {
                 <div className="expert-image-wrapper mx-auto mb-4 overflow-hidden">
                   <img
                     src={expert.image}
-                    alt={expert.name}
+                    alt={formatMessage(messages[expert.nameKey])}
                     className="expert-image w-100 h-100 object-cover"
                   />
                 </div>
 
                 {/* Name & Subject */}
                 <h5 className="expert-name">
-                  {expert.name}
+                  {formatMessage(messages[expert.nameKey])}
                 </h5>
                 <p className="text-muted small mb-0 expert-subject">
-                  {expert.subject}
+                  {formatMessage(messages[expert.subjectKey])}
                 </p>
               </div>
             </div>

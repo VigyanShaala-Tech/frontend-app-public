@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import {
   Form,
@@ -12,86 +12,132 @@ import messages from '../../message/GlobalMessage.message';
 import CourseCard from '../../components/CourseCard/CourseCard';
 
 import './CourseCatalog.scss';
-
-// Dummy data (20 courses)
-const categories = [
-  'All Categories',
-  'Data Science',
-  'Development',
-  'Business',
-  'Design',
-  'Marketing',
-  'Finance',
-];
-
-const levels = ['All Levels', 'Beginner', 'Intermediate', 'Advanced'];
-
-const subjects = [
-  'All Subjects',
-  'Python',
-  'JavaScript',
-  'React',
-  'Machine Learning',
-  'UI/UX',
-  'Data Analysis',
-  'Digital Marketing',
-  'Project Management',
-  'Communication',
-];
-
-const mockCourses = [
-  { id: 1, title: 'Complete Python Bootcamp', description: 'Master Python from scratch with real projects.', category: 'Development', level: 'Beginner', subject: 'Python', duration: '42 hours', rating: 4.8, reviews: 2140, instructor: 'Dr. Sarah Johnson', image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800' },
-  { id: 2, title: 'Data Science Fundamentals', description: 'Learn data analysis, visualization, ML basics.', category: 'Data Science', level: 'Intermediate', subject: 'Data Analysis', duration: '50 hours', rating: 4.7, reviews: 1890, instructor: 'Prof. Michael Chen', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800' },
-  { id: 3, title: 'Business Communication Mastery', description: 'Improve professional communication skills.', category: 'Business', level: 'Beginner', subject: 'Communication', duration: '25 hours', rating: 4.6, reviews: 1560, instructor: 'Dr. Emily Roberts', image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800' },
-  { id: 4, title: 'UI/UX Design Mastery', description: 'Create stunning interfaces and experiences.', category: 'Design', level: 'Intermediate', subject: 'UI/UX', duration: '45 hours', rating: 4.9, reviews: 2100, instructor: 'Alex Thompson', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800' },
-  { id: 5, title: 'Financial Literacy 101', description: 'Build strong personal finance foundations.', category: 'Finance', level: 'Beginner', subject: 'Finance', duration: '20 hours', rating: 4.5, reviews: 980, instructor: 'James Wilson', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800' },
-  { id: 6, title: 'Digital Marketing Strategy', description: 'Master modern digital marketing.', category: 'Marketing', level: 'Intermediate', subject: 'Digital Marketing', duration: '35 hours', rating: 4.8, reviews: 1340, instructor: 'Lisa Anderson', image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800' },
-  { id: 7, title: 'React Development Bootcamp', description: 'Build modern web apps with React.', category: 'Development', level: 'Intermediate', subject: 'React', duration: '55 hours', rating: 4.9, reviews: 2560, instructor: 'David Kim', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800' },
-  { id: 8, title: 'Machine Learning A-Z', description: 'Complete ML course with Python & R.', category: 'Data Science', level: 'Advanced', subject: 'Machine Learning', duration: '60 hours', rating: 4.8, reviews: 3200, instructor: 'Prof. Michael Chen', image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800' },
-  { id: 9, title: 'Project Management Professional', description: 'Master PM methodologies.', category: 'Business', level: 'Intermediate', subject: 'Project Management', duration: '30 hours', rating: 4.7, reviews: 1120, instructor: 'Dr. Emily Roberts', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800' },
-  { id: 10, title: 'Advanced JavaScript Deep Dive', description: 'Modern JS features & design patterns.', category: 'Development', level: 'Advanced', subject: 'JavaScript', duration: '40 hours', rating: 4.9, reviews: 1850, instructor: 'Sarah Johnson', image: 'https://images.unsplash.com/photo-1627398243573-3688c1a90de4?w=800' },
-  { id: 11, title: 'Introduction to Finance', description: 'Basic financial concepts & markets.', category: 'Finance', level: 'Beginner', subject: 'Finance', duration: '28 hours', rating: 4.6, reviews: 920, instructor: 'James Wilson', image: 'https://images.unsplash.com/photo-1460925895917-afdb5d372e4d?w=800' },
-  { id: 12, title: 'Graphic Design Essentials', description: 'Fundamentals using Adobe tools.', category: 'Design', level: 'Beginner', subject: 'Design', duration: '35 hours', rating: 4.7, reviews: 1420, instructor: 'Alex Thompson', image: 'https://images.unsplash.com/photo-1618005182385-5338c06392d0?w=800' },
-  { id: 13, title: 'Marketing Analytics', description: 'Data-driven marketing decisions.', category: 'Marketing', level: 'Intermediate', subject: 'Digital Marketing', duration: '45 hours', rating: 4.8, reviews: 1680, instructor: 'Lisa Anderson', image: 'https://images.unsplash.com/photo-1460925895917-afdb5d372e4d?w=800' },
-  { id: 14, title: 'Leadership in Business', description: 'Modern workplace leadership skills.', category: 'Business', level: 'Advanced', subject: 'Business', duration: '38 hours', rating: 4.7, reviews: 1240, instructor: 'Dr. Emily Roberts', image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800' },
-  { id: 15, title: 'Deep Learning Specialization', description: 'Neural networks & deep learning.', category: 'Data Science', level: 'Advanced', subject: 'Machine Learning', duration: '65 hours', rating: 4.9, reviews: 2800, instructor: 'Prof. Michael Chen', image: 'https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=800' },
-  { id: 16, title: 'Full Stack Web Development', description: 'Frontend + backend with modern stacks.', category: 'Development', level: 'Intermediate', subject: 'JavaScript', duration: '60 hours', rating: 4.8, reviews: 1950, instructor: 'David Kim', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800' },
-  { id: 17, title: 'Investment Strategies', description: 'Build & manage investment portfolios.', category: 'Finance', level: 'Intermediate', subject: 'Finance', duration: '32 hours', rating: 4.6, reviews: 1100, instructor: 'James Wilson', image: 'https://images.unsplash.com/photo-1570549717489-92f4fe77b282?w=800' },
-  { id: 18, title: 'Product Design Principles', description: 'Ideation to prototyping in product design.', category: 'Design', level: 'Beginner', subject: 'UI/UX', duration: '40 hours', rating: 4.7, reviews: 1350, instructor: 'Alex Thompson', image: 'https://images.unsplash.com/photo-1507238691740-187a5b1bbd74?w=800' },
-  { id: 19, title: 'Social Media Marketing', description: 'Grow business on social platforms.', category: 'Marketing', level: 'Beginner', subject: 'Digital Marketing', duration: '30 hours', rating: 4.5, reviews: 1020, instructor: 'Lisa Anderson', image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800' },
-  { id: 20, title: 'Entrepreneurship Essentials', description: 'Start and scale your own business.', category: 'Business', level: 'Beginner', subject: 'Business', duration: '45 hours', rating: 4.8, reviews: 1480, instructor: 'Dr. Emily Roberts', image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800' },
-];
-
-const COURSES_PER_PAGE = 6;
+import { getConfig } from '@edx/frontend-platform';
+import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 
 const CourseCatalog = () => {
   const { formatMessage } = useIntl();
 
+  // Filter options from /api/v1/catalog/filters/
+  const [categories, setCategories] = useState(['All Categories']);
+  const [levels, setLevels] = useState(['All Levels']);
+  const [subjects, setSubjects] = useState(['All Subjects']);
+
+  // User selections
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All Categories');
   const [level, setLevel] = useState('All Levels');
   const [subject, setSubject] = useState('All Subjects');
   const [viewMode, setViewMode] = useState('grid');
+
+  // Pagination & courses
+  const [courses, setCourses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalCourses, setTotalCourses] = useState(0);
 
-  const filteredCourses = mockCourses.filter((course) => {
-    const matchSearch = !search ||
-      course.title.toLowerCase().includes(search.toLowerCase()) ||
-      course.instructor.toLowerCase().includes(search.toLowerCase());
+  // UI states
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const searchRef = useRef(null);
 
-    return (
-      matchSearch &&
-      (category === 'All Categories' || course.category === category) &&
-      (level === 'All Levels' || course.level === level) &&
-      (subject === 'All Subjects' || course.subject === subject)
-    );
-  });
+  // Fetch filter options once
+  useEffect(() => {
+    const fetchFilters = async () => {
+      try {
+        const res = await getAuthenticatedHttpClient().get(`${getConfig().LMS_BASE_URL}/api/v1/catalog/filters/`);
 
-  const totalPages = Math.ceil(filteredCourses.length / COURSES_PER_PAGE);
-  const paginatedCourses = filteredCourses.slice(
-    (currentPage - 1) * COURSES_PER_PAGE,
-    currentPage * COURSES_PER_PAGE
-  );
+        if (res.status === 200 && res.data) {
+          setCategories(['All Categories', ...(res.data.categories || [])]);
+          setLevels(['All Levels', ...(res.data.levels || [])]);
+          setSubjects(['All Subjects', ...(res.data.subjects || [])]);
+        }
+      } catch (err) {
+        console.error('Failed to load filter options:', err);
+      }
+    };
+    fetchFilters();
+  }, []);
+
+
+  // Fetch courses for current page + filters
+  const fetchCourses = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const params = new URLSearchParams();
+
+      if (search.trim()) {
+        params.append('search_term', search.trim());
+      }
+      if (category !== 'All Categories') {
+        params.append('category', category);
+      }
+      if (level !== 'All Levels') {
+        params.append('level', level);
+      }
+      if (subject !== 'All Subjects') {
+        params.append('subject', subject);
+      }
+      if (currentPage > 1) {
+        params.append('page', currentPage);
+      }
+
+      const response = await getAuthenticatedHttpClient().get(`${getConfig().LMS_BASE_URL}/api/v1/catalog/courses/?${params.toString()}`);
+
+      if (response.status === 200 && response.data?.results) {
+        const mappedCourses = response.data.results.map((item) => ({
+          id: item.id || item.course_id,
+          title: item.name,
+          description: item.short_description,
+          category: item.category,
+          level: item.level,
+          duration: item.effort,
+          rating: item.rating,
+          reviews: item.no_of_reviews,
+          instructor: item.instructor_name,
+          image: item.media?.image?.large,
+        }));
+
+        setCourses(mappedCourses);
+        setTotalPages(response.data.pagination?.num_pages);
+        setTotalCourses(response.data.pagination?.count || mappedCourses.length);
+      } else {
+        setCourses([]);
+        setTotalPages(1);
+        setTotalCourses(0);
+      }
+    } catch (err) {
+      console.error('Courses fetch failed:', err);
+      setError(
+        formatMessage(messages['catalog.error.fetch'])
+      );
+      setCourses([]);
+      setTotalPages(1);
+      setTotalCourses(0);
+    } finally {
+      setLoading(false);
+    }
+  }, [search, category, level, subject, currentPage, formatMessage]);
+
+  // Fetch when filters or page changes
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
+
+  // Reset to page 1 when any filter/search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, category, level, subject]);
+
+  useEffect(() => {
+    searchRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, [currentPage]);
+
 
   const clearFilters = () => {
     setSearch('');
@@ -127,7 +173,7 @@ const CourseCatalog = () => {
       </section>
 
       {/* Filters & Content */}
-      <section className="pb-5 ">
+      <section ref={searchRef} className="pb-5 ">
         <div className="container">
           {/* Filter Bar */}
           <div className="filter-bar border rounded p-4 mb-5 bg-white">
@@ -137,7 +183,7 @@ const CourseCatalog = () => {
                 <Form.Control
                   type="text"
                   value={search}
-                  onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
+                  onChange={(e) => { setSearch(e.target.value);}}
                   placeholder={formatMessage(messages['catalog.search.placeholder'])}
                   className="ps-5"
                 />
@@ -247,14 +293,14 @@ const CourseCatalog = () => {
           </div>
 
           {/* Results count */}
-          <p className="text-muted mb-4">
-            {formatMessage(messages['catalog.results.showing'], { count: filteredCourses.length, perPage: COURSES_PER_PAGE })}
+          <p className="result-count text-muted mb-4">
+            {formatMessage(messages['catalog.results.showing'], { count: totalCourses, perPage: courses.length })}
           </p>
 
           {/* Course Grid / List */}
           {viewMode === 'grid' ? (
             <div className="row g-4">
-              {paginatedCourses.map(course => (
+              {courses.map(course => (
                 <div key={course.id} className="col-md-6 col-lg-4 mb-4">
                   <CourseCard course={course} layout="grid" />
                 </div>
@@ -262,7 +308,7 @@ const CourseCatalog = () => {
             </div>
           ) : (
             <div className="d-flex flex-column gap-4">
-              {paginatedCourses.map(course => (
+              {courses.map(course => (
                 <div key={course.id} className="mb-4">
                     <CourseCard key={course.id} course={course} layout="list" />
                 </div>
@@ -278,13 +324,13 @@ const CourseCatalog = () => {
                 pageCount={totalPages}
                 currentPage={currentPage}
                 onPageSelect={setCurrentPage}
-                variant="secondary"
+                variant="primary"
               />
             </div>
           )}
 
           {/* No Results */}
-          {filteredCourses.length === 0 && (
+          {courses.length === 0 && (
             <div className="text-center py-8 no-results rounded">
               <h4 className="text-muted mb-4">
                 {formatMessage(messages['catalog.noResults.title'])}

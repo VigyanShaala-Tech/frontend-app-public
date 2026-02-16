@@ -1,103 +1,126 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { Button } from '@openedx/paragon';
+import { Button, Spinner, Alert } from '@openedx/paragon';
 import {
   faStar,
   faClock,
   faChartLine,
   faUsers,
   faPlayCircle,
-  faFileAlt,
   faAward,
-  faCheckCircle,
   faChevronDown,
   faChevronUp,
-  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useParams } from 'react-router-dom';
 
+import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth'; 
+import { getConfig } from '@edx/frontend-platform';
 import messages from '../../message/GlobalMessage.message';
+import PlaceholderImage from '../../assets/image/placeholder-image.jpeg'
+import PlaceholderProfileImage from '../../assets/image/profile-placeholder.png'
 
 import './CourseAbout.scss';
-
-// Dummy course data (replace with real API later)
-const courseData = {
-  id: 1,
-  title: 'Complete Python Bootcamp: From Zero to Hero',
-  description: 'Master Python programming with this comprehensive bootcamp. Learn Python like a professional by building real-world projects and applications.',
-  rating: 4.9,
-  review: 2340,
-  students: 15680,
-  instructor: {
-    name: 'Dr. Sarah Johnson',
-    title: 'Senior Data Scientist',
-    bio: 'Dr. Sarah Johnson is a renowned data scientist with over 15 years of experience in Python programming and machine learning. She has worked at leading tech companies and has trained thousands of students worldwide.',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
-  },
-  duration: '40 hours',
-  level: 'Beginner to Advanced',
-  lastUpdated: 'January 2024',
-  language: 'English',
-  image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800',
-  features: [
-    '40+ hours of video content',
-    'Lifetime access',
-    'Certificate of completion',
-    '100+ coding exercises',
-    '15 real-world projects',
-    'Downloadable resources',
-  ],
-  curriculum: [
-    {
-      title: 'Introduction to Python',
-      lessons: [
-        { title: 'Welcome to the Course', duration: '5:00' },
-        { title: 'Installing Python', duration: '12:30' },
-        { title: 'Your First Python Program', duration: '15:00' },
-      ],
-    },
-    {
-      title: 'Python Fundamentals',
-      lessons: [
-        { title: 'Variables and Data Types', duration: '20:00' },
-        { title: 'Operators and Expressions', duration: '18:00' },
-        { title: 'Control Flow Statements', duration: '25:00' },
-      ],
-    },
-    {
-      title: 'Data Structures',
-      lessons: [
-        { title: 'Lists and Tuples', duration: '30:00' },
-        { title: 'Dictionaries and Sets', duration: '25:00' },
-        { title: 'Working with Strings', duration: '20:00' },
-      ],
-    },
-  ],
-  reviews: [
-    {
-      name: 'Rahul M.',
-      rating: 5,
-      comment: 'Excellent course! The instructor explains complex concepts in a simple way.',
-      date: '2 weeks ago',
-    },
-    {
-      name: 'Priya S.',
-      rating: 5,
-      comment: 'Best Python course I have taken. Highly recommended for beginners.',
-      date: '1 month ago',
-    },
-  ],
-};
 
 const tabs = ['Overview', 'Curriculum', 'Instructor', 'Reviews'];
 
 const CourseAbout = () => {
   const { formatMessage } = useIntl();
-  const { id } = useParams(); // course ID from URL
+  const { id: courseId } = useParams(); // e.g. "course-v1:OpenedX+DemoX+DemoCourse"
+
+  const [course, setCourse] = useState(null);
+  const [curriculum, setCurriculum] = useState(null);
+  const [instructors, setInstructors] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   const [activeTab, setActiveTab] = useState('Overview');
-  const [expandedSections, setExpandedSections] = useState([0]);
+  const [expandedSections, setExpandedSections] = useState([]);
+
+  const [loadingCourse, setLoadingCourse] = useState(true);
+  const [errorCourse, setErrorCourse] = useState(null);
+
+  const [loadingCurriculum, setLoadingCurriculum] = useState(false);
+  const [loadingInstructors, setLoadingInstructors] = useState(false);
+  const [loadingReviews, setLoadingReviews] = useState(false);
+
+  const baseUrl = getConfig().LMS_BASE_URL;
+  const httpClient = getAuthenticatedHttpClient();
+
+  // Fetch main course details once on mount
+  useEffect(() => {
+    const fetchCourse = async () => {
+      setLoadingCourse(true);
+      setErrorCourse(null);
+      try {
+        const res = await httpClient.get(`${baseUrl}/api/v1/catalog/courses/${courseId}/`);
+        if (res.status === 200 && res.data) {
+          setCourse(res.data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch course:', err);
+        setErrorCourse('Failed to load course details. Please try again later.');
+      } finally {
+        setLoadingCourse(false);
+      }
+    };
+
+    if (courseId) fetchCourse();
+  }, [courseId]);
+
+  // Lazy-load tab-specific data when tab changes
+  useEffect(() => {
+    if (activeTab === 'Curriculum' && !curriculum) {
+      const fetchCurriculum = async () => {
+        setLoadingCurriculum(true);
+        try {
+          const res = await httpClient.get(`${baseUrl}/api/v1/catalog/course-curriculum/${courseId}/`);
+          if (res.status === 200 && res.data) {
+            // API returns object like { "Module 1": ["Lesson A", "Lesson B"], ... }
+            setCurriculum(res.data);
+          }
+        } catch (err) {
+          console.error('Failed to fetch curriculum:', err);
+        } finally {
+          setLoadingCurriculum(false);
+        }
+      };
+      fetchCurriculum();
+    }
+
+    if (activeTab === 'Instructor' && instructors.length === 0) {
+      const fetchInstructors = async () => {
+        setLoadingInstructors(true);
+        try {
+          const res = await httpClient.get(`${baseUrl}/api/v1/catalog/course-instructors/${courseId}/`);
+          if (res.status === 200 && Array.isArray(res.data)) {
+            setInstructors(res.data);
+          }
+        } catch (err) {
+          console.error('Failed to fetch instructors:', err);
+        } finally {
+          setLoadingInstructors(false);
+        }
+      };
+      fetchInstructors();
+    }
+
+    if (activeTab === 'Reviews' && reviews.length === 0) {
+      const fetchReviews = async () => {
+        setLoadingReviews(true);
+        try {
+          const res = await httpClient.get(`${baseUrl}/api/v1/catalog/course-reviews/${courseId}/`);
+          if (res.status === 200 && Array.isArray(res.data)) {
+            setReviews(res.data);
+          }
+        } catch (err) {
+          console.error('Failed to fetch reviews:', err);
+        } finally {
+          setLoadingReviews(false);
+        }
+      };
+      fetchReviews();
+    }
+  }, [activeTab, courseId]);
 
   const toggleSection = (index) => {
     setExpandedSections((prev) =>
@@ -105,9 +128,25 @@ const CourseAbout = () => {
     );
   };
 
+  if (loadingCourse) {
+    return (
+      <div className="d-flex justify-content-center py-8">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
+  }
+
+  if (errorCourse || !course) {
+    return (
+      <div className="container py-5">
+        <Alert variant="danger">{errorCourse || 'Course not found'}</Alert>
+      </div>
+    );
+  }
+
   return (
     <div className="course-about-page">
-      {/* Banner / Header Section */}
+      {/* Banner / Header */}
       <section className="py-5">
         <div className="container">
           {/* Breadcrumb */}
@@ -120,27 +159,39 @@ const CourseAbout = () => {
               {formatMessage(messages['courseAbout.breadcrumb.courses'])}
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-dark">{courseData.title}</span>
+            {course.name &&
+            <span className="text-dark">{course.name}</span>
+            }
           </nav>
 
           {/* Title & Meta */}
-          <h1 className="course-heading mb-3">{courseData.title}</h1>
-          <p className="course-detail-paragraph text-muted lead mb-4">{courseData.description}</p>
+          {course.name &&
+          <h1 className="course-heading mb-3">{course.name}</h1>
+          }
+          {course.short_description &&
+          <p className="course-detail-paragraph text-muted lead mb-4">{course.short_description}</p>
+          }
 
           <div className="course-reach-details d-flex flex-wrap text-muted mb-4">
-            <div className="d-flex align-items-center">
+            {course.rating &&
+            <div className="d-flex align-items-center mr-4">
               <FontAwesomeIcon icon={faStar} className="text-warning mr-2" />
-              <span className="fw-bold">{courseData.rating}</span>
-              <span>{courseData.review} reviews</span>
+              <span className="fw-bold">{course.rating}</span>
+              <span>({course.no_of_reviews} {formatMessage(messages['courseAbout.tab.reviews'])})</span>
             </div>
-            <div className="d-flex align-items-center ml-4">
-              <FontAwesomeIcon icon={faUsers} className='mr-2'/>
-              <span>{courseData.students.toLocaleString()} students</span>
+            }
+            {course.enrollments &&
+            <div className="d-flex align-items-center mr-4">
+              <FontAwesomeIcon icon={faUsers} className="mr-2" />
+              <span>{course.enrollments} {formatMessage(messages['courseAbout.student'])}</span>
             </div>
-            <div className="d-flex align-items-center ml-4">
-              <FontAwesomeIcon icon={faClock} className='mr-2'/>
-              <span>{courseData.duration}</span>
+            }
+            {course.effort &&
+            <div className="d-flex align-items-center ">
+              <FontAwesomeIcon icon={faClock} className="mr-2" />
+              <span>{course.effort}</span>
             </div>
+            }
           </div>
         </div>
       </section>
@@ -153,15 +204,13 @@ const CourseAbout = () => {
             <div className="col-lg-8">
               {/* Tabs */}
               <div className="mb-4">
-                <div className="d-flex flex-wrap ">
+                <div className="d-flex overflow-auto py-2">
                   {tabs.map((tab) => (
                     <button
                       key={tab}
                       type="button"
                       className={`btn mr-2 ${
-                        activeTab === tab
-                          ? 'btn-primary text-primary fw-bold'
-                          : 'button-inactive-color'
+                        activeTab === tab ? 'btn-primary text-primary fw-bold' : 'button-inactive-color'
                       }`}
                       onClick={() => setActiveTab(tab)}
                     >
@@ -172,140 +221,187 @@ const CourseAbout = () => {
               </div>
 
               {/* Tab Content */}
-                <div className='tab-container container rounded'>
-                    {activeTab === 'Overview' && (
-                        <div className="pl-3 pt-4 pr-3 pb-4 ">
-                        <h3 className="mb-4">{formatMessage(messages['courseAbout.whatYouWillLearn'])}</h3>
-                        <div className="row g-3 mb-5">
-                            {courseData.features.map((feature, idx) => (
-                            <div key={idx} className="col-md-6">
-                                <div className="d-flex align-items-start">
-                                <FontAwesomeIcon icon={faCheckCircle} className="text-primary mt-1 mr-2" />
-                                <span>{feature}</span>
-                                </div>
-                            </div>
-                            ))}
-                        </div>
+              <div className="tab-container container rounded">
+                {activeTab === 'Overview' && (
+                  <div className="pl-3 pt-4 pr-3 pb-4 ">
+                    <div dangerouslySetInnerHTML={{ __html: course.overview || `
+                    <p>${formatMessage(messages['common.noData'], {
+                      section: formatMessage(messages['courseAbout.tab.overview']).toLowerCase(),
+                      })}
+                    </p>` }} />
+                  </div>
+                )}
 
-                        <h3 className="mb-4">{formatMessage(messages['courseAbout.courseDescription'])}</h3>
-                        <p className="text-muted">
-                            This comprehensive Python bootcamp will take you from beginner to advanced level.
-                            You'll learn Python programming through hands-on projects and real-world applications.
-                            Whether you want to become a data scientist, web developer, or automation engineer,
-                            this course provides the foundation you need.
-                        </p>
-                        </div>
-                    )}
+                {activeTab === 'Curriculum' && (
+                  <div className="p-4">
+                    {loadingCurriculum ? (
+                      <Spinner animation="border" variant="primary" />
+                    ) : curriculum && Object.keys(curriculum).length > 0 ?  (
+                      <>
+                      <h3 className="mb-4">{formatMessage(messages['courseAbout.courseCurriculum'])}</h3>
+                      <div className="accordion">
+                        {Object.entries(curriculum).map(([moduleTitle, lessons], idx) => (
+                          <div key={idx} className="accordion-item border rounded bg-white mb-2">
+                            <button
+                              className="accordion-button bg-white px-3 py-3 rounded w-100"
+                              type="button"
+                              onClick={() => toggleSection(idx)}
+                            >
+                              <span className="fw-bold text-align-start">{moduleTitle}</span>
+                              <FontAwesomeIcon
+                                icon={expandedSections.includes(idx) ? faChevronUp : faChevronDown}
+                              />
+                            </button>
 
-                    {activeTab === 'Curriculum' && (
-                        <div className="p-4">
-                        <h3 className="mb-4">{formatMessage(messages['courseAbout.courseCurriculum'])}</h3>
-                        <div className="accordion">
-                            {courseData.curriculum.map((section, idx) => (
-                            <div key={idx} className="accordion-item border rounded bg-white mb-2">
-                                <button
-                                    className="accordion-button bg-white px-4 py-3 rounded w-100"
-                                    type="button"
-                                    onClick={() => toggleSection(idx)}
-                                >
-                                    <span className="fw-bold">{section.title}</span>
-                                    <FontAwesomeIcon icon={expandedSections.includes(idx) ? faChevronUp : faChevronDown} />
-                                </button>
-
-                                {expandedSections.includes(idx) && (
-                                <div className="accordion-body px-4 pb-4">
-                                    {section.lessons.map((lesson, lIdx) => (
-                                    <div
-                                        key={lIdx}
-                                        className="d-flex justify-content-between align-items-center py-2 border-bottom last:border-0"
-                                    >
-                                        <div className="d-flex align-items-center">
-                                        <FontAwesomeIcon icon={faPlayCircle} className="text-primary mr-2" />
-                                        <span>{lesson.title}</span>
-                                        </div>
-                                        <span className="text-muted small">{lesson.duration}</span>
+                            {expandedSections.includes(idx) && (
+                              <div className="accordion-body px-4 pb-4">
+                                {lessons.map((lessonTitle, lIdx) => (
+                                  <div
+                                    key={lIdx}
+                                    className="d-flex justify-content-between align-items-center py-2 border-bottom last:border-0"
+                                  >
+                                    <div className="d-flex align-items-center">
+                                      <FontAwesomeIcon icon={faPlayCircle} className="text-primary mr-2" />
+                                      <span>{lessonTitle}</span>
                                     </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                      </>
+                    ) : (
+                      <p className="text-muted">{formatMessage(messages['common.noData'], {
+                        section: formatMessage(messages['courseAbout.tab.curriculum']).toLowerCase(),
+                      })}</p>
+                    )}
+                  </div>
+                )}
+
+                {activeTab === 'Instructor' && (
+                  <div className="p-4">
+                    {loadingInstructors ? (
+                      <Spinner animation="border" variant="primary" />
+                    ) : instructors.length > 0 ? (
+                      instructors.map((inst, idx) => (
+                        <div key={idx} className="d-flex align-items-start mb-5">
+                          <img
+                            src={`${baseUrl}${inst.profile_picture}` || PlaceholderProfileImage}
+                            alt={inst.name}
+                            className="rounded-circle instructor-image mr-4"
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = PlaceholderProfileImage;
+                            }}
+                          />
+                          <div>
+                            {inst.name &&
+                            <h3 className="mb-2">{inst.name}</h3>
+                            }
+                            {inst.designation &&
+                            <p className="text-primary fw-medium mb-3">{inst.designation}</p>
+                            }
+                            {inst.bio &&
+                            <p className="text-muted">{inst.bio}</p>
+                            }
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-muted">{formatMessage(messages['common.noData'], {
+                        section: formatMessage(messages['courseAbout.tab.instructor']).toLowerCase(),
+                      })}</p>
+                    )}
+                  </div>
+                )}
+
+                {activeTab === 'Reviews' && (
+                  <div className="p-4">
+                    {loadingReviews ? (
+                      <Spinner animation="border" variant="primary" />
+                    ) : reviews.length > 0 ? (
+                      <>
+                      <h3 className='mb-4'>{formatMessage(messages['courseAbout.studentReviews'])}</h3>
+                      <div className="space-y-5">
+                        {reviews.map((review, idx) => (
+                          <div key={idx} className="border-bottom pb-4 last:border-0">
+                            <div className="d-flex align-items-center mb-3 mt-3">
+                              <img
+                                src={`${baseUrl}${review.profile_picture}` || PlaceholderProfileImage}
+                                alt={review.name}
+                                className="rounded-circle mr-3 review-profile-img"
+                                onError={(e) => {
+                                  e.currentTarget.onerror = null;
+                                  e.currentTarget.src = PlaceholderProfileImage;
+                                }}
+                              />
+                              <div>
+                                {review.name &&
+                                <p className="fw-bold mb-0 review-name">{review.name}</p>
+                                }
+                                <div className="d-flex align-items-center">
+                                  <div className="d-flex mr-2">
+                                    {[...Array(review.rating || 0)].map((_, i) => (
+                                      <FontAwesomeIcon key={i} icon={faStar} className="text-warning" />
                                     ))}
+                                  </div>
+                                  {review.submitted_at &&
+                                  <span className="text-muted small review-submitted-at">{review.submitted_at}</span>
+                                  }
                                 </div>
-                                )}
+                              </div>
                             </div>
-                            ))}
-                        </div>
-                        </div>
+                            {review.comment &&
+                            <p className="text-muted review-comment">{review.comment}</p>
+                            }
+                          </div>
+                        ))}
+                      </div>
+                      </>
+                    ) : (
+                      <p className="text-muted">{formatMessage(messages['common.noData'], {
+                        section: formatMessage(messages['courseAbout.tab.reviews']).toLowerCase(),
+                      })}</p>
                     )}
-
-                    {activeTab === 'Instructor' && (
-                        <div className="p-4">
-                        <div className="d-flex align-items-start">
-                            <img
-                                src={courseData.instructor.avatar}
-                                alt={courseData.instructor.name}
-                                className="rounded-circle instructor-image mr-4"
-                            />
-                            <div className="">
-                                <h3 className="mb-2">{courseData.instructor.name}</h3>
-                                <p className="text-primary fw-medium mb-3">{courseData.instructor.title}</p>
-                                <p className="text-muted">{courseData.instructor.bio}</p>
-                            </div>
-                        </div>
-                        </div>
-                    )}
-
-                    {activeTab === 'Reviews' && (
-                        <div className="p-4">
-                        <h3>{formatMessage(messages['courseAbout.studentReviews'])}</h3>
-                        <div className="space-y-5">
-                            {courseData.reviews.map((review, idx) => (
-                            <div key={idx} className="border-bottom pb-4 last:border-0">
-                                <div className="d-flex align-items-center mb-3 mt-3">
-                                    <FontAwesomeIcon icon={faUser} className="text-primary ml-3 mr-4" />
-                                    <div>
-                                        <p className="fw-bold mb-0">{review.name}</p>
-                                        <div className="d-flex align-items-center">
-                                        <div className="d-flex mr-2">
-                                            {[...Array(review.rating)].map((_, i) => (
-                                            <FontAwesomeIcon key={i} icon={faStar} className="text-warning" />
-                                            ))}
-                                        </div>
-                                        <span className="text-muted small">{review.date}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p className="text-muted">{review.comment}</p>
-                            </div>
-                            ))}
-                        </div>
-                        </div>
-                    )}
-                </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Sticky Sidebar - Enroll Card */}
             <div className="col-lg-4">
               <div className="enroll-card overflow-hidden rounded">
-                <img
-                  src={courseData.image}
-                  alt={courseData.title}
-                  className="card-img-top"
-                />
+                <div className="card-img-top-wraper">
+                  <img
+                    src={course.media?.image?.large || PlaceholderImage} 
+                    alt={course.name}
+                    className="card-img-top"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = PlaceholderImage;
+                    }}
+                  />
+                </div>
                 <div className="card-body p-4">
                   <Button variant="primary" block className="mb-4 py-3">
                     {formatMessage(messages['courseAbout.enrollNow'])}
                   </Button>
 
                   <div className="course-card-reach d-flex flex-column text-muted small">
+                    { course.effort &&
                     <div className="d-flex align-items-center mb-3">
                       <FontAwesomeIcon icon={faClock} className="text-primary mr-2" />
-                      {formatMessage(messages['courseAbout.duration'], { duration: courseData.duration })}
+                      {formatMessage(messages['courseAbout.duration'], { duration: course.effort})}
                     </div>
+                    }
+                    { course.level &&
                     <div className="d-flex align-items-center mb-3">
                       <FontAwesomeIcon icon={faChartLine} className="text-primary mr-2" />
-                      {formatMessage(messages['courseAbout.level'], { level: courseData.level })}
+                      {formatMessage(messages['courseAbout.level'], { level: course.level })}
                     </div>
-                    <div className="d-flex align-items-center mb-3">
-                      <FontAwesomeIcon icon={faFileAlt} className="text-primary mr-2" />
-                      {formatMessage(messages['courseAbout.exercises'])}
-                    </div>
+                    }
                     <div className="d-flex align-items-center gap-3">
                       <FontAwesomeIcon icon={faAward} className="text-primary mr-2" />
                       {formatMessage(messages['courseAbout.certificate'])}

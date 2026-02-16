@@ -17,7 +17,7 @@ const SuccessStory = () => {
         {/* Heading */}
         <div className="text-center mb-5">
           <span className="badge bg-primary text-white mb-3">
-            Success Stories
+            {formatMessage(messages['home.success.badge'])}
           </span>
           <h2 className="mb-3">
             {formatMessage(messages['home.success.heading'])}
@@ -44,34 +44,30 @@ const SuccessStory = () => {
           {/* Thumbnail Image */}
           <img
             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=675&fit=crop"
-            alt="Success Story Video Thumbnail"
+            alt={formatMessage(messages['home.success.video.thumbnail.alt'])}
             className="card-img-top w-100 h-100"
           />
 
           {/* Text Overlay */}
           <div className="text-overlay-container">
             <h4 className="text-white mb-2">
-              From Beginner to Data Scientist
+              {formatMessage(messages['home.success.video.title'])}
             </h4>
             <p className="text-white small mb-0">
-              Watch how Priya transformed her career in just 6 months with VigyanShaala's comprehensive data science program
+              {formatMessage(messages['home.success.video.description'])}
             </p>
           </div>
         </div>
 
         {/* Video Modal */}
         {isVideoOpen && (
-          <div
-            className="video-open-model"
-          >
-            <div
-              className="video-modal-content"
-            >
+          <div className="video-open-model">
+            <div className="video-modal-content">
               <button
                 type="button"
                 className="video-close-btn position-fixed btn btn-light rounded-circle p-3 shadow"
                 onClick={() => setIsVideoOpen(false)}
-                aria-label="Close video"
+                aria-label={formatMessage(messages['common.close'])}
               >
                 <FontAwesomeIcon icon={faTimes} />
               </button>
@@ -80,10 +76,10 @@ const SuccessStory = () => {
                 <video
                   controls
                   autoPlay
-                  poster="/images/video-poster.jpg"
+                  poster={formatMessage(messages['home.success.video.poster'])}
                 >
                   <source src="/videos/intro.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
+                  {formatMessage(messages['home.success.video.unsupported'])}
                 </video>
               </div>
             </div>

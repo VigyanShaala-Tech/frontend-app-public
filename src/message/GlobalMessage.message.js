@@ -71,11 +71,6 @@ const messages = defineMessages({
     defaultMessage: 'Showing {perPage} of {count} {count, plural, one {course} other {courses}}',
     description: 'Showing X courses message with plural support',
   },
-  'catalog.results.showing': {
-    id: 'catalog.results.showing',
-    defaultMessage: 'Showing {count, number} {count, plural, one {course} other {courses}}',
-    description: 'Shows total number of matching courses (backend paginated)',
-  },
   'catalog.view.grid': {
     id: 'catalog.view.grid',
     defaultMessage: 'Grid',
@@ -127,6 +122,17 @@ const messages = defineMessages({
     defaultMessage: 'Reviews',
     description: 'Tab label for student reviews',
   },
+  'courseAbout.student': {
+    id: 'courseAbout.student',
+    defaultMessage: 'Students',
+    description: 'tag for banner section',
+  },
+
+  'common.noData': {
+    id: 'common.noData',
+    defaultMessage: 'No {section} available.',
+    description: 'Generic empty state message for sections like overview, curriculum, instructor, reviews',
+  },
 
   // Overview section
   'courseAbout.whatYouWillLearn': {
@@ -171,11 +177,6 @@ const messages = defineMessages({
     id: 'courseAbout.level',
     defaultMessage: '{level}',
     description: 'Level display in sidebar',
-  },
-  'courseAbout.exercises': {
-    id: 'courseAbout.exercises',
-    defaultMessage: '100+ coding exercises',
-    description: 'Feature bullet in sidebar',
   },
   'courseAbout.certificate': {
     id: 'courseAbout.certificate',
@@ -357,7 +358,7 @@ const messages = defineMessages({
   },
   'contact.subtitle': {
     id: 'contact.subtitle',
-    defaultMessage: 'Have questions? We\'d love to hear from you. Send us a message and we\'ll respond as soon as possible.',
+    defaultMessage: 'If you would like to get involved with our work, please provide your contact information, will get back to you within 24 hours.',
     description: 'Subtitle under the main heading',
   },
 
@@ -396,7 +397,7 @@ const messages = defineMessages({
   },
   'contact.info.address.text': {
     id: 'contact.info.address.text',
-    defaultMessage: '123 Education Lane, Knowledge City New Delhi 110001, India',
+    defaultMessage: 'C 432, Avantika, Rohini Sector-1, Delhi - 110085',
     description: 'Address text',
   },
   'contact.info.email.title': {
@@ -406,7 +407,7 @@ const messages = defineMessages({
   },
   'contact.info.email.text': {
     id: 'contact.info.email.text',
-    defaultMessage: 'info@vigyanshaala.com',
+    defaultMessage: 'communications@vigyanshaala.com',
     description: 'Email addresses',
   },
   'contact.info.phone.title': {
@@ -416,7 +417,12 @@ const messages = defineMessages({
   },
   'contact.info.phone.text': {
     id: 'contact.info.phone.text',
-    defaultMessage: '+91 98765 43210',
+    defaultMessage: '+91 7028422265',
+    description: 'Phone numbers',
+  },
+  'contact.info.phone.text-2': {
+    id: 'contact.info.phone.text-2',
+    defaultMessage: '+91 7058962024',
     description: 'Phone numbers',
   },
 
@@ -500,6 +506,40 @@ const messages = defineMessages({
     id: 'contact.form.submit',
     defaultMessage: 'Send Message',
     description: 'Submit button text',
+  },
+    // Contact form - updated fields
+  'contact.form.firstName.label': {
+    id: 'contact.form.firstName.label',
+    defaultMessage: 'First Name',
+  },
+  'contact.form.firstName.placeholder': {
+    id: 'contact.form.firstName.placeholder',
+    defaultMessage: 'First name',
+  },
+  'contact.form.lastName.label': {
+    id: 'contact.form.lastName.label',
+    defaultMessage: 'Last Name',
+  },
+  'contact.form.lastName.placeholder': {
+    id: 'contact.form.lastName.placeholder',
+    defaultMessage: 'Last name',
+  },
+  'contact.form.captcha.label': {
+    id: 'contact.form.captcha.label',
+    defaultMessage: 'Verification',
+  },
+  'contact.form.captcha.placeholder': {
+    id: 'contact.form.captcha.placeholder',
+    defaultMessage: 'Your answer',
+  },
+  'contact.form.captcha.error': {
+    id: 'contact.form.captcha.error',
+    defaultMessage: 'Incorrect answer. Please try again.',
+  },
+  'contact.form.captcha.required': {
+    id: 'contact.form.captcha.required',
+    defaultMessage: 'Please complete the CAPTCHA verification',
+    description: 'Error message when reCAPTCHA is not completed',
   },
   //===============================================================================================================
   //---------------------------------------------home-page---------------------------------------------------------
@@ -593,7 +633,11 @@ const messages = defineMessages({
     defaultMessage: 'Explore All Courses',
     description: 'CTA button below courses carousel',
   },
-
+  'home.success.badge': {
+    id: 'home.success.badge',
+    defaultMessage: 'Success Stories',
+    description: 'Badge for success story section',
+  },
   'home.success.heading': {
     id: 'home.success.heading',
     defaultMessage: 'Hear from Our Achievers',
@@ -603,6 +647,39 @@ const messages = defineMessages({
     id: 'home.success.subheading',
     defaultMessage: 'Discover how VigyanShaala has transformed careers and empowered thousands of learners to achieve their dreams',
     description: 'Subheading for success story',
+  },
+    // Success Story - Video Card
+  'home.success.video.thumbnail.alt': {
+    id: 'home.success.video.thumbnail.alt',
+    defaultMessage: 'Success Story Video Thumbnail',
+    description: 'Alt text for the success story video thumbnail image',
+  },
+  'home.success.video.title': {
+    id: 'home.success.video.title',
+    defaultMessage: 'From Beginner to Data Scientist',
+    description: 'Title shown over the success story video thumbnail',
+  },
+  'home.success.video.description': {
+    id: 'home.success.video.description',
+    defaultMessage: 'Watch how Priya transformed her career in just 6 months with VigyanShaala\'s comprehensive data science program',
+    description: 'Description shown over the success story video thumbnail',
+  },
+  'home.success.video.poster': {
+    id: 'home.success.video.poster',
+    defaultMessage: '/images/video-poster.jpg',
+    description: 'Path to the video poster image (fallback image shown before play)',
+  },
+  'home.success.video.unsupported': {
+    id: 'home.success.video.unsupported',
+    defaultMessage: 'Your browser does not support the video tag.',
+    description: 'Fallback message when browser cannot play the video',
+  },
+
+  // General close button (useful in many places)
+  'common.close': {
+    id: 'common.close',
+    defaultMessage: 'Close',
+    description: 'Accessible label for close buttons/modals',
   },
 
   'home.experts.badge': {
@@ -619,6 +696,94 @@ const messages = defineMessages({
     id: 'home.experts.subheading',
     defaultMessage: 'Learn from industry leaders and academic experts who bring real-world experience to every lesson',
     description: 'Subheading for experts',
+  },
+    // Meet Our Expert Instructors - individual experts
+  'home.experts.expert1.name': {
+    id: 'home.experts.expert1.name',
+    defaultMessage: 'Dr. Priya Sharma',
+    description: 'Name of expert 1',
+  },
+  'home.experts.expert1.subject': {
+    id: 'home.experts.expert1.subject',
+    defaultMessage: 'Python & Data Science',
+    description: 'Subject taught by expert 1',
+  },
+
+  'home.experts.expert2.name': {
+    id: 'home.experts.expert2.name',
+    defaultMessage: 'Prof. Rajesh Kumar',
+    description: 'Name of expert 2',
+  },
+  'home.experts.expert2.subject': {
+    id: 'home.experts.expert2.subject',
+    defaultMessage: 'Machine Learning',
+    description: 'Subject taught by expert 2',
+  },
+
+  'home.experts.expert3.name': {
+    id: 'home.experts.expert3.name',
+    defaultMessage: 'Dr. Ananya Desai',
+    description: 'Name of expert 3',
+  },
+  'home.experts.expert3.subject': {
+    id: 'home.experts.expert3.subject',
+    defaultMessage: 'Business Strategy',
+    description: 'Subject taught by expert 3',
+  },
+
+  'home.experts.expert4.name': {
+    id: 'home.experts.expert4.name',
+    defaultMessage: 'Vikram Mehta',
+    description: 'Name of expert 4',
+  },
+  'home.experts.expert4.subject': {
+    id: 'home.experts.expert4.subject',
+    defaultMessage: 'UI/UX Design',
+    description: 'Subject taught by expert 4',
+  },
+
+  'home.experts.expert5.name': {
+    id: 'home.experts.expert5.name',
+    defaultMessage: 'Dr. Kavita Reddy',
+    description: 'Name of expert 5',
+  },
+  'home.experts.expert5.subject': {
+    id: 'home.experts.expert5.subject',
+    defaultMessage: 'Finance & Analytics',
+    description: 'Subject taught by expert 5',
+  },
+
+  'home.experts.expert6.name': {
+    id: 'home.experts.expert6.name',
+    defaultMessage: 'Arjun Nair',
+    description: 'Name of expert 6',
+  },
+  'home.experts.expert6.subject': {
+    id: 'home.experts.expert6.subject',
+    defaultMessage: 'Digital Marketing',
+    description: 'Subject taught by expert 6',
+  },
+
+  'home.experts.expert7.name': {
+    id: 'home.experts.expert7.name',
+    defaultMessage: 'Sneha Gupta',
+    description: 'Name of expert 7',
+  },
+  'home.experts.expert7.subject': {
+    id: 'home.experts.expert7.subject',
+    defaultMessage: 'Content Writing',
+    description: 'Subject taught by expert 7',
+  },
+
+  'home.experts.expert8.name': {
+    id: 'home.experts.expert8.name',
+    defaultMessage: 'Rohan Patel',
+    description: 'Name of expert 8',
+  },
+  'home.experts.expert8.subject': {
+    id: 'home.experts.expert8.subject',
+    defaultMessage: 'Web Development',
+    description: 'Subject taught by expert 8',
   },
 
   'home.community.heading': {
@@ -667,6 +832,54 @@ const messages = defineMessages({
     id: 'home.testimonials.subheading',
     defaultMessage: 'Real stories from real learners who have achieved success with VigyanShaala',
     description: 'Subheading for testimonials',
+  },
+    // Testimonials - individual items
+  'home.testimonials.item1.quote': {
+    id: 'home.testimonials.item1.quote',
+    defaultMessage: 'VigyanShaala completely transformed my career. The Python course gave me the skills I needed to land my dream job as a data analyst.',
+    description: 'Quote from testimonial 1',
+  },
+  'home.testimonials.item1.name': {
+    id: 'home.testimonials.item1.name',
+    defaultMessage: 'Priya Sharma',
+    description: 'Name of person in testimonial 1',
+  },
+  'home.testimonials.item1.role': {
+    id: 'home.testimonials.item1.role',
+    defaultMessage: 'Data Analyst at Google',
+    description: 'Role/position of person in testimonial 1',
+  },
+
+  'home.testimonials.item2.quote': {
+    id: 'home.testimonials.item2.quote',
+    defaultMessage: 'The quality of content and the practical approach to teaching sets VigyanShaala apart.',
+    description: 'Quote from testimonial 2',
+  },
+  'home.testimonials.item2.name': {
+    id: 'home.testimonials.item2.name',
+    defaultMessage: 'Ananya Desai',
+    description: 'Name of person in testimonial 2',
+  },
+  'home.testimonials.item2.role': {
+    id: 'home.testimonials.item2.role',
+    defaultMessage: 'Software Engineer at Microsoft',
+    description: 'Role/position of person in testimonial 2',
+  },
+
+  'home.testimonials.item3.quote': {
+    id: 'home.testimonials.item3.quote',
+    defaultMessage: 'As someone switching careers, I was skeptical about online learning. But the mentorship made all the difference.',
+    description: 'Quote from testimonial 3',
+  },
+  'home.testimonials.item3.name': {
+    id: 'home.testimonials.item3.name',
+    defaultMessage: 'Kavita Reddy',
+    description: 'Name of person in testimonial 3',
+  },
+  'home.testimonials.item3.role': {
+    id: 'home.testimonials.item3.role',
+    defaultMessage: 'Product Manager at Amazon',
+    description: 'Role/position of person in testimonial 3',
   },
 });
 

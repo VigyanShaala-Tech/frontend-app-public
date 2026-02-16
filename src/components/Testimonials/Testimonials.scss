@@ -26,6 +26,7 @@
 }
 
 .testimonial-track {
+  max-width: 100%;
   display: flex;
   transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }

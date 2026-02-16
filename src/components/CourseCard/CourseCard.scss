@@ -15,9 +15,11 @@
   .course-image-wrapper {
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .course-image {
-      width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.45s ease;
@@ -33,21 +35,45 @@
       font-size: 0.875rem;
       padding: 0.35rem 0.9rem;
       border-radius: 999px !important;
-      background: #ffffffe6 !important;
+      background: #F0F5ED !important;
     }
   }
-
-  .course-title {
+  .course-card-content-container-grid{
+    height: 280px;
+  }
+  .course-title-grid {
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.75rem;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
     overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .text-muted {
-    display: block;
-    white-space: nowrap;
+  .course-short-discription-grid{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .course-title-list {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .course-short-discription-list{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
     overflow: hidden;
     text-overflow: ellipsis;
   }
