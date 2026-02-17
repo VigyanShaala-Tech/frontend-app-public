@@ -143,7 +143,7 @@ const CourseCard = ({ course, layout = 'grid' }) => {
           }
         </div>
         <div className="mt-auto d-flex justify-content-end">
-          <Link to={`/courses/${course.id}`} >
+          <Link to={`/public/courses/${course.id}`} >
             <Button block variant="primary" className='w-100'>
               {formatMessage(messages['catalog.course.enroll'])}
             </Button>

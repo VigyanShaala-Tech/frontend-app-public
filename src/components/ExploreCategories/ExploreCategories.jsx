@@ -15,6 +15,7 @@ import {
 import messages from '../../message/GlobalMessage.message';
 
 import './ExploreCategories.scss';
+import { useNavigate } from 'react-router-dom';
 
 // Categories data with FontAwesome icons
 const categories = [
@@ -62,6 +63,7 @@ const categories = [
 
 const ExploreCategories = () => {
   const { formatMessage } = useIntl();
+   const navigate = useNavigate();
 
   return (
     <section className="explore-categories py-5">
@@ -80,7 +82,7 @@ const ExploreCategories = () => {
             </p>
             {/* Browse All Button */}
             <div className="browse-category-btn text-center text-lg-left">
-              <button className="btn btn-primary">
+              <button className="btn btn-primary" onClick={() => navigate('/public/courses')}>
                 {formatMessage(messages['home.categories.browseAll'])}
               </button>
             </div>

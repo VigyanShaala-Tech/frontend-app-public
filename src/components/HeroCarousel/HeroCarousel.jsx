@@ -3,6 +3,7 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { Button } from '@openedx/paragon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 import messages from '../../message/GlobalMessage.message';
 import './HeroCarousel.scss';
@@ -31,6 +32,7 @@ const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState('next');
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
 
   /** 🔹 Dynamically set hero height = viewport - navbar height */
   const updateHeroHeight = () => {
@@ -103,10 +105,10 @@ const HeroCarousel = () => {
                 </p>
 
                 <div className="hero-action-button d-flex gap-3">
-                    <Button size="lg mr-4">
+                    <Button size="lg mr-4" onClick={() => navigate('/public/courses')}>
                     {formatMessage(messages['home.hero.getStarted'])}
                     </Button>
-                    <Button variant="outline-primary" size="lg">
+                    <Button variant="outline-primary" size="lg" onClick={() => navigate('/public/about')}>
                     {formatMessage(messages['home.hero.learnMore'])}
                     </Button>
                 </div>
