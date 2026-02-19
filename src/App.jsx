@@ -11,6 +11,12 @@ import { FooterSlot } from '@edx/frontend-component-footer';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import ExamplePage from './example/ExamplePage';
+import Home from './pages/Home/Home';
+import CourseCatalog from './pages/CourseCatalog/CourseCatalog';
+import CourseAbout from "./pages/CourseAbout/CourseAbout";
+import About from "./pages/About/About";
+import Contact from './pages/Contact/Contact';
+
 // import { MenuItem } from '@openedx/paragon';
 
 const MenuItem = [
@@ -43,15 +49,19 @@ const App = () => (
     <BrowserRouter>
         <AppProvider wrapWithRouter={false}>
             <QueryClientProvider client={queryClient}>
-                <div className="d-flex flex-column min-dvh-100">
+                {/* <div className="d-flex flex-column min-dvh-100"> */}
                     <Header mainMenuItems={MenuItem}/>
-                    <main className="d-flex flex-column flex-grow-1">
+                    {/* <main className="d-flex flex-column flex-grow-1"> */}
                         <Routes>
-                            <Route path="/public" element={<ExamplePage />} />
+                            <Route path="/public" element={<Home />} />
+                            <Route path="/public/courses" element={<CourseCatalog />} />
+                            <Route path="/public/courses/:id" element={<CourseAbout />} />
+                            <Route path="/public/about" element={<About />} />
+                            <Route path="/public/contact" element={<Contact />} />
                         </Routes>
-                    </main>
+                    {/* </main> */}
                     <FooterSlot />
-                </div>
+                {/* </div> */}
             </QueryClientProvider>
         </AppProvider>
   </BrowserRouter>

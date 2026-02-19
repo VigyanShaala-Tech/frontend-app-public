@@ -1,0 +1,91 @@
+.trusted-companies {
+  padding: 6rem 0;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  p.text-muted {
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* ===============================
+     SCROLLING CONTAINER
+  =============================== */
+  .companies-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  .companies-track {
+    display: flex;
+    width: fit-content;
+    animation: scrollLeft 20s linear infinite;
+  }
+
+  .companies-wrapper:hover .companies-track {
+    animation-play-state: paused;
+  }
+
+  .company-item {
+    flex: 0 0 auto;
+    width: 180px;
+    margin-right: 1.5rem;
+
+    .card {
+      border: 1px solid #dee2e6;
+      transition: all 0.3s ease;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-6px);
+      }
+
+      img {
+        height: 50px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        padding: 1rem 0.5rem;
+      }
+    }
+  }
+
+  /* ===============================
+     SCROLL ANIMATION
+  =============================== */
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ===============================
+     RESPONSIVE
+  =============================== */
+  @media (max-width: 992px) {
+    padding: 3rem 0;
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    p.text-muted {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .row > div {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
