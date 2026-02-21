@@ -1,0 +1,117 @@
+/* ============================================================================
+   Course Card - Shared Base Styles
+   ============================================================================ */
+
+.course-card {
+  background: white;
+  overflow: hidden;
+  transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .course-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .course-image {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    &:hover .course-image {
+      transform: scale(1.08);
+    }
+
+    .badge {
+      top: 1rem;
+      left: 1rem;
+      font-size: 0.875rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px !important;
+      background: #F0F5ED !important;
+    }
+  }
+  .course-card-content-container-grid{
+    height: 280px;
+  }
+  .course-title-grid {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .course-short-discription-grid{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .course-title-list {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .course-short-discription-list{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+}
+
+/* ============================================================================
+   Grid Mode (default)
+   ============================================================================ */
+
+.grid-mode {
+  .course-image-wrapper {
+    height: 180px;
+  }
+}
+
+/* ============================================================================
+   List Mode
+   ============================================================================ */
+
+.list-mode {
+  flex-direction: row;
+
+  .course-image-wrapper {
+    width: 280px;
+    height: 208px;
+    flex-shrink: 0;
+  }
+}
+
+/* Mobile fallback for list mode */
+@media (max-width: 992px) {
+  .list-mode {
+    flex-direction: column;
+
+    .course-image-wrapper {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}

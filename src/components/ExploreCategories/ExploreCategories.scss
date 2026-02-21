@@ -1,0 +1,117 @@
+.explore-categories {
+  padding: 6rem 0 !important;
+
+  .badge {
+    font-size: 14px;
+    line-height: 1.25;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    max-width: 512px;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    transition: all 0.3s ease;
+    background: var(--white);
+    border: none;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .rounded {
+      width: 4rem;
+      height: 4rem;
+      transition: all 0.3s ease;
+      border-color: currentColor !important;
+    }
+
+    h5 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+  }
+
+  /* ===== RESPONSIVE ===== */
+
+  /* Tablet (≤ 992px) */
+  @media (max-width: 992px) {
+    padding: 4rem 0 !important;
+
+    h2 {
+      font-size: 2.25rem;
+    }
+
+    .lead {
+      font-size: 1rem;
+    }
+    .explore-categories-text{
+      text-align: center !important;
+    }
+
+    .card .rounded {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    /* Text full width on top, grid below */
+    .explore-categories-text {
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* Mobile (≤ 576px) */
+  @media (max-width: 576px) {
+    padding: 3rem 0 !important;
+
+    h2 {
+      font-size: 1.875rem;
+    }
+
+    .lead {
+      font-size: 0.95rem;
+    }
+
+    .card {
+      padding: 1.5rem 1rem;
+    }
+
+    .card .rounded {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    h5 {
+      font-size: 0.85rem;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+    }
+
+    /* Text left aligned on mobile */
+    .explore-categories-text {
+      text-align: left !important;
+    }
+  }
+}

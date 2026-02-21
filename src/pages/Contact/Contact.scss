@@ -1,0 +1,79 @@
+.contact-page {
+  min-height: 100vh;
+}
+
+.contact-page {
+  .page-mapped {
+    font-size: 14px;
+  }
+  section{
+    .container{
+      .lead{
+        font-size: 18px;
+        max-width: 725px;
+      }
+      .badge {
+        font-size: 0.875rem;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+      }
+    }
+  }
+  .contact-form-heading{
+    font-size: 1.5rem;
+  }
+
+  .card {
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+  }
+  .contact-info-subheading{
+    font-size: 1.875rem;
+  }
+  .contact-info-description{
+    font-size: 1rem;
+  }
+  .contact-details-heading{
+    font-size: 1rem;
+  }
+  .contact-detail-data{
+    font-size: 0.875rem;
+  }
+
+  .contact-info {
+    transition: 
+      transform 0.3s cubic-bezier(.4, 0, .2, 1),
+      background-color 0.15s cubic-bezier(.4, 0, .2, 1);
+
+    &:hover {
+      background: #ffffff;
+      transform: translateX(12px);
+      border-radius: .75rem;
+    }
+  }
+  .form-control {
+    border-color: #CCCCCC;
+  }
+
+  .btn-primary {
+    border: none;
+  }
+
+  .rounded-circle {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  @media (max-width: 992px) {
+    .row > div {
+      margin-bottom: 2rem;
+    }
+  }
+}

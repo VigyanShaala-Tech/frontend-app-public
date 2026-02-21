@@ -1,0 +1,204 @@
+/* Desktop & larger — laptops and monitors */
+.course-about-page {
+  min-height: 100vh;
+
+  .main-content {
+    padding: 6rem 0;
+  }
+
+  .enroll-card {
+    position: sticky !important;
+    top: 0;
+    border: 1px solid #e2e8f080;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(196, 202, 212, 0.1),
+      0 2px 4px -2px rgba(196, 202, 212, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      box-shadow: 0 20px 25px -5px rgba(196, 202, 212, 0.1),
+        0 8px 10px -6px rgba(196, 202, 212, 0.1);
+      transform: translateY(-4px);
+    }
+    .course-card-reach{
+        font-size: 1rem;
+    }
+  }
+
+  .card-img-top-wraper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180px
+  }
+  .card-img-top {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+  }
+
+  .accordion-button {
+    font-weight: 600;
+    border: none;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center;
+  }
+
+  .course-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+}
+
+/* Container scoped styles */
+.container {
+  .page-mapped {
+    font-size: 14px;
+  }
+
+  .course-heading {
+    font-size: 3rem;
+    max-width: 48rem;
+  }
+
+  .course-detail-paragraph {
+    font-size: 1.125rem;
+    max-width: 48rem;
+  }
+
+  .course-reach-details {
+    font-size: 1rem;
+  }
+}
+
+/* Tab container */
+.tab-container {
+  border: 1px solid #e2e8f080;
+  box-shadow: 0 4px 6px -1px rgba(196, 202, 212, 0.1),
+    0 2px 4px -2px rgba(196, 202, 212, 0.1);
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+  div{
+    h3{
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.review-name{
+  font-size: 1rem;
+}
+.review-comment{
+  font-size: 1rem;
+}
+.review-submitted-at{
+  font-size: 0.875rem !important;
+}
+/* Buttons */
+.button-inactive-color {
+  background: #fbf4ef !important;
+  box-shadow: 0 20px 25px -5px rgba(196, 202, 212, 0.1),
+    0 8px 10px -6px rgba(196, 202, 212, 0.1);
+}
+
+/* Instructor */
+.instructor-image {
+  width: 128px;
+  height: 128px;
+}
+.text-align-start{
+  text-align: left;
+}
+.review-profile-img{
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+
+
+/* ──────────────────────────────────────────────
+   Mobile-first base styles are outside media queries
+   Then we override/enhance for larger screens
+─────────────────────────────────────────────── */
+
+/* Mobile — very small phones & portrait (most restrictive) */
+@media (max-width: 480px) {
+  .course-about-page {
+    .main-content {
+      padding: 3rem 0;           // less vertical space
+    }
+
+    .course-heading {
+      font-size: 2rem;           // smaller title
+    }
+
+    .enroll-card {
+      position: static !important; // no sticky on very small screens
+      margin-top: 2rem;
+    }
+
+    .tab-container {
+      padding: 1rem !important;
+    }
+
+    // Tabs become scrollable horizontally or smaller
+    .d-flex.flex-wrap button {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .instructor-image {
+      width: 96px;
+      height: 96px;
+    }
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Tablet — iPads, larger phones landscape, small laptops */
+@media (min-width: 481px) and (max-width: 768px) {
+  .course-about-page {
+    .main-content {
+      padding: 4rem 0;
+    }
+
+    .course-heading {
+      font-size: 2.25rem;
+    }
+
+    .course-detail-paragraph {
+      font-size: 1.125rem;
+    }
+
+    .col-lg-8, .col-lg-4 {
+      width: 100%;
+    }
+
+    .enroll-card {
+      position: static !important;
+      margin-top: 2rem;
+    }
+
+    .instructor-image {
+      width: 110px;
+      height: 110px;
+    }
+
+    .course-reach-details {
+      font-size: 1rem;
+    }
+  }
+}
+
+

@@ -1,0 +1,171 @@
+.community-section {
+  padding: 6rem 0 !important;
+
+  .badge {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .lead {
+    font-size: 1rem;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  /* ===== COMMUNITY CARD ===== */
+  .community-card {
+    max-width: 500px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: var(--white);
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-body {
+      position: relative;
+      padding: 2rem;
+
+      @media (min-width: 768px) {
+        padding: 2rem;
+      }
+    }
+
+    .decor-circle {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0.1;
+
+      &.top-right {
+        top: -30px;
+        right: -30px;
+        background: var(--primary);
+      }
+
+      &.bottom-left {
+        bottom: -20px;
+        left: -20px;
+        background: var(--primary);
+      }
+    }
+
+    .heart-wrapper {
+      width: 70px;
+      height: 70px;
+
+      @media (min-width: 768px) {
+        width: 70px;
+        height: 70px;
+      }
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    /* ===== AVATARS ===== */
+    .avatars-container {
+      position: relative;
+      height: 60px;
+
+      .avatar-item,
+      .avatar-plus {
+        width: 50px;
+        height: 50px;
+        margin-left: -20px;
+        border: 3px solid white;
+        transition: all 0.3s ease;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .avatar-plus {
+        font-size: 0.875rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 992px) {
+    padding: 4rem 0 !important;
+
+    h2 {
+      font-size: 2.25rem;
+    }
+
+    .lead {
+      font-size: 1rem;
+    }
+
+    .community-card {
+      max-width: 100%;
+    }
+
+    .avatars-container {
+      height: 50px;
+
+      .avatar-item,
+      .avatar-plus {
+        width: 50px;
+        height: 50px;
+        margin-left: -15px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 3rem 0 !important;
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    .card-body {
+      padding: 2rem 1rem;
+    }
+
+    .heart-wrapper {
+      width: 70px;
+      height: 70px;
+    }
+
+    .avatars-container {
+      height: 45px;
+
+      .avatar-item,
+      .avatar-plus {
+        width: 45px;
+        height: 45px;
+        margin-left: -12px;
+      }
+    }
+  }
+}

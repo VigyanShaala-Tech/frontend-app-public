@@ -1,0 +1,137 @@
+.testimonials {
+  padding: 6rem 0;
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  .lead {
+    max-width: 768px;
+    margin: 0 auto 3rem;
+  }
+}
+
+/* ================= SLIDER STRUCTURE ================= */
+.testimonial-slider {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.testimonial-viewport {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.testimonial-track {
+  max-width: 100%;
+  display: flex;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-slide {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ================= CARD ================= */
+.testimonial-card {
+  position: relative;
+  padding: 4rem 3rem 3rem;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--gray-300);
+  text-align: center;
+  width: 100%;
+  h5{
+    font-size: 1.125rem;
+  }
+}
+
+.quote-icon {
+  font-size: 2rem;
+  opacity: 0.15;
+  margin-bottom: 1rem;
+}
+
+.avatar-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50px);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+blockquote {
+  margin-top: 50px !important;
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.role {
+font-size: 1rem;
+  color: #6c757d;
+}
+
+/* ================= ARROWS ================= */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateX(-61px);
+  height: 45px !important;
+  width: 45px !important;
+  border-radius: 50%;
+  border: none;
+  z-index: 5;
+}
+
+.nav-left {
+  transform: translate(1px);
+}
+
+.nav-right {
+  right: -60px;
+}
+
+/* ================= INDICATORS (HERO STYLE) ================= */
+.hero-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+
+  button {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    border: none;
+    background: rgba(13, 110, 253, 0.3);
+    transition: all 0.4s ease;
+    cursor: pointer;
+
+    &.active {
+      width: 2rem;
+      background: var(--bs-primary);
+    }
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  .testimonial-card {
+    padding: 3rem 2rem;
+  }
+}
