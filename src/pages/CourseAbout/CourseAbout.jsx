@@ -18,7 +18,7 @@ import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import { getConfig } from '@edx/frontend-platform';
 import messages from '../../message/GlobalMessage.message';
 import PlaceholderImage from '../../assets/image/placeholder-image.jpeg'
-import PlaceholderProfileImage from '../../assets/image/profile-placeholder.png'
+import PlaceholderProfileImage from '../../assets/image/profile-placeholder.jpeg'
 
 import './CourseAbout.scss';
 
