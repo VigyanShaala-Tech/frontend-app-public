@@ -622,30 +622,19 @@ a{
         height: auto !important;
     }
 }
-.studio-header{
-    height: auto !important;
-    .logo{
-        padding: 10px 0 !important;
-    }
-    .container-fluid{
-        header {
-            .ml-4{
-                margin-left: 0 !important;
-            }
-        };
-    }
-}
-.container-mw-xl {
-    max-width: 1600px !important;
-}
 
 // for learning header logo size and course title alignment
-header, .learning-header{
+header{
     .logo{
         height: auto !important;
         img{
             width: 135px !important;
             height: auto !important;
         }
+    }
+}
+.secondary-menu-container{
+    .btn-link{
+        color: $primary !important;
     }
 }
