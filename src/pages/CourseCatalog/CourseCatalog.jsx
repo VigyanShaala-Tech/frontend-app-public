@@ -4,6 +4,7 @@ import {
   Form,
   Button,
   Pagination,
+  Spinner,
 } from '@openedx/paragon';
 import { faSearch, faTimes, faTh, faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,6 +45,7 @@ const CourseCatalog = () => {
   // Fetch filter options once
   useEffect(() => {
     const fetchFilters = async () => {
+      setError(null);
       try {
         const res = await getAuthenticatedHttpClient().get(`${getConfig().LMS_BASE_URL}/api/v1/catalog/filters/`);
 
@@ -291,18 +293,36 @@ const CourseCatalog = () => {
               </div>
             )}
           </div>
-
+          
           {/* Results count */}
           <p className="result-count text-muted mb-4">
             {formatMessage(messages['catalog.results.showing'], { count: totalCourses, perPage: courses.length })}
           </p>
 
-          {/* Course Grid / List */}
-          {viewMode === 'grid' ? (
+          {/* Course Grid / List or Loading */}
+          {loading ? (
+            <div className="d-flex justify-content-center align-items-center py-8">
+              <Spinner
+                animation="border"
+                variant="primary"      
+                screenReaderText={formatMessage(messages['catalog.loading'])}
+              />
+              <span className="ms-3 sr-only">{formatMessage(messages['catalog.loading'])}</span>
+            </div>
+          ) : courses.length === 0 ? (
+            <div className="text-center py-8 no-results rounded">
+              <h4 className="text-muted mb-4">
+                {formatMessage(messages['catalog.noResults.title'])}
+              </h4>
+              <Button variant="outline-primary" onClick={clearFilters}>
+                {formatMessage(messages['catalog.noResults.action'])}
+              </Button>
+            </div>
+          ) : viewMode === 'grid' ? (
             <div className="row g-4">
               {courses.map(course => (
                 <div key={course.id} className="col-md-6 col-lg-4 mb-4">
-                  <CourseCard course={course} layout="grid" />
+                  <CourseCard key={course.id} course={course} layout="grid" />
                 </div>
               ))}
             </div>
@@ -315,7 +335,6 @@ const CourseCatalog = () => {
               ))}
             </div>
           )}
-
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="d-flex justify-content-center mt-5">
@@ -326,18 +345,6 @@ const CourseCatalog = () => {
                 onPageSelect={setCurrentPage}
                 variant="primary"
               />
-            </div>
-          )}
-
-          {/* No Results */}
-          {courses.length === 0 && (
-            <div className="text-center py-8 no-results rounded">
-              <h4 className="text-muted mb-4">
-                {formatMessage(messages['catalog.noResults.title'])}
-              </h4>
-              <Button variant="outline-primary" onClick={clearFilters}>
-                {formatMessage(messages['catalog.noResults.action'])}
-              </Button>
             </div>
           )}
         </div>

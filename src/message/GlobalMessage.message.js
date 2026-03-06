@@ -83,7 +83,7 @@ const messages = defineMessages({
   },
   'catalog.course.enroll': {
     id: 'catalog.course.enroll',
-    defaultMessage: 'Enroll Now',
+    defaultMessage: 'View Course',
     description: 'Button text on course cards',
   },
 
@@ -194,6 +194,36 @@ const messages = defineMessages({
     id: 'courseAbout.breadcrumb.courses',
     defaultMessage: 'Courses',
     description: 'Breadcrumb link to courses list',
+  },
+  'courseAbout.error.loadCourse': {
+    id: 'courseAbout.error.loadCourse',
+    defaultMessage: 'Failed to load course details. Please try again later.',
+    description: 'Error message when course API fails',
+  },
+  'courseAbout.enrollment.invitationOnly': {
+    id: 'courseAbout.enrollment.invitationOnly',
+    defaultMessage: 'Enrollment in this course is by invitation only.',
+    description: 'Message when course requires invitation',
+  },
+  'courseAbout.enrollment.closed': {
+    id: 'courseAbout.enrollment.closed',
+    defaultMessage: 'Enrollment is closed.',
+    description: 'Message when enrollment is closed',
+  },
+  'courseAbout.enrollment.enrolling': {
+    id: 'courseAbout.enrollment.enrolling',
+    defaultMessage: 'Enrolling...',
+    description: 'Text shown while enrolling',
+  },
+  'courseAbout.enrollment.viewCourse': {
+    id: 'courseAbout.enrollment.viewCourse',
+    defaultMessage: 'View Course',
+    description: 'Button label when user already enrolled',
+  },
+  'courseAbout.enrollment.enrollNow': {
+    id: 'courseAbout.enrollment.enrollNow',
+    defaultMessage: 'Enroll Now',
+    description: 'Enroll button label',
   },
 
   //--------------------About-us page --------------------------------------------
@@ -540,6 +570,62 @@ const messages = defineMessages({
     id: 'contact.form.captcha.required',
     defaultMessage: 'Please complete the CAPTCHA verification',
     description: 'Error message when reCAPTCHA is not completed',
+  },
+  'contact.form.phone.digitsOnly': {
+    id: 'contact.form.phone.digitsOnly',
+    defaultMessage: 'Phone number can only contain digits',
+    description: 'Error when non-digit characters are entered in phone',
+  },
+  'contact.form.required': {
+    id: 'contact.form.required',
+    defaultMessage: 'This field is required',
+    description: 'Generic error when a required field is empty',
+  },
+
+  // Email validation
+  'contact.form.email.invalid': {
+    id: 'contact.form.email.invalid',
+    defaultMessage: 'Please enter a valid email address',
+    description: 'Error for invalid email format',
+  },
+
+  // Phone validation
+  'contact.form.phone.required': {
+    id: 'contact.form.phone.required',
+    defaultMessage: 'Phone number is required',
+    description: 'Error when phone field is empty',
+  },
+  'contact.form.phone.tooShort': {
+    id: 'contact.form.phone.tooShort',
+    defaultMessage: 'Phone number is too short',
+    description: 'Error when phone number has fewer than 7 digits',
+  },
+  'contact.form.phone.invalid': {
+    id: 'contact.form.phone.invalid',
+    defaultMessage: 'Please enter a valid phone number (7-15 digits)',
+    description: 'Final validation error for phone field',
+  },
+
+  // Submission states
+  'contact.form.submitting': {
+    id: 'contact.form.submitting',
+    defaultMessage: 'Sending...',
+    description: 'Loading text while form is submitting',
+  },
+  'contact.form.submit.error': {
+    id: 'contact.form.submit.error',
+    defaultMessage: 'Failed to send message. Please try again.',
+    description: 'Generic error when API call fails',
+  },
+  'contact.form.success.title': {
+    id: 'contact.form.success.title',
+    defaultMessage: 'Thanks for contacting us!',
+    description: 'Success alert title',
+  },
+  'contact.form.success.message': {
+    id: 'contact.form.success.message',
+    defaultMessage: 'We will get in touch with you shortly.',
+    description: 'Success alert description',
   },
   //===============================================================================================================
   //---------------------------------------------home-page---------------------------------------------------------

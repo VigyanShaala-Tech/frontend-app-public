@@ -19,6 +19,8 @@ import { getConfig } from '@edx/frontend-platform';
 import messages from '../../message/GlobalMessage.message';
 import PlaceholderImage from '../../assets/image/placeholder-image.jpeg'
 import PlaceholderProfileImage from '../../assets/image/profile-placeholder.jpeg'
+import { useContext } from 'react';
+import { AppContext } from '@edx/frontend-platform/react';
 
 import './CourseAbout.scss';
 
@@ -27,6 +29,7 @@ const tabs = ['Overview', 'Curriculum', 'Instructor', 'Reviews'];
 const CourseAbout = () => {
   const { formatMessage } = useIntl();
   const { id: courseId } = useParams(); // e.g. "course-v1:OpenedX+DemoX+DemoCourse"
+  const { authenticatedUser, config } = useContext(AppContext);
 
   const [course, setCourse] = useState(null);
   const [curriculum, setCurriculum] = useState(null);
@@ -45,6 +48,11 @@ const CourseAbout = () => {
 
   const baseUrl = getConfig().LMS_BASE_URL;
   const httpClient = getAuthenticatedHttpClient();
+  const learningBaseUrl = config.LEARNING_BASE_URL;
+  const loginBaseUrl = config.LOGIN_URL;
+  const catalogBaseUrl = config.CATALOG_MICROFRONTEND_URL;
+  const [isEnrolling, setIsEnrolling] = useState(false);
+  const [enrollError, setEnrollError] = useState(null);
 
   // Fetch main course details once on mount
   useEffect(() => {
@@ -58,7 +66,7 @@ const CourseAbout = () => {
         }
       } catch (err) {
         console.error('Failed to fetch course:', err);
-        setErrorCourse('Failed to load course details. Please try again later.');
+        setErrorCourse(formatMessage(messages['courseAbout.error.loadCourse']));
       } finally {
         setLoadingCourse(false);
       }
@@ -75,7 +83,6 @@ const CourseAbout = () => {
         try {
           const res = await httpClient.get(`${baseUrl}/api/v1/catalog/course-curriculum/${courseId}/`);
           if (res.status === 200 && res.data) {
-            // API returns object like { "Module 1": ["Lesson A", "Lesson B"], ... }
             setCurriculum(res.data);
           }
         } catch (err) {
@@ -128,6 +135,61 @@ const CourseAbout = () => {
     );
   };
 
+  // ────────────────────────────────────────────────
+  //          Enrollment Logic
+  // ────────────────────────────────────────────────
+  const isInvitationOnly = course?.invitation_only === true;
+  const canEnrollNow = course?.can_enroll === true;
+  const isAlreadyEnrolled = course?.enrollment?.is_active === true;
+
+  const handleEnrollAction = async () => {
+    // 1. Already enrolled → go to Learning MFE
+    if (isAlreadyEnrolled) {
+      const learningUrl = `${learningBaseUrl}/course/${courseId}`;
+      window.location.href = learningUrl;
+      return;
+    }
+
+    // 2. Try to enroll
+    setIsEnrolling(true);
+    setEnrollError(null);
+
+    try {
+      const response = await httpClient.post(
+        `${baseUrl}/change_enrollment`,
+        {
+          course_id: courseId,
+          enrollment_action: 'enroll',
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Redirect to dashboard
+        window.location.href = `${baseUrl}/dashboard`;
+      }
+    } catch (err) {
+      if (err.response?.status === 403 || err.response?.status === 401) {
+        // Not logged in or session expired
+        // const nextPath = encodeURIComponent(`/courses/${courseId}/about`);
+        const nextPath = encodeURIComponent(`${catalogBaseUrl}courses/${courseId}`);
+
+        window.location.href = `${loginBaseUrl}?next=${nextPath}`;
+      } else {
+        // Other errors
+        setEnrollError(
+          err.response?.data?.message
+        );
+      }
+    } finally {
+      setIsEnrolling(false);
+    }
+  };
+
   if (loadingCourse) {
     return (
       <div className="d-flex justify-content-center py-8">
@@ -139,7 +201,7 @@ const CourseAbout = () => {
   if (errorCourse || !course) {
     return (
       <div className="container py-5">
-        <Alert variant="danger">{errorCourse || 'Course not found'}</Alert>
+        <Alert variant="danger">{errorCourse}</Alert>
       </div>
     );
   }
@@ -210,7 +272,7 @@ const CourseAbout = () => {
                       key={tab}
                       type="button"
                       className={`btn mr-2 ${
-                        activeTab === tab ? 'btn-primary text-primary fw-bold' : 'button-inactive-color'
+                        activeTab === tab ? 'btn-primary fw-bold' : 'button-inactive-color'
                       }`}
                       onClick={() => setActiveTab(tab)}
                     >
@@ -385,9 +447,47 @@ const CourseAbout = () => {
                   />
                 </div>
                 <div className="card-body p-4">
-                  <Button variant="primary" block className="mb-4 py-3">
-                    {formatMessage(messages['courseAbout.enrollNow'])}
-                  </Button>
+                  {isInvitationOnly ? (
+                    <Alert variant="info" className="mb-4 text-center">
+                      {formatMessage(messages['courseAbout.enrollment.invitationOnly'])}
+                    </Alert>
+                  ) : !canEnrollNow ? (
+                    <Alert variant="warning" className="mb-4 text-center">
+                      {formatMessage(messages['courseAbout.enrollment.closed'])}
+                    </Alert>
+                  ) : (
+                    <>
+                      <Button
+                        variant="primary"
+                        block
+                        className="mb-4 py-3 fw-bold"
+                        onClick={handleEnrollAction}
+                        disabled={isEnrolling}
+                      >
+                        {isEnrolling ? (
+                          <>
+                            <Spinner animation="border" size="sm" className="mr-2" />
+                            {formatMessage(messages['courseAbout.enrollment.enrolling'])}
+                          </>
+                        ) : isAlreadyEnrolled ? (
+                          formatMessage(messages['courseAbout.enrollment.viewCourse'])
+                        ) : (
+                          formatMessage(messages['courseAbout.enrollment.enrollNow'])
+                        )}
+                      </Button>
+
+                      {enrollError && (
+                        <Alert
+                          variant="danger"
+                          dismissible
+                          onClose={() => setEnrollError(null)}
+                          className="mt-3"
+                        >
+                          {enrollError}
+                        </Alert>
+                      )}
+                    </>
+                  )}
 
                   <div className="course-card-reach d-flex flex-column text-muted small">
                     { course.effort &&

@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { Button, Form } from '@openedx/paragon';
+import { Button, Form, Spinner, Alert } from '@openedx/paragon';
 import {
   faMapMarkerAlt,
   faEnvelope,
   faPhone,
   faPaperPlane,
-  faExpandAlt,
-  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { useContext } from 'react';
+import { AppContext } from '@edx/frontend-platform/react';
+import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
+import { getConfig } from '@edx/frontend-platform';
 
 import messages from '../../message/GlobalMessage.message';
 
@@ -19,6 +21,7 @@ import './Contact.scss';
 
 const Contact = () => {
   const { formatMessage } = useIntl();
+  const { config } = useContext(AppContext);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -28,59 +31,138 @@ const Contact = () => {
     message: '',
   });
 
+  const [errors, setErrors] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+
   const [recaptchaToken, setRecaptchaToken] = useState(null);
   const [recaptchaError, setRecaptchaError] = useState('');
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Replace with your actual reCAPTCHA v2 site key
-  const RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // ← DEMO / TEST KEY (always passes)
-  // In production: use your real site key from Google reCAPTCHA admin
+  const RECAPTCHA_SITE_KEY = config.RECAPTCHA_SITE_KEY;
+
+  const validateField = (name, value) => {
+    if (!value.trim()) {
+      return formatMessage(messages['contact.form.required'] || 'This field is required');
+    }
+
+    if (name === 'email' && !/\S+@\S+\.\S+/.test(value)) {
+      return formatMessage(messages['contact.form.email.invalid'] || 'Please enter a valid email address');
+    }
+
+    if (name === 'phone') {
+      const digits = value.replace(/\D/g, '');
+      if (digits.length === 0) {
+        return formatMessage(messages['contact.form.phone.required'] || 'Phone number is required');
+      }
+      if (digits.length < 7 || digits.length > 15) {
+        return formatMessage(messages['contact.form.phone.invalid'] || 'Please enter a valid phone number (7-15 digits)');
+      }
+    }
+
+    return '';
+  };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    let processedValue = value;
+
+    if (name === 'phone') {
+      processedValue = value.replace(/\D/g, '');
+    }
+
+    setFormData({ ...formData, [name]: processedValue });
+
+    // Real-time validation
+    const error = validateField(name, processedValue);
+    setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleRecaptchaChange = (token) => {
     setRecaptchaToken(token);
-    setRecaptchaError(''); // clear error when user interacts
+    setRecaptchaError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate all fields
+    const newErrors = {};
+    let isValid = true;
+
+    Object.keys(formData).forEach((key) => {
+      const error = validateField(key, formData[key]);
+      newErrors[key] = error;
+      if (error) isValid = false;
+    });
+
+    setErrors(newErrors);
+
+    if (!isValid) return;
+
     if (!recaptchaToken) {
-      setRecaptchaError(
-        formatMessage(messages['contact.form.captcha.required'] || 'Please complete the CAPTCHA verification')
-      );
+      setRecaptchaError(formatMessage(messages['contact.form.captcha.required']));
       return;
     }
 
-    // Here you would send data + token to your backend
+    setSubmitLoading(true);
+    setSubmitError('');
+    setSubmitSuccess(false);
+
     const payload = {
-      ...formData,
-      recaptchaToken,
+      first_name: formData.firstName.trim(),
+      last_name: formData.lastName.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      message: formData.message.trim(),
+      recaptcha_token: recaptchaToken,
     };
 
-    console.log('Form data to send:', payload);
-    // Example: fetch('/api/contact', { method: 'POST', body: JSON.stringify(payload) })
+    try {
+      const httpClient = getAuthenticatedHttpClient();
 
-    // On success (simulate):
-    setFormSubmitted(true);
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      message: '',
-    });
-    setRecaptchaToken(null); // reset reCAPTCHA
+      const response = await httpClient.post(
+        `${getConfig().LMS_BASE_URL}/api/v1/contact-us/`,
+        payload,
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
 
-    setTimeout(() => setFormSubmitted(false), 8000);
+      if (response.status === 200 || response.status === 201) {
+        setSubmitSuccess(true);
+      } else {
+        throw new Error('Unexpected response status');
+      }
+    } catch (err) {
+      console.error('Contact form submission failed:', err);
+
+      const errorMsg =
+        err.response?.data?.message ||
+        err.response?.data?.non_field_errors?.[0] ||
+        formatMessage(messages['contact.form.submit.error']);
+
+      setSubmitError(errorMsg);
+    } finally {
+      setSubmitLoading(false);
+    }
   };
+
+  // Form is valid only when all fields have no errors + CAPTCHA done
+  const isFormValid = () =>
+    Object.values(errors).every((err) => !err) &&
+    Object.values(formData).every((val) => val.trim() !== '') &&
+    !!recaptchaToken;
 
   return (
     <div className="contact-page">
-      {/* Hero / Banner Section */}
+      {/* Hero / Banner */}
       <section className="py-6">
         <div className="container">
           <nav className="page-mapped text-muted small mb-3">
@@ -103,7 +185,7 @@ const Contact = () => {
             {/* Left - Contact Info */}
             <div className="col-lg-6">
               <div className="mb-5 mr-4">
-                <span className="mb-4 badge bg-light text-primary">
+                <span className="mb-4 badge text-primary">
                   {formatMessage(messages['contact.info.heading'])}
                 </span>
                 <h3 className="mb-4 contact-info-subheading">
@@ -114,7 +196,6 @@ const Contact = () => {
                 </p>
 
                 <div className="d-flex flex-column gap-4">
-                  {/* Address, Email, Phone blocks remain the same */}
                   <div className="d-flex align-items-center mb-2 p-4 contact-info">
                     <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-4" />
                     <div>
@@ -162,88 +243,101 @@ const Contact = () => {
                   {formatMessage(messages['contact.form.heading'])}
                 </h3>
 
-                {formSubmitted ? (
-                  <div className="alert alert-success text-center py-4">
-                    <strong>Thank you!</strong> Your message has been sent successfully.
+                {submitSuccess ? (
+                  <Alert variant="success" className="text-center py-4">
+                    <strong>{formatMessage(messages['contact.form.success.title'])}</strong>
                     <br />
-                    <small>We will get back to you soon.</small>
-                  </div>
+                    <small>{formatMessage(messages['contact.form.success.message'])}</small>
+                  </Alert>
                 ) : (
-                  <Form onSubmit={handleSubmit}>
+                  <Form onSubmit={handleSubmit} noValidate>
+                    {submitError && (
+                      <Alert variant="danger" dismissible onClose={() => setSubmitError('')} className="mb-4">
+                        {submitError}
+                      </Alert>
+                    )}
+
                     <div className="row g-3">
                       {/* First Name */}
                       <div className="col-md-6">
                         <Form.Group>
-                          <Form.Label>
-                            {formatMessage(messages['contact.form.firstName.label'])}
-                          </Form.Label>
+                          <Form.Label>{formatMessage(messages['contact.form.firstName.label'])}</Form.Label>
                           <Form.Control
                             type="text"
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange}
                             placeholder={formatMessage(messages['contact.form.firstName.placeholder'])}
+                            isInvalid={!!errors.firstName}
                             required
                           />
+                          {errors.firstName && (
+                            <Form.Text className="text-danger">{errors.firstName}</Form.Text>
+                          )}
                         </Form.Group>
                       </div>
 
                       {/* Last Name */}
                       <div className="col-md-6">
                         <Form.Group>
-                          <Form.Label>
-                            {formatMessage(messages['contact.form.lastName.label'])}
-                          </Form.Label>
+                          <Form.Label>{formatMessage(messages['contact.form.lastName.label'])}</Form.Label>
                           <Form.Control
                             type="text"
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
                             placeholder={formatMessage(messages['contact.form.lastName.placeholder'])}
+                            isInvalid={!!errors.lastName}
                             required
                           />
+                          {errors.lastName && (
+                            <Form.Text className="text-danger">{errors.lastName}</Form.Text>
+                          )}
                         </Form.Group>
                       </div>
 
                       {/* Email */}
                       <div className="col-md-6">
                         <Form.Group>
-                          <Form.Label>
-                            {formatMessage(messages['contact.form.email.label'])}
-                          </Form.Label>
+                          <Form.Label>{formatMessage(messages['contact.form.email.label'])}</Form.Label>
                           <Form.Control
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
                             placeholder={formatMessage(messages['contact.form.email.placeholder'])}
+                            isInvalid={!!errors.email}
                             required
                           />
+                          {errors.email && (
+                            <Form.Text className="text-danger">{errors.email}</Form.Text>
+                          )}
                         </Form.Group>
                       </div>
 
-                      {/* Phone */}
+                      {/* Phone - Required */}
                       <div className="col-md-6">
                         <Form.Group>
-                          <Form.Label>
-                            {formatMessage(messages['contact.form.phone.label'])}
-                          </Form.Label>
+                          <Form.Label>{formatMessage(messages['contact.form.phone.label'])}</Form.Label>
                           <Form.Control
                             type="tel"
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder={formatMessage(messages['contact.form.phone.placeholder'])}
+                            isInvalid={!!errors.phone}
+                            required
                           />
+                          {errors.phone && (
+                            <Form.Text className="text-danger">{errors.phone}</Form.Text>
+                          )}
                         </Form.Group>
                       </div>
 
                       {/* Message */}
                       <div className="col-12">
                         <Form.Group>
-                          <Form.Label>
-                            {formatMessage(messages['contact.form.message.label'])}
-                          </Form.Label>
+                          <Form.Label>{formatMessage(messages['contact.form.message.label'])}</Form.Label>
                           <Form.Control
                             as="textarea"
                             rows={5}
@@ -251,12 +345,16 @@ const Contact = () => {
                             value={formData.message}
                             onChange={handleChange}
                             placeholder={formatMessage(messages['contact.form.message.placeholder'])}
+                            isInvalid={!!errors.message}
                             required
                           />
+                          {errors.message && (
+                            <Form.Text className="text-danger">{errors.message}</Form.Text>
+                          )}
                         </Form.Group>
                       </div>
 
-                      {/* reCAPTCHA - I'm not a robot */}
+                      {/* reCAPTCHA */}
                       <div className="col-12 mt-4">
                         <ReCAPTCHA
                           sitekey={RECAPTCHA_SITE_KEY}
@@ -264,9 +362,7 @@ const Contact = () => {
                           onExpired={() => setRecaptchaToken(null)}
                         />
                         {recaptchaError && (
-                          <div className="text-danger mt-2 small fw-medium">
-                            {recaptchaError}
-                          </div>
+                          <div className="text-danger mt-2 small fw-medium">{recaptchaError}</div>
                         )}
                       </div>
                     </div>
@@ -275,10 +371,19 @@ const Contact = () => {
                       variant="primary"
                       type="submit"
                       className="mt-4 py-3 w-100"
-                      disabled={!recaptchaToken}
+                      disabled={submitLoading || !isFormValid()}
                     >
-                      <FontAwesomeIcon icon={faPaperPlane} className="mr-3" />
-                      {formatMessage(messages['contact.form.submit'])}
+                      {submitLoading ? (
+                        <>
+                          <Spinner animation="border" size="sm" className="mr-2" />
+                          {formatMessage(messages['contact.form.submitting'])}
+                        </>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon icon={faPaperPlane} className="mr-3" />
+                          {formatMessage(messages['contact.form.submit'])}
+                        </>
+                      )}
                     </Button>
                   </Form>
                 )}
