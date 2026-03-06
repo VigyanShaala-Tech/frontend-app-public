@@ -213,6 +213,14 @@ $primary: var(--pgn-color-primary-base) ;
         box-shadow: none !important;
     }   
 }
+.btn-primary{
+    &:hover{
+        background-color: $primary !important;
+    }
+}
+a:hover {
+    text-decoration: none;
+}
 
 
 
