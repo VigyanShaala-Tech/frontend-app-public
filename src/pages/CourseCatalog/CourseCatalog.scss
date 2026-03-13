@@ -1,5 +1,21 @@
 .course-catalog-page {
   min-height: 100vh;
+  section{
+    .banner{
+      display: flex;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-direction: column;
+      .course-catalog-page-heading{
+        font-size: 3rem;
+      }
+      .course-catalog-page-paragraph{
+        font-size: 1.125rem;
+        max-width: 672px;
+        text-align: center;
+      }
+    }
+  }
 }
 .filter-bar {
   div{
@@ -49,15 +65,43 @@
       .d-flex{
         margin-top: 1rem;
       }
-      div{
-        .btn-group{
-          margin-inline-end: var(--pgn-spacing-form-control-gutter);
-        }
-      }
     }
   }
+}
 
-  .search-bar {
-    margin-bottom: 1rem;
+/* Mobile-specific typography & filter layout */
+@media (max-width: 767px) {
+  /* Typography */
+  .course-catalog-page-heading {
+    font-size: 1.875rem !important; /* 30px in rem */
+  }
+
+  .course-catalog-page-paragraph {
+    font-size: 1rem !important;
+  }
+
+  /* Filter bar mobile layout */
+  .filter-bar {
+    .flex-wrap{
+      flex-direction: row !important;
+    }
+  }
+  .filter-bar{
+    .active-filter-container{
+      flex-direction: row !important;
+      gap: 0 !important;
+    }
+  }
+  .filter-dropdown:nth-child(2),
+  .filter-dropdown:nth-child(3) {
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: calc(50% - 0.5rem);
+    max-width: calc(50% - 0.5rem);
+  }
+
+  /* Subject (third dropdown) – full width */
+  .filter-dropdown:nth-child(1) {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 }

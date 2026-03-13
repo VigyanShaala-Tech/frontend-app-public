@@ -169,8 +169,8 @@ const CourseCatalog = () => {
       {/* Hero */}
       <section className="py-5 text-center">
         <div className="container">
-          <h1 className="mb-3">{formatMessage(messages['catalog.title'])}</h1>
-          <p className="lead text-muted">{formatMessage(messages['catalog.subtitle'])}</p>
+          <h1 className="mb-3 course-catalog-page-heading">{formatMessage(messages['catalog.title'])}</h1>
+          <p className="text-muted course-catalog-page-paragraph">{formatMessage(messages['catalog.subtitle'])}</p>
         </div>
       </section>
 
@@ -267,7 +267,7 @@ const CourseCatalog = () => {
 
             {/* Active Filters */}
             {activeFilters.length > 0 && (
-              <div className="mt-4 pt-3 border-top d-flex flex-wrap gap-2 align-items-center">
+              <div className="active-filter-container mt-4 pt-3 border-top d-flex flex-wrap gap-2 align-items-center">
                 <span className="text-muted small me-2">
                   {formatMessage(messages['catalog.activeFilters.label'])}
                 </span>

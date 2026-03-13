@@ -204,6 +204,15 @@ $primary: var(--pgn-color-primary-base) ;
                                 }
                             }
                         }
+                        .enroll-card{
+                            .card-img-top-wraper{
+                                .heart-btn{
+                                    path{
+                                        fill: $primary !important;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

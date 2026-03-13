@@ -28,56 +28,7 @@ const ExamplePage = () => {
 
   return (
     <div className="container py-5 d-flex flex-column align-items-center justify-content-center" style={{height:"82vh", fontSize:"85px"}}>
-      <h1 className="mb-4" style={{fontSize:"85px"}}>Abhi decide nhi hua hai</h1>
-      {/* <Form onSubmit={handleSubmit} className="w-100" style={{ maxWidth: '500px' }}>
-        <Form.Group controlId="name" className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter your name"
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="email" className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="message" className="mb-3">
-          <Form.Label>Message</Form.Label>
-          <Form.Control
-            as="textarea"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Write your message"
-            rows={4}
-            required
-          />
-        </Form.Group>
-
-        <div className="d-flex justify-content-end">
-          <StatefulButton
-            state={isSaving ? 'pending' : 'default'}
-            labels={{
-              default: 'Submit',
-              pending: 'Submitting...',
-            }}
-            type="submit"
-          />
-        </div>
-      </Form> */}
+      <h1 className="mb-4" style={{fontSize:"85px"}}>Example page</h1>
     </div>
   );
 };
