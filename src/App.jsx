@@ -29,9 +29,30 @@ const MenuItem = [
     content: 'Courses',
   },
   {
-    type: 'item',
-    href: `/public/about`,
-    content: 'About-Us',
+    type: 'menu',
+    content: 'About Us',
+    items: [
+      {
+        type: 'item',
+        href: '/public/about',
+        content: 'Our Story',
+      },
+      {
+        type: 'item',
+        href: '/public/about/team',
+        content: 'Team',
+      },
+      {
+        type: 'item',
+        href: '/public/about/supporters',
+        content: 'Supporters',
+      },
+      {
+        type: 'item',
+        href: '/public/about/financials',
+        content: 'Financials',
+      },
+    ],
   },
   {
     type: 'item',
@@ -56,7 +77,10 @@ function Layout() {
         <Route path="/public" element={<Home />} />
         <Route path="/public/courses" element={<CourseCatalog />} />
         <Route path="/public/courses/:id" element={<CourseAbout />} />
-        <Route path="/public/about" element={<About />} />
+        <Route path="/public/about" element={<About defaultTab="story" />} />
+        <Route path="/public/about/team" element={<About defaultTab="team" />} />
+        <Route path="/public/about/supporters" element={<About defaultTab="supporters" />} />
+        <Route path="/public/about/financials" element={<About defaultTab="financials" />} />
         <Route path="/public/contact" element={<Contact />} />
         <Route path="/public/terms" element={<Terms />} />
         <Route path="/public/privacy" element={<Privacy />} />
