@@ -1,3 +1,4 @@
+// components/HeroCarousel/HeroCarousel.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Button } from '@openedx/paragon';
@@ -30,18 +31,12 @@ const slides = [
 const HeroCarousel = () => {
   const { formatMessage } = useIntl();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [direction, setDirection] = useState('next');
   const sectionRef = useRef(null);
   const navigate = useNavigate();
 
-  /** 🔹 Dynamically set hero height = viewport - navbar height */
   const updateHeroHeight = () => {
-    const navbar =
-      document.querySelector('.site-header-mobile') ||
-      document.querySelector('.site-header-desktop');
-
+    const navbar = document.querySelector('.site-header-mobile') || document.querySelector('.site-header-desktop');
     const navbarHeight = navbar?.offsetHeight || 0;
-
     if (sectionRef.current) {
       sectionRef.current.style.minHeight = `calc(100vh - ${navbarHeight}px)`;
     }
@@ -53,101 +48,90 @@ const HeroCarousel = () => {
     return () => window.removeEventListener('resize', updateHeroHeight);
   }, []);
 
-  /** 🔹 Auto slide */
+  // Auto slide
   useEffect(() => {
     const timer = setInterval(() => {
-      setDirection('next');
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
-
     return () => clearInterval(timer);
   }, []);
 
   const prevSlide = () => {
-    setDirection('prev');
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   const nextSlide = () => {
-    setDirection('next');
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
   const current = slides[currentSlide];
 
   return (
-    <section ref={sectionRef} className="hero-carousel">
-    <div
-        className="hero-track"
-        style={{
-        transform: `translateX(-${currentSlide * 100}%)`,
-        }}
-    >
-        {slides.map((slide, index) => (
-        <div className="hero-slide" key={slide.id}>
-            <div className="container hero-container">
-            <div className="row align-items-center w-100 gy-5 hero-row">
-                {/* TEXT */}
-                <div
-                className={`col-lg-6 ${
-                    slide.layout === 'text-right' ? 'order-lg-2' : ''
-                }`}
-                >
-                <h1 className="hero-title">
-                    <div>{formatMessage(slide.title)}</div>
-                    <span className="text-primary">
-                    {formatMessage(slide.highlight)}
-                    </span>
-                </h1>
+    <section ref={sectionRef} className="hero-carousel position-relative overflow-hidden">
+      <div
+        className="hero-track d-flex w-100"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
+        {slides.map((slide) => (
+          <div key={slide.id} className="hero-slide flex-shrink-0 w-100">
+            <div className="container py-4 py-md-5 py-lg-6">
+              <div className="row align-items-center gy-5 gy-lg-0">
+                {/* Image – always first on mobile, controlled order on desktop */}
+                <div className={`col-12 col-lg-6 mb-4 mb-lg-0 hero-image-col ${slide.layout === 'text-right' ? 'order-lg-1' : 'order-lg-2'}`}>
+                  <div className="hero-image-wrapper rounded shadow">
+                    <img
+                      src={slide.image}
+                      alt="Hero illustration"
+                      className="img-fluid w-100 rounded object-cover"
+                    />
+                  </div>
+                </div>
 
-                <p className="hero-description text-muted">
+                {/* Text content – comes after image on mobile */}
+                <div className={`col-12 col-lg-6 text-start text-lg-start ${slide.layout === 'text-right' ? 'order-lg-2' : 'order-lg-1'}`}>
+                  <h1 className="hero-title mb-3 mb-md-4">
+                    {formatMessage(slide.title)}
+                    <span className="text-primary d-block">{formatMessage(slide.highlight)}</span>
+                  </h1>
+
+                  <p className="hero-description text-muted mb-4 mb-md-5 lead mx-auto mx-lg-0" style={{ maxWidth: '520px' }}>
                     {formatMessage(slide.description)}
-                </p>
+                  </p>
 
-                <div className="hero-action-button d-flex gap-3">
-                    <Button size="lg mr-4" onClick={() => navigate('/public/courses')}>
-                    {formatMessage(messages['home.hero.getStarted'])}
+                  <div className="hero-action-button d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start">
+                    <Button className='button-margin' variant="primary" size="lg" onClick={() => navigate('/public/courses')}>
+                      {formatMessage(messages['home.hero.getStarted'])}
                     </Button>
                     <Button variant="outline-primary" size="lg" onClick={() => navigate('/public/about')}>
-                    {formatMessage(messages['home.hero.learnMore'])}
+                      {formatMessage(messages['home.hero.learnMore'])}
                     </Button>
+                  </div>
                 </div>
-                </div>
-
-                {/* IMAGE (desktop only) */}
-                <div
-                className={`col-lg-6 hero-image-col ${
-                    slide.layout === 'text-right' ? 'order-lg-1' : ''
-                }`}
-                >
-                <img src={slide.image} className="img-fluid rounded" />
-                </div>
+              </div>
             </div>
-            </div>
-        </div>
+          </div>
         ))}
-    </div>
+      </div>
 
-    {/* NAV */}
-    <button className="hero-nav hero-prev" onClick={prevSlide}>
+      <button className="hero-nav hero-prev position-absolute top-50 start-0 translate-middle-y" onClick={prevSlide}>
         <FontAwesomeIcon icon={faChevronLeft} />
-    </button>
-    <button className="hero-nav hero-next" onClick={nextSlide}>
+      </button>
+      <button className="hero-nav hero-next position-absolute top-50 end-0 translate-middle-y" onClick={nextSlide}>
         <FontAwesomeIcon icon={faChevronRight} />
-    </button>
+      </button>
 
-    {/* INDICATORS */}
-    <div className="hero-indicators">
+      {/* Indicators */}
+      <div className="hero-indicators mb-3 d-flex align-items-center justify-center">
         {slides.map((_, i) => (
-        <button
+          <button
             key={i}
             onClick={() => setCurrentSlide(i)}
-            className={i === currentSlide ? 'active bg-primary' : 'bg-secondary'}
-        />
+            className={`rounded-circle border-0 me-2 ${i === currentSlide ? 'active bg-primary' : 'bg-white opacity-50'}`}
+            style={{ width: '12px', height: '12px' }}
+          />
         ))}
-    </div>
+      </div>
     </section>
-
   );
 };
 

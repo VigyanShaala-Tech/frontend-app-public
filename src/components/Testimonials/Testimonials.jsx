@@ -68,9 +68,8 @@ const Testimonials = () => {
         </div>
 
         {/* SLIDER */}
-        <div className="testimonial-slider">
-          {/* LEFT ARROW */}
-          <button className="nav-arrow nav-left" onClick={prev}>
+        <div className="testimonial-slider position-relative">
+          <button className="nav-arrow nav-arrow-left" onClick={prev}>
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
 
@@ -116,8 +115,7 @@ const Testimonials = () => {
             </div>
           </div>
 
-          {/* RIGHT ARROW */}
-          <button className="nav-arrow nav-right" onClick={next}>
+          <button className="nav-arrow nav-arrow-right" onClick={next}>
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
 

@@ -1,5 +1,5 @@
 .meet-experts {
-  padding: 6rem 0 !important;
+  padding: 3.5rem 0 !important;
 
   .badge {
     font-size: 0.875rem;
@@ -19,11 +19,31 @@
     margin: 0 auto;
   }
 
-  /* ===== GRID LAYOUT ===== */
-  .expert-grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr)); // Desktop
+  /* ===== CAROUSEL WRAPPER ===== */
+  .meet-experts-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ===== SCROLL CONTAINER ===== */
+  .experts-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-bottom: 1rem;
     gap: 1.5rem;
+  }
+
+  .experts-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ===== CARD ITEM ===== */
+  .expert-item {
+    flex: 0 0 auto;
   }
 
   /* ===== CARD ===== */
@@ -43,6 +63,7 @@
     height: 250px;
     border-radius: 50% 50% 45% 45%;
     overflow: hidden;
+    margin: 0 auto 1rem;
   }
 
   .expert-image {
@@ -50,50 +71,128 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.45s ease;
+  }
 
-    &:hover {
-      transform: scale(1.08);
-    }
+  .meet-expert-card:hover .expert-image {
+    transform: scale(1.08);
   }
 
   .expert-name {
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0;
+    margin-bottom: 0.25rem;
   }
 
   .expert-subject {
     font-size: 0.875rem;
   }
 
-  /* ===== TABLET ===== */
-  @media (max-width: 1199px) {
-    padding: 3rem 0 !important;
+  /* ===== SIDE ARROWS ===== */
+  .meet-arrow {
+    border-radius: 50%;
+    border: none;
+    background: white;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
 
-    h2 {
-      font-size: 2rem;
+    flex: 0 0 45px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    z-index: 10;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
+  }
+  .expert-linkedin {
+    font-size: 25px;
+    color: #0a66c2;
+    display: inline-block;
+    margin-top: 0.5rem;
+    transition: all 0.25s ease;
+    
+    &:hover {
+      color: #004182;
+      transform: scale(1.2);
+    }
+  }
 
-    .expert-grid-container {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* ===== RESPONSIVE - CONTROL VISIBLE CARDS ===== */
+  @media (min-width: 992px) {
+    /* Desktop: show 4 cards */
+    .expert-item {
+      width: calc(25% - 1.125rem); /* 4 cards + gap */
+    }
+  }
+
+  @media (max-width: 991px) and (min-width: 768px) {
+    /* Tablet: show 3 cards */
+    .expert-item {
+      width: calc(33.333% - 1rem); /* 3 cards + gap */
     }
 
     .expert-image-wrapper {
       width: 170px;
       height: 215px;
     }
+    .meet-expert-card {
+      padding: 0.2rem;
+    }
   }
 
-  /* ===== MOBILE ===== */
   @media (max-width: 767px) {
-    .expert-grid-container {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
+    /* Mobile: show 2 cards */
+    .expert-item {
+      width: calc(50% - 0.75rem); /* 2 cards + gap */
     }
 
     .expert-image-wrapper {
       width: 140px;
       height: 180px;
     }
+
+    .meet-arrow {
+      width: 44px !important;
+      height: 44px !important;
+      font-size: 1rem;
+    }
+    .meet-expert-card {
+      padding: 0.2rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    /* Very small mobile: still 2 cards if possible, or 1 */
+    .expert-item {
+      width: calc(50% - 0.75rem);
+    }
+
+    .meet-expert-card {
+      padding: 0.5rem;
+    }
+
+    .expert-image-wrapper {
+      width: 130px;
+      height: 170px;
+    }
+    .expert-name {
+      font-size: 0.875rem;
+    }
+
+    .expert-subject {
+      font-size: 0.750rem;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .meet-experts{
+    padding: 2.5rem 0 !important;
   }
 }

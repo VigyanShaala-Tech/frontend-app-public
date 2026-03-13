@@ -1,5 +1,5 @@
 .success-story {
-  padding: 6rem 0 !important;
+  padding: 3.5rem 0 !important;
 
   .badge {
     font-size: 0.875rem;
@@ -143,5 +143,17 @@
     .card .card-img-top {
       height: 300px !important;
     }
+  }
+}
+@media (max-width: 576px) {
+  .success-story{
+    padding: 2.5rem 0 !important;
+  }
+  .video-play-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem !important;
+    height: 2rem !important;
   }
 }

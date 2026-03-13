@@ -66,7 +66,7 @@ const ExploreCategories = () => {
    const navigate = useNavigate();
 
   return (
-    <section className="explore-categories py-5">
+    <section className="explore-categories">
       <div className="container">
         <div className="row align-items-center g-5">
           {/* Left Text Column - full width on mobile/tablet */}
