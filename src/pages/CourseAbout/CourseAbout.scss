@@ -8,7 +8,7 @@
 
   .enroll-card {
     position: sticky !important;
-    top: 0;
+    top: 1rem;
     border: 1px solid #e2e8f080;
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(196, 202, 212, 0.1),
@@ -29,7 +29,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 180px
+    height: 180px;
+    position: relative; 
   }
   .card-img-top {
     height: 100%;
@@ -120,6 +121,21 @@
   object-fit: cover;
 }
 
+.heart-btn {
+  position:absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 35px;
+  z-index: 999;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  .text-danger {
+    transition: all 0.2s ease;
+  }
+}
 
 
 /* ──────────────────────────────────────────────

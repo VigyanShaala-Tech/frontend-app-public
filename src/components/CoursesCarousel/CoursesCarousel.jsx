@@ -86,9 +86,9 @@ const CoursesCarousel = () => {
     <section className="courses-carousel py-5">
       <div className="container">
         {/* Heading */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-3">
           <span className="badge bg-primary text-white mb-3">
-            Featured Courses
+            {formatMessage(messages['home.courses.badge'])}
           </span>
           <h2 className="mb-2 course-carousel-header">
             {formatMessage(messages['home.courses.heading'])}

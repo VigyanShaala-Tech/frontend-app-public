@@ -163,7 +163,7 @@ const Contact = () => {
   return (
     <div className="contact-page">
       {/* Hero / Banner */}
-      <section className="py-6">
+      <section className="banner">
         <div className="container">
           <nav className="page-mapped text-muted small mb-3">
             <Link to="/public" className="text-muted text-decoration-none">
@@ -179,7 +179,7 @@ const Contact = () => {
       </section>
 
       {/* Main Content */}
-      <section className="py-5">
+      <section className="main-content">
         <div className="container">
           <div className="row g-5">
             {/* Left - Contact Info */}

@@ -1,0 +1,71 @@
+.privacy-page {
+  background-color: #f9f9f9;
+
+  .page-mapped {
+    font-size: 14px;
+  }
+
+  .privacy-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .privacy-subheading {
+    font-size: 1.2rem;
+    color: #6c757d;
+  }
+
+  .accordion {
+    .accordion-item {
+      transition: all 0.3s ease;
+
+      .accordion-button {
+        background-color: #fff;
+        border: none;
+        font-size: 1.1rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f1f1f1;
+        }
+      }
+
+      .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+
+        &.expanded {
+          max-height: 1000px;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+        }
+      }
+    }
+  }
+  .privacy-container{
+    padding: 7.5rem 13.75rem !important;
+    .privacy-content{
+      padding: 3rem !important; 
+    }
+  }
+  @media (max-width: 1024px) {
+    .privacy-container {
+      padding: 4rem 4rem !important;
+
+      .privacy-content {
+        padding: 2rem !important;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .privacy-container {
+      padding: 2rem 1rem !important;
+
+      .privacy-content {
+        padding: 1rem !important;
+      }
+    }
+  }
+}

@@ -121,6 +121,27 @@ $primary: var(--pgn-color-primary-base) ;
                 }
             }
         }
+        .meet-experts{
+            .meet-arrow{
+                svg{
+                    path{
+                        fill: $primary !important;
+                    }
+                }
+            }
+        } 
+        .community-section{
+            .community-arrow{
+                svg{
+                    path{
+                        fill: $primary !important;
+                    }
+                }
+            }
+            .members-badge{
+                color: $primary;
+            }
+        }
     }
 
     //------------------------------ Course catalog--------------------------------------------------------------
@@ -179,6 +200,15 @@ $primary: var(--pgn-color-primary-base) ;
                                                 }
                                             }
                                         }
+                                    }
+                                }
+                            }
+                        }
+                        .enroll-card{
+                            .card-img-top-wraper{
+                                .heart-btn{
+                                    path{
+                                        fill: $primary !important;
                                     }
                                 }
                             }

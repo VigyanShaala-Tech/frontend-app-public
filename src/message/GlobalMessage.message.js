@@ -672,6 +672,29 @@ const messages = defineMessages({
     description: 'Secondary button in hero',
   },
 
+
+    // Impact Numbers section labels
+  'home.impact.globalMentors': {
+    id: 'home.impact.globalMentors',
+    defaultMessage: 'Global Mentors',
+    description: 'Label for the number of global mentors in impact section',
+  },
+  'home.impact.learners': {
+    id: 'home.impact.learners',
+    defaultMessage: 'Learners',
+    description: 'Label for the number of learners in impact section',
+  },
+  'home.impact.masterclasses': {
+    id: 'home.impact.masterclasses',
+    defaultMessage: 'MasterClasses',
+    description: 'Label for the number of masterclasses in impact section',
+  },
+  'home.impact.globalSpeakers': {
+    id: 'home.impact.globalSpeakers',
+    defaultMessage: 'Global Speakers',
+    description: 'Label for the number of global speakers in impact section',
+  },
+
   'home.trusted.heading': {
     id: 'home.trusted.heading',
     defaultMessage: 'Some of the places our Mentors are from',
@@ -704,6 +727,11 @@ const messages = defineMessages({
     description: 'Button to browse all courses',
   },
 
+   'home.courses.badge': {
+    id: 'home.courses.badge',
+    defaultMessage: 'featured courses',
+    description: 'badge for featured courses carousel',
+  },
   'home.courses.heading': {
     id: 'home.courses.heading',
     defaultMessage: 'Explore Our Popular Courses',

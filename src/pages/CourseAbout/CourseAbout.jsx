@@ -10,7 +10,9 @@ import {
   faAward,
   faChevronDown,
   faChevronUp,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useParams } from 'react-router-dom';
 
@@ -28,7 +30,7 @@ const tabs = ['Overview', 'Curriculum', 'Instructor', 'Reviews'];
 
 const CourseAbout = () => {
   const { formatMessage } = useIntl();
-  const { id: courseId } = useParams(); // e.g. "course-v1:OpenedX+DemoX+DemoCourse"
+  const { id: courseId } = useParams();
   const { authenticatedUser, config } = useContext(AppContext);
 
   const [course, setCourse] = useState(null);
@@ -53,6 +55,7 @@ const CourseAbout = () => {
   const catalogBaseUrl = config.CATALOG_MICROFRONTEND_URL;
   const [isEnrolling, setIsEnrolling] = useState(false);
   const [enrollError, setEnrollError] = useState(null);
+  const [isCourseWhishlisted, setIsCourseWhishlisted] = useState(false);
 
   // Fetch main course details once on mount
   useEffect(() => {
@@ -63,6 +66,7 @@ const CourseAbout = () => {
         const res = await httpClient.get(`${baseUrl}/api/v1/catalog/courses/${courseId}/`);
         if (res.status === 200 && res.data) {
           setCourse(res.data);
+          setIsCourseWhishlisted(res.data.is_wishlisted)
         }
       } catch (err) {
         console.error('Failed to fetch course:', err);
@@ -133,6 +137,45 @@ const CourseAbout = () => {
     setExpandedSections((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
+  };
+
+  // Toggle heart for a specific instructor
+  const toggleCourseHeart = async () => {
+    try {
+      if (isCourseWhishlisted) {
+        // Remove from wishlist
+        const response = await httpClient.post(
+          `${baseUrl}/api/v1/wishlist/remove/`,
+          {
+            course_id: courseId,
+          }
+        );
+
+        if (response.status === 200) {
+          setIsCourseWhishlisted(false);
+        }
+      } else {
+        // Add to wishlist
+        const response = await httpClient.post(
+          `${baseUrl}/api/v1/wishlist/add/`,
+          {
+            course_id: courseId,
+          }
+        );
+
+        if (response.status === 200) {
+          setIsCourseWhishlisted(true);
+        }
+      }
+    } catch (error) {
+      console.error("Wishlist action failed:", error);
+
+      // optional: redirect to login if not authenticated
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        const nextPath = encodeURIComponent(`${catalogBaseUrl}courses/${courseId}`);
+        window.location.href = `${loginBaseUrl}?next=${nextPath}`;
+      }
+    }
   };
 
   // ────────────────────────────────────────────────
@@ -235,7 +278,7 @@ const CourseAbout = () => {
           }
 
           <div className="course-reach-details d-flex flex-wrap text-muted mb-4">
-            {course.rating &&
+            {(course.rating > 0) && (course.no_of_reviews > 0) &&
             <div className="d-flex align-items-center mr-4">
               <FontAwesomeIcon icon={faStar} className="text-warning mr-2" />
               <span className="fw-bold">{course.rating}</span>
@@ -266,7 +309,7 @@ const CourseAbout = () => {
             <div className="col-lg-8">
               {/* Tabs */}
               <div className="mb-4">
-                <div className="d-flex overflow-auto py-2">
+                <div className="d-flex overflow-auto p-3">
                   {tabs.map((tab) => (
                     <button
                       key={tab}
@@ -444,6 +487,11 @@ const CourseAbout = () => {
                       e.currentTarget.onerror = null;
                       e.currentTarget.src = PlaceholderImage;
                     }}
+                  />
+                  <FontAwesomeIcon
+                    icon={isCourseWhishlisted ? faHeart : faHeartOutline}
+                    onClick={toggleCourseHeart}
+                    className="heart-btn"
                   />
                 </div>
                 <div className="card-body p-4">
