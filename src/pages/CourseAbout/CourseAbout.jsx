@@ -66,7 +66,7 @@ const CourseAbout = () => {
         const res = await httpClient.get(`${baseUrl}/api/v1/catalog/courses/${courseId}/`);
         if (res.status === 200 && res.data) {
           setCourse(res.data);
-          setIsCourseWhishlisted(res.data.is_whishlisted)
+          setIsCourseWhishlisted(res.data.is_wishlisted)
         }
       } catch (err) {
         console.error('Failed to fetch course:', err);
