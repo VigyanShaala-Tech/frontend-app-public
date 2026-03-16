@@ -83,7 +83,7 @@ const MeetExperts = () => {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = 200; // smooth scroll ~1 card + gap
+      const scrollAmount = 250;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
