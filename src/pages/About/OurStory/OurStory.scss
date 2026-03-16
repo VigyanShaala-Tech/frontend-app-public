@@ -52,6 +52,9 @@
   margin: 2.5rem 0;
   text-align: center;
 }
+.story-section-subtitle{
+  font-size: 2.5rem;
+}
 
 /* ───── Timeline ───── */
 .story-timeline {
@@ -233,5 +236,13 @@
   .story-timeline-item.odd {
     flex-direction: column !important;
     text-align: left;
+    .text-year{
+      text-align: start;
+    }
+  }
+}
+@media (max-width: 992px) {
+  .story-section-subtitle{
+    font-size: 1.5rem;
   }
 }

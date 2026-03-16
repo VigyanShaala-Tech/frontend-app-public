@@ -36,3 +36,13 @@
     }
   }
 }
+@media (max-width: 576px) {
+  .supporters-page{
+    section{
+      padding: 2rem 0 !important;
+    }
+  }
+  .supporters-page-heading{
+    font-size: 2.25rem !important;
+  }
+}

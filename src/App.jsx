@@ -3,12 +3,12 @@ import React from 'react';
 import { AppProvider } from '@edx/frontend-platform/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import Header from '@edx/frontend-component-header';
 import { FooterSlot } from '@edx/frontend-component-footer';
 
 import { Routes, Route, BrowserRouter, useLocation, Navigate} from 'react-router-dom';
 
-import ExamplePage from './example/ExamplePage';
+import CustomHeader from './components/CustomHeader/CustomHeader'
+
 import Home from './pages/Home/Home';
 import CourseCatalog from './pages/CourseCatalog/CourseCatalog';
 import CourseAbout from "./pages/CourseAbout/CourseAbout";
@@ -20,50 +20,6 @@ import Team from './pages/About/Team/Team';
 import Supporter from './pages/About/Supporters/Supporters';
 import Financial from './pages/About/Financials/Financials';
 
-const MenuItem = [
-  {
-    type: 'item',
-    href: `/public`,
-    content: 'Home',
-  },
-  {
-    type: 'item',
-    href: `/public/courses`,
-    content: 'Courses',
-  },
-  {
-    type: 'menu',
-    content: 'About Us',
-    items: [
-      {
-        type: 'item',
-        href: '/public/story',
-        content: 'Our Story',
-      },
-      {
-        type: 'item',
-        href: '/public/team',
-        content: 'Teams',
-      },
-      {
-        type: 'item',
-        href: '/public/supporter',
-        content: 'Supporters',
-      },
-      {
-        type: 'item',
-        href: '/public/financial',
-        content: 'Financials',
-      },
-    ],
-  },
-  {
-    type: 'item',
-    href: `/public/contact`,
-    content: 'Contact-Us',
-  },
-];
-
 const queryClient = new QueryClient();
 
 function Layout() {
@@ -74,7 +30,7 @@ function Layout() {
 
   return (
     <>
-      {!isMobile && <Header mainMenuItems={MenuItem} />}
+      {!isMobile && <CustomHeader />}
 
       <Routes>
         <Route path="/public" element={<Home />} />

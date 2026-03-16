@@ -676,3 +676,95 @@ header{
         color: $primary !important;
     }
 }
+#root{
+.site-header-desktop{
+    .container-fluid{
+        .nav-container{
+            .main-nav{
+                .menu{
+                    .menu-content{
+                        right: unset !important;
+                        left: auto !important;
+                        top: 65% !important;
+                        z-index: 999999;
+                        background: #ffffff !important;
+                    }
+                }
+                .nav-link{
+                    font-size: 1.125rem !important;
+                    font-weight: 500;
+                    letter-spacing: 0.01em;
+                    color: #454545FF;
+                    padding: 1.125rem 1rem;
+                }
+            }
+        }
+    }
+}
+}
+
+#root{
+    .site-header-mobile{
+        display: flex;
+        height: 3rem;
+        position: relative;
+        z-index: 1000;
+        align-items: center !important;
+        justify-content: space-between !important;
+        // div{
+        //     a{
+        //         img {
+        //             height: 1.5rem !important;
+        //             width: auto !important;
+        //         }
+        //     }
+        // }
+        .justify-content-end{
+            .menu{
+                .icon-button {
+                    left: unset !important;
+                    right: 15px;
+
+                }
+            }
+        }
+        div{
+            .menu{
+                .menu-content{
+                    background: #ffffff;
+                    margin: 35px 0 0 !important;
+                    .nav-item{
+                        .menu-content{
+                            margin: 0 0 0 35px !important;
+                            border: none !important;
+                            padding: 0 !important;
+                        }
+                    }
+                    .nav-link{
+                        font-size: 1.125rem;
+                        text-decoration: none;
+                        cursor: pointer;
+                        display: block;
+                        padding: 0.5rem 1rem;
+                        color: #454545FF;
+                        font-weight: 500;
+                        line-height: 1.5556;
+                    }
+                    .menu{
+                        .dropdown-item{
+                            font-size: 1.125rem !important;
+                            text-decoration: none;
+                            cursor: pointer;
+                            display: block;
+                            padding: 0.5rem 1rem;
+                            color: #454545FF;
+                            font-weight: 500;
+                            line-height: 1.5556;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
