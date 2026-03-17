@@ -3,63 +3,22 @@ import React from 'react';
 import { AppProvider } from '@edx/frontend-platform/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import Header from '@edx/frontend-component-header';
 import { FooterSlot } from '@edx/frontend-component-footer';
 
-import { Routes, Route, BrowserRouter, useLocation } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, useLocation, Navigate} from 'react-router-dom';
 
-import ExamplePage from './example/ExamplePage';
+import CustomHeader from './components/CustomHeader/CustomHeader'
+
 import Home from './pages/Home/Home';
 import CourseCatalog from './pages/CourseCatalog/CourseCatalog';
 import CourseAbout from "./pages/CourseAbout/CourseAbout";
-import About from "./pages/About/About";
 import Contact from './pages/Contact/Contact';
 import Terms from './pages/Terms/Terms';
 import Privacy from './pages/Privacy/Privacy';
-
-const MenuItem = [
-  {
-    type: 'item',
-    href: `/public`,
-    content: 'Home',
-  },
-  {
-    type: 'item',
-    href: `/public/courses`,
-    content: 'Courses',
-  },
-  {
-    type: 'menu',
-    content: 'About Us',
-    items: [
-      {
-        type: 'item',
-        href: '/public/about',
-        content: 'Our Story',
-      },
-      {
-        type: 'item',
-        href: '/public/about/team',
-        content: 'Team',
-      },
-      {
-        type: 'item',
-        href: '/public/about/supporters',
-        content: 'Supporters',
-      },
-      {
-        type: 'item',
-        href: '/public/about/financials',
-        content: 'Financials',
-      },
-    ],
-  },
-  {
-    type: 'item',
-    href: `/public/contact`,
-    content: 'Contact-Us',
-  },
-];
+import OurStory from './pages/About/OurStory/OurStory'
+import Team from './pages/About/Team/Team';
+import Supporter from './pages/About/Supporters/Supporters';
+import Financial from './pages/About/Financials/Financials';
 
 const queryClient = new QueryClient();
 
@@ -71,16 +30,17 @@ function Layout() {
 
   return (
     <>
-      {!isMobile && <Header mainMenuItems={MenuItem} />}
+      {!isMobile && <CustomHeader />}
 
       <Routes>
         <Route path="/public" element={<Home />} />
         <Route path="/public/courses" element={<CourseCatalog />} />
         <Route path="/public/courses/:id" element={<CourseAbout />} />
-        <Route path="/public/about" element={<About defaultTab="story" />} />
-        <Route path="/public/about/team" element={<About defaultTab="team" />} />
-        <Route path="/public/about/supporters" element={<About defaultTab="supporters" />} />
-        <Route path="/public/about/financials" element={<About defaultTab="financials" />} />
+        <Route path="/public/about" element={<Navigate to="/public/story" replace />} />
+        <Route path="/public/story" element={<OurStory />} />
+        <Route path="/public/team" element={<Team />} />
+        <Route path="/public/supporter" element={<Supporter />} />
+        <Route path="/public/financial" element={<Financial />} />
         <Route path="/public/contact" element={<Contact />} />
         <Route path="/public/terms" element={<Terms />} />
         <Route path="/public/privacy" element={<Privacy />} />

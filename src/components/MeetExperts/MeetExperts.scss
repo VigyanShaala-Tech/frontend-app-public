@@ -171,7 +171,7 @@
   @media (max-width: 576px) {
     /* Very small mobile: still 2 cards if possible, or 1 */
     .expert-item {
-      width: calc(50% - 0.75rem);
+      width: 100%;
     }
 
     .meet-expert-card {
