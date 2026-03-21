@@ -1,5 +1,4 @@
 .terms-page {
-  background-color: #f9f9f9;
   .page-mapped {
     font-size: 14px;
   }
@@ -12,35 +11,6 @@
   .terms-subheading {
     font-size: 1.2rem;
     color: #6c757d;
-  }
-
-  .accordion {
-    .accordion-item {
-      transition: all 0.3s ease;
-
-      .accordion-button {
-        background-color: #fff;
-        border: none;
-        font-size: 1.1rem;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
-
-      .accordion-body {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, padding 0.3s ease;
-
-        &.expanded {
-          max-height: 1000px; // large enough for content
-          padding-top: 1rem;
-          padding-bottom: 1rem;
-        }
-      }
-    }
   }
   .terms-container{
     padding: 7.5rem 13.75rem !important;
