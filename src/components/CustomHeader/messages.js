@@ -6,6 +6,11 @@ const messages = defineMessages({
     defaultMessage: 'Home',
     description: 'Main navigation link to home page',
   },
+  dashboard : {
+    id: 'dashboard',
+    defaultMessage: 'My Learning',
+    description: 'Dashboard navigation link to home page',
+  },
   courses: {
     id: 'public.header.nav.courses',
     defaultMessage: 'Courses',
