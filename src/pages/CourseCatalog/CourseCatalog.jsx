@@ -100,6 +100,7 @@ const CourseCatalog = () => {
           reviews: item.no_of_reviews,
           instructor: item.instructor_name,
           image: item.media?.image?.large,
+          ribbon: item.ribbon,
         }));
 
         setCourses(mappedCourses);
