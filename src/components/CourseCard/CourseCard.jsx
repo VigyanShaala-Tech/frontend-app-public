@@ -38,11 +38,6 @@ const CourseCard = ({ course, layout = 'grid' }) => {
             {course.category}
           </span>
           }
-          {course.ribbon && (
-            <div className="ribbon-top-right bg-primary">
-              <span className='text-white'>{course.ribbon}</span>
-            </div>
-          )}
         </div>
 
         <div className="p-4 d-flex flex-column h-100">
