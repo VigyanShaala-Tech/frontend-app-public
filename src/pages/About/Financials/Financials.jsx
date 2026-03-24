@@ -69,7 +69,7 @@ const Financials = () => {
                 <ul>
                   {card.links.map((link, idx) => (
                     <li key={idx}>
-                      <a href={link.url} target="_blank" rel="noopener noreferrer">
+                      <a href={link.url} target="_blank" rel="noopener noreferrer" className='text-dark'>
                         <FontAwesomeIcon icon={faFileAlt} className="primary mr-2" /> 
                         {link.text}
                       </a>
