@@ -20,3 +20,230 @@ $enable-dark-mode: false !default;
 @import "~@openedx/paragon/dist/core.min.css";
 @import "~@openedx/paragon/dist/light.min.css";
 
+$primary: #69AB4A;
+:root {
+  --pgn-color-primary-base: #{$primary};
+}
+.public-page{
+    background: #FBF4EF;
+
+    [dir="ltr"] .form-control {
+        border-color: #CCCCCCFF;
+    }
+    .btn-primary{
+        border: none;
+    }
+    h2{
+        font-size: 3rem;
+    }
+    .home-page{
+        .hero-carousel{
+            .hero-nav{
+                svg{
+                    path{
+                        fill: var(--pgn-color-primary-base) !important;
+                    }
+                }
+                &:hover{
+                    border-color: var(--pgn-color-primary-base) !important;
+                }
+            }
+            .hero-track{
+                .hero-slide{
+                    .hero-container{
+                        div{
+                            div{
+                                h1{
+                                    .text-primary{
+                                        color: var(--pgn-color-primary-base) !important;
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .hero-indicators{
+                .bg-primary{
+                    background: var(--pgn-color-primary-base) !important;
+                }
+                .bg-secondary{
+                    background: #ffffff !important;
+                }
+            }
+        }
+        .carousel-arrow{
+            svg{
+                path{
+                    fill: #ffffff !important;
+                }
+            }
+        }
+        .testimonials{
+            .container{
+                .testimonial-slider{
+                    .hero-indicators{
+                        button{
+                            background: #ffffff !important;
+                        }
+                        .bg-primary{
+                            background: var(--pgn-color-primary-base) !important;
+                        }
+                    }
+                    .nav-arrow{
+                        svg{
+                            path{
+                                fill: var(--pgn-color-primary-base) !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .success-story{
+            .container{
+                .card{
+                    .play-button-overlay{
+                        div{
+                            .bg-primary{
+                                background: var(--pgn-color-primary-base) !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .meet-experts{
+            .meet-arrow{
+                svg{
+                    path{
+                        fill: var(--pgn-color-primary-base) !important;
+                    }
+                }
+            }
+        } 
+        .community-section{
+            .community-arrow{
+                svg{
+                    path{
+                        fill: var(--pgn-color-primary-base) !important;
+                    }
+                }
+            }
+            .members-badge{
+                color: var(--pgn-color-primary-base);
+            }
+        }
+    }
+
+    //------------------------------ Course catalog--------------------------------------------------------------
+    .pagination-primary{
+        .pagination{
+            .page-item{
+                button{
+                    span{
+                        span{
+                            svg{
+                                path{
+                                    fill: var(--pgn-color-primary-base) !important;
+                                }
+                            }
+                        }
+                    }
+                    &:hover{
+                        background: var(--pgn-color-primary-base) !important;
+                        span{
+                        span{
+                            svg{
+                                path{
+                                    fill: #ffffff !important;
+                                }
+                            }
+                        }
+                    }
+                    }
+                    &:active{
+                        background: var(--pgn-color-primary-base) !important;
+
+                    }
+                    &:focus{
+                        border-color: var(--pgn-color-primary-base) !important;
+                        box-shadow: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+    //------------------------------ Course details--------------------------------------------------------------
+    .course-about-page{
+        .main-content{
+            .container{
+                div{
+                    div{
+                        .tab-container{
+                            div{
+                                .accordion{
+                                    .accordion-item{
+                                        button{
+                                            svg{
+                                                path{
+                                                    fill: var(--pgn-color-primary-base) !important;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .enroll-card{
+                            .card-img-top-wraper{
+                                .heart-btn{
+                                    path{
+                                        fill: var(--pgn-color-primary-base) !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+                     //------------------------------ Common--------------------------------------------------------------
+    .btn-outline-primary{
+        border-color: var(--pgn-color-primary-base) !important;
+        color: var(--pgn-color-primary-base) !important;
+        &:hover{
+            background: none !important;         
+        }
+        &:active{
+            background: none !important;         
+        }   
+        &:focus{
+            background: none !important;         
+        }
+    }
+    .badge{
+        font-size: 0.875rem !important;
+        padding: 0.4rem 0.9rem !important;
+        border-radius: 999px !important;
+        background: color-mix(in srgb, var(--pgn-color-primary-base) 35%, transparent) !important;
+    }
+    .form-control{
+        &:focus{
+            border-color: var(--pgn-color-primary-base) !important;
+            box-shadow: none !important;
+        }   
+    }
+    .btn-primary{
+        &:hover{
+            background: var(--pgn-color-primary-base) !important;
+        }
+    }
+    a:hover {
+        text-decoration: none;
+    }
+}
