@@ -29,7 +29,7 @@ function Layout() {
   const isMobile = params.get("mobile") === "true";
 
   return (
-    <>
+    <div className='public-page'>
       {!isMobile && <CustomHeader />}
 
       <Routes>
@@ -47,7 +47,7 @@ function Layout() {
       </Routes>
 
       {!isMobile && <FooterSlot />}
-    </>
+    </div>
   );
 }
 
