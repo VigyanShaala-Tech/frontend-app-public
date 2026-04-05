@@ -330,9 +330,7 @@ const CourseAbout = () => {
                 {activeTab === 'Overview' && (
                   <div className="pl-3 pt-4 pr-3 pb-4 ">
                     <div dangerouslySetInnerHTML={{ __html: course.overview || `
-                    <p>${formatMessage(messages['common.noData'], {
-                      section: formatMessage(messages['courseAbout.tab.overview']).toLowerCase(),
-                      })}
+                    <p>
                     </p>` }} />
                   </div>
                 )}
@@ -378,9 +376,7 @@ const CourseAbout = () => {
                       </div>
                       </>
                     ) : (
-                      <p className="text-muted">{formatMessage(messages['common.noData'], {
-                        section: formatMessage(messages['courseAbout.tab.curriculum']).toLowerCase(),
-                      })}</p>
+                      <p className="text-muted"> </p>
                     )}
                   </div>
                 )}
@@ -415,9 +411,7 @@ const CourseAbout = () => {
                         </div>
                       ))
                     ) : (
-                      <p className="text-muted">{formatMessage(messages['common.noData'], {
-                        section: formatMessage(messages['courseAbout.tab.instructor']).toLowerCase(),
-                      })}</p>
+                      <p className="text-muted"> </p>
                     )}
                   </div>
                 )}
@@ -466,9 +460,7 @@ const CourseAbout = () => {
                       </div>
                       </>
                     ) : (
-                      <p className="text-muted">{formatMessage(messages['common.noData'], {
-                        section: formatMessage(messages['courseAbout.tab.reviews']).toLowerCase(),
-                      })}</p>
+                      <p className="text-muted"> </p>
                     )}
                   </div>
                 )}

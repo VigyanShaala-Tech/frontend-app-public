@@ -14,17 +14,6 @@ const Testimonials = () => {
   const { formatMessage } = useIntl();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const next = () =>
-    setCurrentIndex((prev) => (prev + 1) % 3); // 3 testimonials
-
-  const prev = () =>
-    setCurrentIndex((prev) => (prev - 1 + 3) % 3);
-
-  useEffect(() => {
-    const timer = setInterval(next, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
   // Define testimonials with message keys instead of hardcoded strings
   const testimonials = [
     {
@@ -51,16 +40,51 @@ const Testimonials = () => {
       avatar:
         'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop',
     },
+    {
+      id: 4,
+      quoteKey: 'home.testimonials.item4.quote',
+      nameKey: 'home.testimonials.item4.name',
+      roleKey: 'home.testimonials.item4.role',
+      avatar: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=100&h=100&fit=crop',
+    },
+    {
+      id: 5,
+      quoteKey: 'home.testimonials.item5.quote',
+      nameKey: 'home.testimonials.item5.name',
+      roleKey: 'home.testimonials.item5.role',
+      avatar: 'https://images.unsplash.com/photo-1628157588553-5eeea00af15c?w=100&h=100&fit=crop',
+    },
+    {
+      id: 6,
+      quoteKey: 'home.testimonials.item6.quote',
+      nameKey: 'home.testimonials.item6.name',
+      roleKey: 'home.testimonials.item6.role',
+      avatar: 'https://images.unsplash.com/photo-1615109398623-88346a601842?w=100&h=100&fit=crop',
+    },
   ];
+  const total = testimonials.length;
+
+  const next = () =>
+    setCurrentIndex((prev) => (prev + 1) % total);
+
+  const prev = () =>
+    setCurrentIndex((prev) => (prev - 1 + total) % total);
+
+  useEffect(() => {
+    const timer = setInterval(next, 6000);
+    return () => clearInterval(timer);
+  }, [total]);
+
+  
 
   return (
     <section className="testimonials">
       <div className="container">
         {/* HEADER */}
         <div className="text-center mb-5">
-          <span className="badge bg-primary text-white mb-3">
+          {/* <span className="badge bg-primary text-white mb-3">
             {formatMessage(messages['home.testimonials.badge'])}
-          </span>
+          </span> */}
           <h2>{formatMessage(messages['home.testimonials.heading'])}</h2>
           <p className="text-muted lead">
             {formatMessage(messages['home.testimonials.subheading'])}

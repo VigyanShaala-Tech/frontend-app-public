@@ -53,9 +53,9 @@ const ExploreCategories = () => {
         <div className="row align-items-center g-5">
           {/* Left Text Column - full width on mobile/tablet */}
           <div className="col-lg-6 explore-categories-text text-lg-left text-center text-md-left">
-            <span className="badge bg-primary text-white mb-3">
+            {/* <span className="badge bg-primary text-white mb-3">
               {formatMessage(messages['home.categories.badge'])}
-            </span>
+            </span> */}
             <h2 className="mb-3">
               {formatMessage(messages['home.categories.heading'])}
             </h2>

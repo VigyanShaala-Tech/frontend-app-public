@@ -103,9 +103,9 @@ const MeetExperts = () => {
       <div className="container">
         {/* Heading */}
         <div className="text-center mb-5">
-          <span className="badge bg-primary text-white mb-3">
+          {/* <span className="badge bg-primary text-white mb-3">
             {formatMessage(messages['home.experts.badge'])}
-          </span>
+          </span> */}
           <h2 className="mb-3">
             {formatMessage(messages['home.experts.heading'])}
           </h2>
