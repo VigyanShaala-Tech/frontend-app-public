@@ -1,14 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import "./ImpactNumbers.scss"
 import { useIntl } from '@edx/frontend-platform/i18n';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUsers,
+  faUserGraduate,
+  faPlayCircle,
+  faMicroscope,
+} from '@fortawesome/free-solid-svg-icons';
 
 import messages from '../../message/GlobalMessage.message';
 
 const stats = [
-  { number: 300,  suffix: '+', messageKey: 'home.impact.globalMentors' },
-  { number: 15000, suffix: '+', messageKey: 'home.impact.learners', format: true },
-  { number: 50,    suffix: '+', messageKey: 'home.impact.masterclasses' },
-  { number: 150,   suffix: '+', messageKey: 'home.impact.globalSpeakers' },
+  { number: 500,   suffix: '+', messageKey: 'home.impact.globalMentors', icon: faUsers },
+  { number: 15000, suffix: '+', messageKey: 'home.impact.learners', format: true, icon: faUserGraduate },
+  { number: 50,    suffix: '+', messageKey: 'home.impact.masterclasses', icon: faPlayCircle },
+  { number: 100,   suffix: '+', messageKey: 'home.impact.ResearchProjects', icon: faMicroscope},
 ];
 
 const CountUp = ({ target, suffix, format = false }) => {
@@ -57,6 +64,9 @@ const ImpactNumbers = () => {
         <div className="row">
           {stats.map((stat, idx) => (
             <div key={idx} className="col-6 col-md-3 mb-3 mt-3">
+              <div className="impact-icon mb-md-3">
+                <FontAwesomeIcon icon={stat.icon} />
+              </div>
               <h3 className="fw-bold mb-1 mb-md-3">
                 <CountUp target={stat.number} suffix={stat.suffix} format={stat.format} />
               </h3>

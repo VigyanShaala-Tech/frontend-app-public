@@ -222,14 +222,17 @@ const Contact = () => {
 
                   <div className="d-flex align-items-center mb-2 p-4 contact-info">
                     <FontAwesomeIcon icon={faPhone} className="text-primary mr-4" />
-                    <div>
+                    <div className="flex-grow-1">
                       <h5 className="mb-1 contact-details-heading">
                         {formatMessage(messages['contact.info.phone.title'])}
                       </h5>
-                      <div className="text-muted small mb-0 d-flex flex-column contact-detail-data">
-                        <span>{formatMessage(messages['contact.info.phone.text'])}</span>
-                        <span>{formatMessage(messages['contact.info.phone.text-2'])}</span>
-                      </div>
+                      
+                      <a 
+                        href="tel:+917028422265"
+                        className="btn btn-primary btn-lg w-100 text-start d-flex align-items-center p-2 shadow-sm"
+                      >
+                          <strong>{formatMessage(messages['contact.info.phone.text'])}</strong>
+                      </a>
                     </div>
                   </div>
                 </div>

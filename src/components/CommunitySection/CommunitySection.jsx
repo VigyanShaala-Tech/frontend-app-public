@@ -62,9 +62,9 @@ const CommunitySection = () => {
 
         {/* Heading */}
         <div className="text-center mb-5">
-          <span className="badge bg-primary text-white mb-3">
+          {/* <span className="badge bg-primary text-white mb-3">
             {formatMessage(messages['home.community.badge'])}
-          </span>
+          </span> */}
 
           <h2 className="mb-3">
             {formatMessage(messages['home.community.heading'])}
@@ -79,9 +79,9 @@ const CommunitySection = () => {
         <div className="community-card bg-white rounded mx-auto">
 
           {/* Heart Icon */}
-          <div className="heart-wrapper">
+          {/* <div className="heart-wrapper">
             <FontAwesomeIcon icon={faHeart} className="text-danger" />
-          </div>
+          </div> */}
 
           <h3 className="mb-4 fw-bold text-center">
             {formatMessage(messages['home.community.happyStudents'])}
