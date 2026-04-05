@@ -87,9 +87,9 @@ const CoursesCarousel = () => {
       <div className="container">
         {/* Heading */}
         <div className="text-center mb-3">
-          <span className="badge bg-primary text-white mb-3">
+          {/* <span className="badge bg-primary text-white mb-3">
             {formatMessage(messages['home.courses.badge'])}
-          </span>
+          </span> */}
           <h2 className="mb-2 course-carousel-header">
             {formatMessage(messages['home.courses.heading'])}
           </h2>

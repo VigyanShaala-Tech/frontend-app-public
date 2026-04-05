@@ -5,6 +5,8 @@ import { Button } from '@openedx/paragon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import hero_1 from "../../assets/image/Home-images/hero_1.jpeg"
+import hero_2 from "../../assets//image/Home-images/hero_2.jpg"
 
 import messages from '../../message/GlobalMessage.message';
 import './HeroCarousel.scss';
@@ -15,7 +17,7 @@ const slides = [
     title: messages['home.hero.firsttitle'],
     highlight: messages['home.hero.firsthighlight'],
     description: messages['home.hero.firstdescription'],
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400',
+    image: hero_1 ,
     layout: 'text-left',
   },
   {
@@ -23,7 +25,7 @@ const slides = [
     title: messages['home.hero.secondtitle'],
     highlight: messages['home.hero.secondhighlight'],
     description: messages['home.hero.seconddescription'],
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1400',
+    image: hero_2,
     layout: 'text-right',
   },
 ];

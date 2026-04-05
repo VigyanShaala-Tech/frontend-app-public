@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faTimes, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import messages from '../../message/GlobalMessage.message';
 
@@ -10,15 +10,52 @@ import './SuccessStory.scss';
 const SuccessStory = () => {
   const { formatMessage } = useIntl();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const youtubeVideos = [
+    "iZ2FAljBOG0",
+    "DCIzWulBv7k",
+    "8id00FwfiX8"
+  ];
+
+  useEffect(() => {
+    if (!isVideoOpen) return;
+
+    const handleYouTubeMessage = (event) => {
+      if (event.origin !== "https://www.youtube.com") return;
+      
+      try {
+        const data = JSON.parse(event.data);
+        if (data.event === "onStateChange" && data.info === 0) {
+          handleNext();
+        }
+      } catch (err) {}
+    };
+
+    window.addEventListener("message", handleYouTubeMessage);
+    return () => window.removeEventListener("message", handleYouTubeMessage);
+  }, [isVideoOpen, currentIndex]);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % youtubeVideos.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + youtubeVideos.length) % youtubeVideos.length);
+  };
+
+  const closeModal = () => {
+    setIsVideoOpen(false);
+    setCurrentIndex(0);
+  };
 
   return (
     <section className="success-story">
       <div className="container">
-        {/* Heading */}
         <div className="text-center mb-5">
-          <span className="badge bg-primary text-white mb-3">
+          {/* <span className="badge bg-primary text-white mb-3">
             {formatMessage(messages['home.success.badge'])}
-          </span>
+          </span> */}
           <h2 className="mb-3">
             {formatMessage(messages['home.success.heading'])}
           </h2>
@@ -53,34 +90,61 @@ const SuccessStory = () => {
             <h4 className="text-white mb-2">
               {formatMessage(messages['home.success.video.title'])}
             </h4>
-            <p className="text-white small mb-0">
+            {/* <p className="text-white small mb-0">
               {formatMessage(messages['home.success.video.description'])}
-            </p>
+            </p> */}
           </div>
         </div>
 
-        {/* Video Modal */}
+        {/* Video Modal - Design kept same as your SCSS */}
         {isVideoOpen && (
-          <div className="video-open-model">
-            <div className="video-modal-content">
+          <div className="video-open-model" onClick={closeModal}>
+            <div 
+              className="video-modal-content" 
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Close Button - unchanged position & style */}
               <button
                 type="button"
                 className="video-close-btn position-fixed btn btn-light rounded-circle p-3 shadow"
-                onClick={() => setIsVideoOpen(false)}
+                onClick={closeModal}
                 aria-label={formatMessage(messages['common.close'])}
               >
                 <FontAwesomeIcon icon={faTimes} />
               </button>
 
               <div className="video-wrapper">
-                <video
-                  controls
-                  autoPlay
-                  poster={formatMessage(messages['home.success.video.poster'])}
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${youtubeVideos[currentIndex]}?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&fs=1&cc_load_policy=0&disablekb=0`}
+                  title="Success Story"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+
+              {/* Navigation Buttons */}
+              <div className="d-flex justify-content-center mt-3">
+                <button 
+                  className="btn btn-outline-primary rounded-circle mr-4"
+                  onClick={handlePrev}
                 >
-                  <source src="/videos/intro.mp4" type="video/mp4" />
-                  {formatMessage(messages['home.success.video.unsupported'])}
-                </video>
+                  <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+                </button>
+                
+                <button 
+                  className="btn btn-outline-primary rounded-circle"
+                  onClick={handleNext}
+                >
+                  <FontAwesomeIcon icon={faChevronRight} size="lg" />
+                </button>
+              </div>
+
+              {/* Video Counter */}
+              <div className="text-center text-white mt-2">
+                {currentIndex + 1} / {youtubeVideos.length}
               </div>
             </div>
           </div>

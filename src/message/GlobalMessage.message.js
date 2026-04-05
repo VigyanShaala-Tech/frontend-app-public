@@ -450,11 +450,6 @@ const messages = defineMessages({
     defaultMessage: '+91 7028422265',
     description: 'Phone numbers',
   },
-  'contact.info.phone.text-2': {
-    id: 'contact.info.phone.text-2',
-    defaultMessage: '+91 7058962024',
-    description: 'Phone numbers',
-  },
 
   // Form fields
   'contact.form.heading': {
@@ -689,9 +684,9 @@ const messages = defineMessages({
     defaultMessage: 'MasterClasses',
     description: 'Label for the number of masterclasses in impact section',
   },
-  'home.impact.globalSpeakers': {
-    id: 'home.impact.globalSpeakers',
-    defaultMessage: 'Global Speakers',
+  'home.impact.ResearchProjects': {
+    id: 'home.impact.ResearchProjects',
+    defaultMessage: 'Research Projects',
     description: 'Label for the number of global speakers in impact section',
   },
 
@@ -700,17 +695,7 @@ const messages = defineMessages({
     defaultMessage: 'Some of the places our Mentors are from',
     description: 'Heading for trusted companies section',
   },
-  'home.trusted.subheading': {
-    id: 'home.trusted.subheading',
-    defaultMessage: 'Our mentors come from world-class organizations across the globe',
-    description: 'Subheading for trusted companies',
-  },
 
-  'home.categories.badge': {
-    id: 'home.categories.badge',
-    defaultMessage: 'Categories',
-    description: 'Badge above categories section',
-  },
   'home.categories.heading': {
     id: 'home.categories.heading',
     defaultMessage: 'Explore Our Categories',
@@ -726,12 +711,6 @@ const messages = defineMessages({
     defaultMessage: 'Browse All Courses',
     description: 'Button to browse all courses',
   },
-
-   'home.courses.badge': {
-    id: 'home.courses.badge',
-    defaultMessage: 'featured courses',
-    description: 'badge for featured courses carousel',
-  },
   'home.courses.heading': {
     id: 'home.courses.heading',
     defaultMessage: 'Explore Our Popular Courses',
@@ -746,11 +725,6 @@ const messages = defineMessages({
     id: 'home.courses.exploreAll',
     defaultMessage: 'Explore All Courses',
     description: 'CTA button below courses carousel',
-  },
-  'home.success.badge': {
-    id: 'home.success.badge',
-    defaultMessage: 'Success Stories',
-    description: 'Badge for success story section',
   },
   'home.success.heading': {
     id: 'home.success.heading',
@@ -773,11 +747,6 @@ const messages = defineMessages({
     defaultMessage: 'From Beginner to Data Scientist',
     description: 'Title shown over the success story video thumbnail',
   },
-  'home.success.video.description': {
-    id: 'home.success.video.description',
-    defaultMessage: 'Watch how Priya transformed her career in just 6 months with VigyanShaala\'s comprehensive data science program',
-    description: 'Description shown over the success story video thumbnail',
-  },
   'home.success.video.poster': {
     id: 'home.success.video.poster',
     defaultMessage: '/images/video-poster.jpg',
@@ -796,11 +765,6 @@ const messages = defineMessages({
     description: 'Accessible label for close buttons/modals',
   },
 
-  'home.experts.badge': {
-    id: 'home.experts.badge',
-    defaultMessage: 'Our Instructors',
-    description: 'Badge above experts section',
-  },
   'home.experts.heading': {
     id: 'home.experts.heading',
     defaultMessage: 'Meet Our Expert Instructors',
@@ -916,11 +880,6 @@ const messages = defineMessages({
     description: 'Community stats text',
   },
     // Community Section - additional translatable strings
-  'home.community.badge': {
-    id: 'home.community.badge',
-    defaultMessage: 'Our Community',
-    description: 'Badge label above community section',
-  },
   'home.community.happyStudents': {
     id: 'home.community.happyStudents',
     defaultMessage: 'Happy Students',
@@ -932,11 +891,6 @@ const messages = defineMessages({
     description: 'Avatar count text inside community card',
   },
 
-  'home.testimonials.badge': {
-    id: 'home.testimonials.badge',
-    defaultMessage: 'Testimonials',
-    description: 'Badge above testimonials',
-  },
   'home.testimonials.heading': {
     id: 'home.testimonials.heading',
     defaultMessage: 'What Our Students Say',
@@ -994,6 +948,53 @@ const messages = defineMessages({
     id: 'home.testimonials.item3.role',
     defaultMessage: 'Product Manager at Amazon',
     description: 'Role/position of person in testimonial 3',
+  },
+  'home.testimonials.item4.quote': {
+    id: 'home.testimonials.item4.quote',
+    defaultMessage: 'The real-world projects and expert guidance helped me gain confidence and build a strong portfolio.',
+    description: 'Quote from testimonial 4',
+  },
+  'home.testimonials.item4.name': {
+    id: 'home.testimonials.item4.name',
+    defaultMessage: 'Rahul Verma',
+    description: 'Name of person in testimonial 4',
+  },
+  'home.testimonials.item4.role': {
+    id: 'home.testimonials.item4.role',
+    defaultMessage: 'Frontend Developer at Infosys',
+    description: 'Role/position of person in testimonial 4',
+  },
+
+  'home.testimonials.item5.quote': {
+    id: 'home.testimonials.item5.quote',
+    defaultMessage: 'Learning from global mentors gave me insights I could never get from traditional courses.',
+    description: 'Quote from testimonial 5',
+  },
+  'home.testimonials.item5.name': {
+    id: 'home.testimonials.item5.name',
+    defaultMessage: 'Sneha Kapoor',
+    description: 'Name of person in testimonial 5',
+  },
+  'home.testimonials.item5.role': {
+    id: 'home.testimonials.item5.role',
+    defaultMessage: 'AI Research Intern at IIT Bombay',
+    description: 'Role/position of person in testimonial 5',
+  },
+
+  'home.testimonials.item6.quote': {
+    id: 'home.testimonials.item6.quote',
+    defaultMessage: 'The platform made complex topics simple and engaging. It truly accelerated my learning journey.',
+    description: 'Quote from testimonial 6',
+  },
+  'home.testimonials.item6.name': {
+    id: 'home.testimonials.item6.name',
+    defaultMessage: 'Arjun Mehta',
+    description: 'Name of person in testimonial 6',
+  },
+  'home.testimonials.item6.role': {
+    id: 'home.testimonials.item6.role',
+    defaultMessage: 'Full Stack Developer at TCS',
+    description: 'Role/position of person in testimonial 6',
   },
 });
 
