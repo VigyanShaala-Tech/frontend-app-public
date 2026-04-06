@@ -103,7 +103,6 @@ const SuccessStory = () => {
               className="video-modal-content" 
               onClick={e => e.stopPropagation()}
             >
-              {/* Close Button - unchanged position & style */}
               <button
                 type="button"
                 className="video-close-btn position-fixed btn btn-light rounded-circle p-3 shadow"
@@ -126,7 +125,7 @@ const SuccessStory = () => {
               </div>
 
               {/* Navigation Buttons */}
-              <div className="d-flex justify-content-center mt-3">
+              <div className="d-flex navigation-button justify-content-center mt-3">
                 <button 
                   className="btn btn-outline-primary rounded-circle mr-4"
                   onClick={handlePrev}
