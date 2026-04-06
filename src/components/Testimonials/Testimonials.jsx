@@ -10,6 +10,13 @@ import {
 import messages from '../../message/GlobalMessage.message';
 import './Testimonials.scss';
 
+import Gauri from "../../assets/image/Testimonials-images/Gauri_Patti.jpg"
+import Diksha from "../../assets/image/Testimonials-images/Diksha_Nagarkoti.jpg"
+import Nikita from "../../assets/image/Testimonials-images/Nikita_Tiwari.jpg"
+import Garima  from "../../assets/image/Testimonials-images/Garima.jpg"
+import Abha from "../../assets/image/Testimonials-images/Abha_Barge.jpg"
+import Himani from "../../assets/image/Testimonials-images/Himani_Upadhyay.jpg"
+
 const Testimonials = () => {
   const { formatMessage } = useIntl();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,45 +28,42 @@ const Testimonials = () => {
       quoteKey: 'home.testimonials.item1.quote',
       nameKey: 'home.testimonials.item1.name',
       roleKey: 'home.testimonials.item1.role',
-      avatar:
-        'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop',
+      avatar: Gauri,
     },
     {
       id: 2,
       quoteKey: 'home.testimonials.item2.quote',
       nameKey: 'home.testimonials.item2.name',
       roleKey: 'home.testimonials.item2.role',
-      avatar:
-        'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=100&h=100&fit=crop',
+      avatar: Diksha,
     },
     {
       id: 3,
       quoteKey: 'home.testimonials.item3.quote',
       nameKey: 'home.testimonials.item3.name',
       roleKey: 'home.testimonials.item3.role',
-      avatar:
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop',
+      avatar: Nikita,
     },
     {
       id: 4,
       quoteKey: 'home.testimonials.item4.quote',
       nameKey: 'home.testimonials.item4.name',
       roleKey: 'home.testimonials.item4.role',
-      avatar: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=100&h=100&fit=crop',
+      avatar: Garima,
     },
     {
       id: 5,
       quoteKey: 'home.testimonials.item5.quote',
       nameKey: 'home.testimonials.item5.name',
       roleKey: 'home.testimonials.item5.role',
-      avatar: 'https://images.unsplash.com/photo-1628157588553-5eeea00af15c?w=100&h=100&fit=crop',
+      avatar: Abha,
     },
     {
       id: 6,
       quoteKey: 'home.testimonials.item6.quote',
       nameKey: 'home.testimonials.item6.name',
       roleKey: 'home.testimonials.item6.role',
-      avatar: 'https://images.unsplash.com/photo-1615109398623-88346a601842?w=100&h=100&fit=crop',
+      avatar: Himani,
     },
   ];
   const total = testimonials.length;
