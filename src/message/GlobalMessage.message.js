@@ -909,7 +909,7 @@ const messages = defineMessages({
   },
   'home.testimonials.item1.name': {
     id: 'home.testimonials.item1.name',
-    defaultMessage: 'Priya Sharma',
+    defaultMessage: 'Gauri Patti ',
     description: 'Name of person in testimonial 1',
   },
   'home.testimonials.item1.role': {
@@ -925,7 +925,7 @@ const messages = defineMessages({
   },
   'home.testimonials.item2.name': {
     id: 'home.testimonials.item2.name',
-    defaultMessage: 'Ananya Desai',
+    defaultMessage: 'Diksha Nagarkoti ',
     description: 'Name of person in testimonial 2',
   },
   'home.testimonials.item2.role': {
@@ -941,7 +941,7 @@ const messages = defineMessages({
   },
   'home.testimonials.item3.name': {
     id: 'home.testimonials.item3.name',
-    defaultMessage: 'Kavita Reddy',
+    defaultMessage: 'Nikita Tiwari',
     description: 'Name of person in testimonial 3',
   },
   'home.testimonials.item3.role': {
@@ -956,7 +956,7 @@ const messages = defineMessages({
   },
   'home.testimonials.item4.name': {
     id: 'home.testimonials.item4.name',
-    defaultMessage: 'Rahul Verma',
+    defaultMessage: 'Garima',
     description: 'Name of person in testimonial 4',
   },
   'home.testimonials.item4.role': {
@@ -972,7 +972,7 @@ const messages = defineMessages({
   },
   'home.testimonials.item5.name': {
     id: 'home.testimonials.item5.name',
-    defaultMessage: 'Sneha Kapoor',
+    defaultMessage: 'Abha Barge',
     description: 'Name of person in testimonial 5',
   },
   'home.testimonials.item5.role': {
@@ -988,7 +988,7 @@ const messages = defineMessages({
   },
   'home.testimonials.item6.name': {
     id: 'home.testimonials.item6.name',
-    defaultMessage: 'Arjun Mehta',
+    defaultMessage: 'Himani Upadhyay',
     description: 'Name of person in testimonial 6',
   },
   'home.testimonials.item6.role': {
