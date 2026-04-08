@@ -20,9 +20,6 @@ $enable-dark-mode: false !default;
 @import "~@openedx/paragon/dist/core.min.css";
 @import "~@openedx/paragon/dist/light.min.css";
 
-.container{
-    max-width: 1400px !important;
-}
 $primary: #69AB4A;
 :root {
   --pgn-color-primary-base: #{$primary};
