@@ -14,7 +14,7 @@
   }
 
   .lead {
-    font-size: 1rem;
+    font-size: 1rem !important;
     max-width: 768px;
     margin: 0 auto;
   }
@@ -169,6 +169,14 @@
   }
 
   @media (max-width: 576px) {
+    h2 {
+      font-size: 1.875rem !important; // 30px
+    }
+
+    .lead {
+      font-size: 0.875rem !important; // 14px
+    }
+
     /* Very small mobile: still 2 cards if possible, or 1 */
     .expert-item {
       width: 100%;

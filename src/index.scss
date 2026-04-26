@@ -24,6 +24,30 @@ $primary: #69AB4A;
 :root {
   --pgn-color-primary-base: #{$primary};
 }
+
+.container,
+.container-fluid {
+    max-width: 1400px !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem !important;
+}
+
+@media (max-width: 991px) {
+  .container,
+  .container-fluid {
+    padding: 0 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .container,
+  .container-fluid {
+    padding: 0 1rem !important;
+  }
+}
+
 .public-page{
     background: #FBF4EF;
 
@@ -251,6 +275,16 @@ $primary: #69AB4A;
             .nav-container{
                 .secondary-menu-container{
                     .btn-link{
+                        color: var(--pgn-color-primary-base) !important;
+                        border: 1px solid var(--pgn-color-primary-base) !important;
+                        background: none !important;
+                        &:hover{
+                            border: none !important;
+                            background-color: var(--pgn-color-primary-base, transparent) !important;
+                            color: #ffffff !important;
+                        }
+                    }
+                    .btn-outline-primary{
                         border: none !important;
                         background-color: var(--pgn-color-primary-base, transparent) !important;
                         color: #ffffff !important;
@@ -261,19 +295,16 @@ $primary: #69AB4A;
                             background: none !important;
                         }
                     }
-                    .btn-outline-primary{
-                        color: var(--pgn-color-primary-base) !important;
-                        border: 1px solid var(--pgn-color-primary-base) !important;
-                        background: none !important;
-                        &:hover{
-                            border: none !important;
-                            background-color: var(--pgn-color-primary-base, transparent) !important;
-                            color: #ffffff !important;
-                        }
-                    }
                 }
             }
         }
     }
 }
 
+.public-page .site-header-desktop .container-fluid .nav-container .secondary-menu-container .menu .menu-trigger {
+    // display: none !important;
+    color: var(--pgn-color-primary-base) !important;
+    &:hover{
+        color: var(--pgn-color-primary-base) !important;
+    }
+}

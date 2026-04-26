@@ -59,7 +59,7 @@ const CountUp = ({ target, suffix, format = false }) => {
 const ImpactNumbers = () => {
   const { formatMessage } = useIntl();
   return (
-    <section className="impact-numbers py-5 py-md-6 text-center">
+    <section className="impact-numbers text-center">
       <div className="container">
         <div className="row">
           {stats.map((stat, idx) => (

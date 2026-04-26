@@ -9,6 +9,7 @@
   .lead {
     max-width: 768px;
     margin: 0 auto 3rem;
+    font-size: 1rem !important;
   }
 }
 
@@ -174,6 +175,14 @@ blockquote {
 }
 
 @media (max-width: 576px) {
+  .testimonials h2 {
+    font-size: 1.875rem !important; // 30px
+  }
+
+  .testimonials .lead {
+    font-size: 0.875rem !important; // 14px
+  }
+
   .testimonial-card {
     padding: 2.5rem 1.5rem;
   }

@@ -15,7 +15,7 @@
   }
 
   .lead {
-    font-size: 1rem;
+    font-size: 1rem !important;
     max-width: 768px;
     margin: 0 auto !important;
   }
@@ -160,6 +160,14 @@
 @media (max-width: 576px) {
   .success-story{
     padding: 2.5rem 0 !important;
+
+    h2 {
+      font-size: 1.875rem !important; // 30px
+    }
+
+    .lead {
+      font-size: 0.875rem !important; // 14px
+    }
   }
   .video-play-btn{
     display: flex;

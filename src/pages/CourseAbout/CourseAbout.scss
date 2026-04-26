@@ -3,12 +3,12 @@
   min-height: 100vh;
 
   .main-content {
-    padding: 6rem 0;
+    padding: 3.5rem 0;
   }
 
   .enroll-card {
     position: sticky !important;
-    top: 1rem;
+    top: calc(var(--public-header-height, 0px) + 1rem);
     border: 1px solid #e2e8f080;
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(196, 202, 212, 0.1),
@@ -102,7 +102,7 @@
 }
 /* Buttons */
 .button-inactive-color {
-  background: #fbf4ef !important;
+  background: #F5F7F4 !important;
   box-shadow: 0 20px 25px -5px rgba(196, 202, 212, 0.1),
     0 8px 10px -6px rgba(196, 202, 212, 0.1);
 }
@@ -151,7 +151,7 @@
     }
 
     .course-heading {
-      font-size: 2.25rem;           // smaller title
+      font-size: 1.875rem !important; // 30px
     }
 
     .enroll-card {
@@ -161,6 +161,31 @@
 
     .tab-container {
       padding: 1rem !important;
+
+      /* Keep rich HTML content inside card on very small screens */
+      * {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      a {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      img,
+      iframe,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+
+      pre,
+      code {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
     }
 
     // Tabs become scrollable horizontally or smaller
@@ -190,7 +215,7 @@
     }
 
     .course-heading {
-      font-size: 2.25rem;
+      font-size: 1.875rem !important; // 30px
     }
 
     .course-detail-paragraph {
@@ -204,6 +229,33 @@
     .enroll-card {
       position: static !important;
       margin-top: 2rem;
+    }
+
+    .tab-container {
+      /* Keep rich HTML content inside card on mobile/tablet */
+      * {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      a {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      img,
+      iframe,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+
+      pre,
+      code {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
     }
 
     .instructor-image {

@@ -18,6 +18,13 @@ import PlaceholderImage from '../../assets/image/placeholder-image.jpeg';
 const CourseCard = ({ course, layout = 'grid' }) => {
   const { formatMessage } = useIntl();
   const isList = layout === 'list';
+  const hasDisplayValue = (value) => {
+    if (value === null || value === undefined) return false;
+    if (typeof value === 'number') return value > 0;
+    const normalized = String(value).trim().toLowerCase();
+    return normalized !== '' && normalized !== '0' && normalized !== 'null' && normalized !== 'undefined';
+  };
+  const showRating = Number(course?.rating) > 0 && Number(course?.reviews) > 0;
 
   // ── Grid Layout ────────────────────────────────────────────────────────────
   if (!isList) {
@@ -33,7 +40,7 @@ const CourseCard = ({ course, layout = 'grid' }) => {
               e.currentTarget.src = PlaceholderImage;
             }}
           />
-          {course.category && 
+          {hasDisplayValue(course.category) &&
           <span className="badge position-absolute">
             {course.category}
           </span>
@@ -57,26 +64,26 @@ const CourseCard = ({ course, layout = 'grid' }) => {
             }
 
             <div className="d-flex flex-wrap gap-3 text-muted small mb-3">
-              {course.duration &&
+              {hasDisplayValue(course.duration) &&
               <div className='mr-4'>
                 <FontAwesomeIcon icon={faClock} className="me-1 mr-2" />
                 {course.duration}
               </div>
               }
-              {course.level &&
+              {hasDisplayValue(course.level) &&
               <div>
                 <FontAwesomeIcon icon={faChartLine} className="me-1 mr-2" />
                 {course.level}
               </div>
               }
             </div>
-            {course.rating && course.reviews &&
+            {showRating &&
             <div className="d-flex align-items-center mb-4">
               <FontAwesomeIcon icon={faStar} className="me-1 text-warning mr-2" />
               {course.rating} ({course.reviews})
             </div>
             }
-            {course.instructor &&
+            {hasDisplayValue(course.instructor) &&
             <div className="d-flex align-items-center mb-4">
               <FontAwesomeIcon icon={faUser} className="me-2 text-muted mr-2" />
               <span className="small">{course.instructor}</span>
@@ -106,9 +113,11 @@ const CourseCard = ({ course, layout = 'grid' }) => {
             e.currentTarget.src = PlaceholderImage;
           }}
         />
-        <span className="badge position-absolute">
-          {course.category}
-        </span>
+        {hasDisplayValue(course.category) && (
+          <span className="badge position-absolute">
+            {course.category}
+          </span>
+        )}
       </div>
 
       <div className="p-4 flex-grow-1 d-flex flex-column">
@@ -122,25 +131,25 @@ const CourseCard = ({ course, layout = 'grid' }) => {
         }
 
         <div className="d-flex flex-wrap gap-3 text-muted small mb-3">
-          {course.duration &&
+          {hasDisplayValue(course.duration) &&
           <div className='mr-4'>
             <FontAwesomeIcon icon={faClock} className="me-1 mr-2" />
             {course.duration}
           </div>
           }
-          {course.level &&
+          {hasDisplayValue(course.level) &&
           <div className='mr-4'>
             <FontAwesomeIcon icon={faChartLine} className="me-1 mr-2 " />
             {course.level}
           </div>
           }
-          {course.rating && course.reviews &&
+          {showRating &&
           <div className=' mr-4'>
             <FontAwesomeIcon icon={faStar} className="me-1 text-warning mr-2" />
             {course.rating} ({course.reviews})
           </div>
           }
-          {course.instructor &&
+          {hasDisplayValue(course.instructor) &&
           <div>
             <FontAwesomeIcon icon={faUser} className="me-2 text-muted mr-2" />
             <span className="small">{course.instructor}</span>
