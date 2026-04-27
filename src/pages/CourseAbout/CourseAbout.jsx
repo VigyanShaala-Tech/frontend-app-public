@@ -56,6 +56,12 @@ const CourseAbout = () => {
   const [isEnrolling, setIsEnrolling] = useState(false);
   const [enrollError, setEnrollError] = useState(null);
   const [isCourseWhishlisted, setIsCourseWhishlisted] = useState(false);
+  const hasDisplayValue = (value) => {
+    if (value === null || value === undefined) return false;
+    if (typeof value === 'number') return value > 0;
+    const normalized = String(value).trim().toLowerCase();
+    return normalized !== '' && normalized !== '0' && normalized !== 'null' && normalized !== 'undefined';
+  };
 
   // Fetch main course details once on mount
   useEffect(() => {
@@ -278,20 +284,20 @@ const CourseAbout = () => {
           }
 
           <div className="course-reach-details d-flex flex-wrap text-muted mb-4">
-            {(course.rating > 0) && (course.no_of_reviews > 0) &&
+            {hasDisplayValue(course.rating) && hasDisplayValue(course.no_of_reviews) &&
             <div className="d-flex align-items-center mr-4">
               <FontAwesomeIcon icon={faStar} className="text-warning mr-2" />
               <span className="fw-bold">{course.rating}</span>
               <span>({course.no_of_reviews} {formatMessage(messages['courseAbout.tab.reviews'])})</span>
             </div>
             }
-            {course.enrollments &&
+            {hasDisplayValue(course.enrollments) &&
             <div className="d-flex align-items-center mr-4">
               <FontAwesomeIcon icon={faUsers} className="mr-2" />
               <span>{course.enrollments} {formatMessage(messages['courseAbout.student'])}</span>
             </div>
             }
-            {course.effort &&
+            {hasDisplayValue(course.effort) &&
             <div className="d-flex align-items-center ">
               <FontAwesomeIcon icon={faClock} className="mr-2" />
               <span>{course.effort}</span>
@@ -530,13 +536,13 @@ const CourseAbout = () => {
                   )}
 
                   <div className="course-card-reach d-flex flex-column text-muted small">
-                    { course.effort &&
+                    {hasDisplayValue(course.effort) &&
                     <div className="d-flex align-items-center mb-3">
                       <FontAwesomeIcon icon={faClock} className="text-primary mr-2" />
                       {formatMessage(messages['courseAbout.duration'], { duration: course.effort})}
                     </div>
                     }
-                    { course.level &&
+                    {hasDisplayValue(course.level) &&
                     <div className="d-flex align-items-center mb-3">
                       <FontAwesomeIcon icon={faChartLine} className="text-primary mr-2" />
                       {formatMessage(messages['courseAbout.level'], { level: course.level })}

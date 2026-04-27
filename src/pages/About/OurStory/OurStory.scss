@@ -246,3 +246,9 @@
     font-size: 1.5rem;
   }
 }
+
+@media (max-width: 576px) {
+  .team-page-heading {
+    font-size: 1.875rem !important; // 30px
+  }
+}

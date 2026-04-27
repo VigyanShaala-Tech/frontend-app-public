@@ -2,6 +2,11 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Slide track */
@@ -109,7 +114,7 @@
   font-size: 1.25rem;
   z-index: 10;
   transition: all 0.3s ease;
-  top: 50%;
+  top: 45%;
 }
 
 .hero-nav:hover {
@@ -147,6 +152,16 @@
 
 /* Mobile centering & spacing polish */
 @media (max-width: 991px) {
+  .hero-title {
+    font-size: 30px !important;
+    line-height: 1.2;
+  }
+
+  .hero-description {
+    font-size: 1rem !important;
+    line-height: 1.6;
+  }
+
   .hero-title,
   .hero-description {
     text-align: center;

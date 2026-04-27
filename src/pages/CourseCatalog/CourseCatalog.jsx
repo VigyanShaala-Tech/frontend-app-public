@@ -169,7 +169,7 @@ const CourseCatalog = () => {
     <div className="course-catalog-page">
       {/* Hero */}
       <section className="py-5 text-center">
-        <div className="container">
+        <div className="container banner">
           <h1 className="mb-3 course-catalog-page-heading">{formatMessage(messages['catalog.title'])}</h1>
           <p className="text-muted course-catalog-page-paragraph">{formatMessage(messages['catalog.subtitle'])}</p>
         </div>
@@ -179,7 +179,7 @@ const CourseCatalog = () => {
       <section ref={searchRef} className="pb-5 ">
         <div className="container">
           {/* Filter Bar */}
-          <div className="filter-bar border rounded p-4 mb-5 bg-white">
+          <div className="filter-bar rounded p-4 mb-5 bg-white">
             <div className="row g-3 align-items-center">
               {/* Search */}
               <div className="search-bar col-lg-5 position-relative">

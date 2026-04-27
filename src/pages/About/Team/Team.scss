@@ -252,4 +252,10 @@
     .team-page-heading { margin-bottom: 2rem; }
     .section-title     { margin-bottom: 1.6rem; }
   }
+
+  @media (max-width: 576px) {
+    .team-page-heading {
+      font-size: 1.875rem !important; // 30px
+    }
+  }
 }
