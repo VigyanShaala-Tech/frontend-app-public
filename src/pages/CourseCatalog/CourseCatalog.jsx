@@ -13,8 +13,7 @@ import messages from '../../message/GlobalMessage.message';
 import CourseCard from '../../components/CourseCard/CourseCard';
 
 import './CourseCatalog.scss';
-import { getConfig } from '@edx/frontend-platform';
-import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
+import { fetchCatalogFilters, fetchCatalogCourses, mapCatalogCourses } from '../../api';
 
 const CourseCatalog = () => {
   const { formatMessage } = useIntl();
@@ -47,7 +46,7 @@ const CourseCatalog = () => {
     const fetchFilters = async () => {
       setError(null);
       try {
-        const res = await getAuthenticatedHttpClient().get(`${getConfig().LMS_BASE_URL}/api/v1/catalog/filters/`);
+        const res = await fetchCatalogFilters();
 
         if (res.status === 200 && res.data) {
           setCategories(['All Categories', ...(res.data.categories || [])]);
@@ -68,40 +67,16 @@ const CourseCatalog = () => {
     setError(null);
 
     try {
-      const params = new URLSearchParams();
-
-      if (search.trim()) {
-        params.append('search_term', search.trim());
-      }
-      if (category !== 'All Categories') {
-        params.append('category', category);
-      }
-      if (level !== 'All Levels') {
-        params.append('level', level);
-      }
-      if (subject !== 'All Subjects') {
-        params.append('subject', subject);
-      }
-      if (currentPage > 1) {
-        params.append('page', currentPage);
-      }
-
-      const response = await getAuthenticatedHttpClient().get(`${getConfig().LMS_BASE_URL}/api/v1/catalog/courses/?${params.toString()}`);
+      const response = await fetchCatalogCourses({
+        search_term: search.trim() || undefined,
+        category: category !== 'All Categories' ? category : undefined,
+        level: level !== 'All Levels' ? level : undefined,
+        subject: subject !== 'All Subjects' ? subject : undefined,
+        page: currentPage,
+      });
 
       if (response.status === 200 && response.data?.results) {
-        const mappedCourses = response.data.results.map((item) => ({
-          id: item.id || item.course_id,
-          title: item.name,
-          description: item.short_description,
-          category: item.category,
-          level: item.level,
-          duration: item.effort,
-          rating: item.rating,
-          reviews: item.no_of_reviews,
-          instructor: item.instructor_name,
-          image: item.media?.image?.large,
-          ribbon: item.ribbon,
-        }));
+        const mappedCourses = mapCatalogCourses(response.data.results);
 
         setCourses(mappedCourses);
         setTotalPages(response.data.pagination?.num_pages);
@@ -322,8 +297,8 @@ const CourseCatalog = () => {
           ) : viewMode === 'grid' ? (
             <div className="row g-4">
               {courses.map(course => (
-                <div key={course.id} className="col-md-6 col-lg-4 mb-4">
-                  <CourseCard key={course.id} course={course} layout="grid" />
+                <div key={course.id} className="col-md-6 col-lg-4 d-flex">
+                  <CourseCard course={course} layout="grid" />
                 </div>
               ))}
             </div>

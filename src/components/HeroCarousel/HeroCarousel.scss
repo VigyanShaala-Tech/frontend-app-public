@@ -33,17 +33,28 @@
   }
 }
 
-/* Title */
+/* Title & highlight — 60px (3.75rem) on desktop */
 .hero-title {
-  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-size: 1.875rem; /* 30px — mobile */
   font-weight: 800;
   line-height: 1.15;
   margin-bottom: 1rem;
+
+  .text-primary {
+    font-size: inherit;
+    line-height: inherit;
+  }
 }
 
-/* Description */
+@media (min-width: 992px) {
+  .hero-title {
+    font-size: 3.75rem; /* 60px */
+  }
+}
+
+/* Description — 20px (1.25rem) on desktop */
 .hero-description {
-  font-size: 1.1rem;
+  font-size: 1rem; /* 16px — mobile */
   line-height: 1.6;
   max-width: 90%;
   margin-left: auto;
@@ -52,7 +63,7 @@
 
 @media (min-width: 992px) {
   .hero-description {
-    font-size: 1.25rem;
+    font-size: 1.25rem; /* 20px */
     max-width: 520px;
     margin-left: 0;
     margin-right: 0;
@@ -87,12 +98,16 @@
   }
 }
 
-/* Buttons */
+/* Buttons — 16px (1rem) */
 .hero-action-button {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
   gap: 1rem;
+
+  .btn {
+    font-size: 1rem; /* 16px */
+  }
 }
 
 @media (min-width: 992px) {
@@ -153,13 +168,7 @@
 /* Mobile centering & spacing polish */
 @media (max-width: 991px) {
   .hero-title {
-    font-size: 30px !important;
     line-height: 1.2;
-  }
-
-  .hero-description {
-    font-size: 1rem !important;
-    line-height: 1.6;
   }
 
   .hero-title,

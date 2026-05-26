@@ -25,12 +25,27 @@
     }
   }
 
-  .card-img-top-wraper{
+  .card-img-top-wraper {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 180px;
-    position: relative; 
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5.5rem;
+      height: 5.5rem;
+      pointer-events: none;
+      background: radial-gradient(
+        circle at top right,
+        rgba(15, 23, 42, 0.18) 0%,
+        transparent 72%
+      );
+    }
   }
   .card-img-top {
     height: 100%;
@@ -122,18 +137,68 @@
 }
 
 .heart-btn {
-  position:absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 35px;
-  z-index: 999;
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1), 0 1px 2px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 
-  &:hover {
-    transform: scale(1.1);
+  &__icon {
+    font-size: 1.125rem;
+    line-height: 1;
+    pointer-events: none;
+    transition: color 0.2s ease;
   }
 
-  .text-danger {
-    transition: all 0.2s ease;
+  /* Not wishlisted */
+  &--outline .heart-btn__icon {
+    color: #64748b;
+  }
+
+  &--outline:hover {
+    transform: scale(1.04);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+
+    .heart-btn__icon {
+      color: var(--pgn-color-primary-base, #69ab4a);
+    }
+  }
+
+  /* Wishlisted — brand primary, same clean surface */
+  &--active {
+    background-color: #f0f5ed;
+    border-color: rgba(105, 171, 74, 0.35);
+
+    .heart-btn__icon {
+      color: var(--pgn-color-primary-base, #69ab4a);
+    }
+
+    &:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+
+      .heart-btn__icon {
+        color: #5a9340;
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--pgn-color-primary-base, #69ab4a);
+    outline-offset: 2px;
   }
 }
 

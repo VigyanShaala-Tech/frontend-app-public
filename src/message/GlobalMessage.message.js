@@ -225,6 +225,16 @@ const messages = defineMessages({
     defaultMessage: 'Enroll Now',
     description: 'Enroll button label',
   },
+  'courseAbout.wishlist.add': {
+    id: 'courseAbout.wishlist.add',
+    defaultMessage: 'Add to wishlist',
+    description: 'Aria label for add to wishlist button',
+  },
+  'courseAbout.wishlist.remove': {
+    id: 'courseAbout.wishlist.remove',
+    defaultMessage: 'Remove from wishlist',
+    description: 'Aria label for remove from wishlist button',
+  },
 
   //--------------------About-us page --------------------------------------------
   // Page title & meta
@@ -655,6 +665,21 @@ const messages = defineMessages({
     id: 'home.hero.seconddescription',
     defaultMessage: 'Access world-class education from renowned instructors and gain practical knowledge that sets you apart.',
     description: 'Hero description text',
+  },
+  'home.hero.thirdtitle': {
+    id: 'home.hero.thirdtitle',
+    defaultMessage: 'Creating Job Opportunities',
+    description: 'Main hero title part 1 for third slide',
+  },
+  'home.hero.thirdhighlight': {
+    id: 'home.hero.thirdhighlight',
+    defaultMessage: 'In Science and Technology',
+    description: 'Highlighted part of hero title for third slide',
+  },
+  'home.hero.thirddescription': {
+    id: 'home.hero.thirddescription',
+    defaultMessage: 'We connect learners with mentorship, skills, and industry pathways to build meaningful careers across science, technology, engineering, and mathematics.',
+    description: 'Hero description text for third slide',
   },
   'home.hero.getStarted': {
     id: 'home.hero.getStarted',

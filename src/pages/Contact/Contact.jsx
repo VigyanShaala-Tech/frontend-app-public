@@ -12,8 +12,7 @@ import { Link } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useContext } from 'react';
 import { AppContext } from '@edx/frontend-platform/react';
-import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
-import { getConfig } from '@edx/frontend-platform';
+import { submitContactForm } from '../../api';
 
 import messages from '../../message/GlobalMessage.message';
 
@@ -125,15 +124,7 @@ const Contact = () => {
     };
 
     try {
-      const httpClient = getAuthenticatedHttpClient();
-
-      const response = await httpClient.post(
-        `${getConfig().LMS_BASE_URL}/api/v1/contact-us/`,
-        payload,
-        {
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
+      const response = await submitContactForm(payload);
 
       if (response.status === 200 || response.status === 201) {
         setSubmitSuccess(true);
