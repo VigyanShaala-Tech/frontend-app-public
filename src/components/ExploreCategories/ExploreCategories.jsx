@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
-import { getConfig } from '@edx/frontend-platform';
 import { Spinner } from '@openedx/paragon';
+import { fetchCategories } from '../../api';
 
 import messages from '../../message/GlobalMessage.message';
 import { useNavigate } from 'react-router-dom';
@@ -20,13 +19,11 @@ const ExploreCategories = () => {
 
   // Fetch categories from API
   useEffect(() => {
-    const fetchCategories = async () => {
+    const loadCategories = async () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await getAuthenticatedHttpClient().get(
-          `${getConfig().LMS_BASE_URL}/api/v1/catalog/categories/`
-        );
+        const response = await fetchCategories();
 
         if (response.status === 200 && Array.isArray(response.data)) {
           // Map API data to component format
@@ -44,7 +41,7 @@ const ExploreCategories = () => {
       }
     };
 
-    fetchCategories();
+    loadCategories();
   }, []);
 
   return (

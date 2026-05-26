@@ -39,6 +39,17 @@
       .d-flex {
         gap: 0.75rem !important;
       }
+
+      .filter-dropdown {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        width: 100%;
+
+        .form-control {
+          width: 100%;
+        }
+      }
     }
   }
 
@@ -75,17 +86,6 @@
   .filter-bar .filter-container .d-flex {
     flex-wrap: nowrap !important;
     gap: 0.5rem !important;
-  }
-
-  .filter-bar .filter-container .filter-dropdown {
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    margin-bottom: 0;
-  }
-
-  .filter-bar .filter-container .filter-dropdown .form-control {
-    width: 100%;
   }
 }
 
@@ -155,8 +155,9 @@
   }
 
   .filter-bar .filter-container .filter-dropdown {
-    flex: 1 1 calc(33.333% - 0.5rem);
-    min-width: calc(33.333% - 0.5rem);
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
     margin-bottom: 0;
   }
 

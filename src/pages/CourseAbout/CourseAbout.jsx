@@ -9,16 +9,25 @@ import {
   faPlayCircle,
   faAward,
   faChevronDown,
-  faChevronUp,
   faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
-import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth'; 
-import { getConfig } from '@edx/frontend-platform';
+import ScrollReveal from '../../components/animations/ScrollReveal';
 import messages from '../../message/GlobalMessage.message';
+import {
+  getLmsBaseUrl,
+  fetchCourseById,
+  fetchCourseCurriculum,
+  fetchCourseInstructors,
+  fetchCourseReviews,
+  addToWishlist,
+  removeFromWishlist,
+  enrollInCourse,
+} from '../../api';
 import PlaceholderImage from '../../assets/image/placeholder-image.jpeg'
 import PlaceholderProfileImage from '../../assets/image/profile-placeholder.jpeg'
 import { useContext } from 'react';
@@ -48,8 +57,7 @@ const CourseAbout = () => {
   const [loadingInstructors, setLoadingInstructors] = useState(false);
   const [loadingReviews, setLoadingReviews] = useState(false);
 
-  const baseUrl = getConfig().LMS_BASE_URL;
-  const httpClient = getAuthenticatedHttpClient();
+  const baseUrl = getLmsBaseUrl();
   const learningBaseUrl = config.LEARNING_BASE_URL;
   const loginBaseUrl = config.LOGIN_URL;
   const catalogBaseUrl = config.CATALOG_MICROFRONTEND_URL;
@@ -69,7 +77,7 @@ const CourseAbout = () => {
       setLoadingCourse(true);
       setErrorCourse(null);
       try {
-        const res = await httpClient.get(`${baseUrl}/api/v1/catalog/courses/${courseId}/`);
+        const res = await fetchCourseById(courseId);
         if (res.status === 200 && res.data) {
           setCourse(res.data);
           setIsCourseWhishlisted(res.data.is_wishlisted)
@@ -91,7 +99,7 @@ const CourseAbout = () => {
       const fetchCurriculum = async () => {
         setLoadingCurriculum(true);
         try {
-          const res = await httpClient.get(`${baseUrl}/api/v1/catalog/course-curriculum/${courseId}/`);
+          const res = await fetchCourseCurriculum(courseId);
           if (res.status === 200 && res.data) {
             setCurriculum(res.data);
           }
@@ -108,7 +116,7 @@ const CourseAbout = () => {
       const fetchInstructors = async () => {
         setLoadingInstructors(true);
         try {
-          const res = await httpClient.get(`${baseUrl}/api/v1/catalog/course-instructors/${courseId}/`);
+          const res = await fetchCourseInstructors(courseId);
           if (res.status === 200 && Array.isArray(res.data)) {
             setInstructors(res.data);
           }
@@ -125,7 +133,7 @@ const CourseAbout = () => {
       const fetchReviews = async () => {
         setLoadingReviews(true);
         try {
-          const res = await httpClient.get(`${baseUrl}/api/v1/catalog/course-reviews/${courseId}/`);
+          const res = await fetchCourseReviews(courseId);
           if (res.status === 200 && Array.isArray(res.data)) {
             setReviews(res.data);
           }
@@ -150,24 +158,14 @@ const CourseAbout = () => {
     try {
       if (isCourseWhishlisted) {
         // Remove from wishlist
-        const response = await httpClient.post(
-          `${baseUrl}/api/v1/wishlist/remove/`,
-          {
-            course_id: courseId,
-          }
-        );
+        const response = await removeFromWishlist(courseId);
 
         if (response.status === 200) {
           setIsCourseWhishlisted(false);
         }
       } else {
         // Add to wishlist
-        const response = await httpClient.post(
-          `${baseUrl}/api/v1/wishlist/add/`,
-          {
-            course_id: courseId,
-          }
-        );
+        const response = await addToWishlist(courseId);
 
         if (response.status === 200) {
           setIsCourseWhishlisted(true);
@@ -204,18 +202,7 @@ const CourseAbout = () => {
     setEnrollError(null);
 
     try {
-      const response = await httpClient.post(
-        `${baseUrl}/change_enrollment`,
-        {
-          course_id: courseId,
-          enrollment_action: 'enroll',
-        },
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      const response = await enrollInCourse(courseId);
 
       if (response.status === 200) {
         // Redirect to dashboard
@@ -260,6 +247,7 @@ const CourseAbout = () => {
       {/* Banner / Header */}
       <section className="py-5">
         <div className="container">
+          <ScrollReveal direction="up">
           {/* Breadcrumb */}
           <nav className="page-mapped text-muted small mb-3">
             <Link to="/public" className="text-muted text-decoration-none">
@@ -304,6 +292,7 @@ const CourseAbout = () => {
             </div>
             }
           </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -314,25 +303,36 @@ const CourseAbout = () => {
             {/* Left - Tabs & Content */}
             <div className="col-lg-8">
               {/* Tabs */}
-              <div className="mb-4">
+              <ScrollReveal direction="up" className="mb-4">
                 <div className="d-flex overflow-auto p-3">
                   {tabs.map((tab) => (
-                    <button
+                    <motion.button
                       key={tab}
                       type="button"
-                      className={`btn mr-2 ${
+                      whileHover={{ y: -2 }}
+                      className={`btn mr-2 course-about-tab-btn ${
                         activeTab === tab ? 'btn-primary fw-bold' : 'button-inactive-color'
                       }`}
                       onClick={() => setActiveTab(tab)}
                     >
                       {formatMessage(messages[`courseAbout.tab.${tab.toLowerCase()}`])}
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
-              </div>
+              </ScrollReveal>
 
               {/* Tab Content */}
+              <ScrollReveal direction="up">
               <div className="tab-container container rounded">
+                <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  className="course-about-tab-panel"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                >
                 {activeTab === 'Overview' && (
                   <div className="pl-3 pt-4 pr-3 pb-4 ">
                     <div dangerouslySetInnerHTML={{ __html: course.overview || `
@@ -358,7 +358,10 @@ const CourseAbout = () => {
                             >
                               <span className="fw-bold text-align-start">{moduleTitle}</span>
                               <FontAwesomeIcon
-                                icon={expandedSections.includes(idx) ? faChevronUp : faChevronDown}
+                                icon={faChevronDown}
+                                className={`course-about-accordion-chevron${
+                                  expandedSections.includes(idx) ? ' is-expanded' : ''
+                                }`}
                               />
                             </button>
 
@@ -470,11 +473,14 @@ const CourseAbout = () => {
                     )}
                   </div>
                 )}
+                </motion.div>
+                </AnimatePresence>
               </div>
+              </ScrollReveal>
             </div>
 
             {/* Sticky Sidebar - Enroll Card */}
-            <div className="col-lg-4">
+            <ScrollReveal direction="right" className="col-lg-4">
               <div className="enroll-card overflow-hidden rounded">
                 <div className="card-img-top-wraper">
                   <img
@@ -486,11 +492,22 @@ const CourseAbout = () => {
                       e.currentTarget.src = PlaceholderImage;
                     }}
                   />
-                  <FontAwesomeIcon
-                    icon={isCourseWhishlisted ? faHeart : faHeartOutline}
+                  <button
+                    type="button"
+                    className={`heart-btn ${isCourseWhishlisted ? 'heart-btn--active' : 'heart-btn--outline'}`}
                     onClick={toggleCourseHeart}
-                    className="heart-btn"
-                  />
+                    aria-label={
+                      isCourseWhishlisted
+                        ? formatMessage(messages['courseAbout.wishlist.remove'])
+                        : formatMessage(messages['courseAbout.wishlist.add'])
+                    }
+                    aria-pressed={isCourseWhishlisted}
+                  >
+                    <FontAwesomeIcon
+                      icon={isCourseWhishlisted ? faHeart : faHeartOutline}
+                      className="heart-btn__icon"
+                    />
+                  </button>
                 </div>
                 <div className="card-body p-4">
                   {isInvitationOnly ? (
@@ -503,24 +520,30 @@ const CourseAbout = () => {
                     </Alert>
                   ) : (
                     <>
-                      <Button
-                        variant="primary"
-                        block
-                        className="mb-4 py-3 fw-bold"
-                        onClick={handleEnrollAction}
-                        disabled={isEnrolling}
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="mb-4"
                       >
-                        {isEnrolling ? (
-                          <>
-                            <Spinner animation="border" size="sm" className="mr-2" />
-                            {formatMessage(messages['courseAbout.enrollment.enrolling'])}
-                          </>
-                        ) : isAlreadyEnrolled ? (
-                          formatMessage(messages['courseAbout.enrollment.viewCourse'])
-                        ) : (
-                          formatMessage(messages['courseAbout.enrollment.enrollNow'])
-                        )}
-                      </Button>
+                        <Button
+                          variant="primary"
+                          block
+                          className="py-3 fw-bold"
+                          onClick={handleEnrollAction}
+                          disabled={isEnrolling}
+                        >
+                          {isEnrolling ? (
+                            <>
+                              <Spinner animation="border" size="sm" className="mr-2" />
+                              {formatMessage(messages['courseAbout.enrollment.enrolling'])}
+                            </>
+                          ) : isAlreadyEnrolled ? (
+                            formatMessage(messages['courseAbout.enrollment.viewCourse'])
+                          ) : (
+                            formatMessage(messages['courseAbout.enrollment.enrollNow'])
+                          )}
+                        </Button>
+                      </motion.div>
 
                       {enrollError && (
                         <Alert
@@ -555,7 +578,7 @@ const CourseAbout = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

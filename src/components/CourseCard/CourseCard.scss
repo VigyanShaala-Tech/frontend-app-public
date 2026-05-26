@@ -18,10 +18,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 
     .course-image {
+      width: auto;
+      max-width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
+      display: block;
       transition: transform 0.45s ease;
     }
 
@@ -37,6 +42,7 @@
       border-radius: 999px !important;
       background: #F0F5ED !important;
     }
+
     .ribbon-top-right {
       position: absolute;
       top: 80px;
@@ -45,13 +51,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
       width: 160px;
       pointer-events: none;
       transform: rotate(45deg);
       transform-origin: top right;
-
-      box-shadow: 
+      box-shadow:
         inset 0 1px 2px rgba(255, 255, 255, 0.35),
         inset 0 -2px 4px rgba(0, 0, 0, 0.25);
 
@@ -71,55 +75,142 @@
       }
     }
   }
-  .course-card-content-container-grid{
-    height: 280px;
+
+  .course-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 1rem;
   }
+
+  .course-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    gap: 0.75rem;
+    min-height: 0;
+  }
+
+  .course-card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .course-card-meta-row,
+  .course-card-meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+  }
+
+  .course-card-meta--inline {
+    .course-card-meta-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+
+  .course-card-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #6c757d;
+    margin: 0;
+    max-width: 100%;
+
+    span {
+      line-height: 1.25rem;
+      word-break: break-word;
+    }
+  }
+
+  .course-card-meta-icon {
+    flex-shrink: 0;
+    width: 0.875rem;
+    text-align: center;
+  }
+
+  .course-card-action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    flex-shrink: 0;
+    width: 100%;
+  }
+
   .course-title-grid {
     font-size: 1.125rem;
     font-weight: 600;
-    line-height: 1.75rem;
+    line-height: 1.5rem;
+    margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
 
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .course-short-discription-grid{
+  .course-short-discription-grid {
+    margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.375rem;
+    word-break: break-word;
   }
+
   .course-title-list {
     font-size: 1.125rem;
     font-weight: 600;
-    line-height: 1.75rem;
+    line-height: 1.5rem;
+    margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-
+    -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
+    word-break: break-word;
   }
-  .course-short-discription-list{
+
+  .course-short-discription-list {
+    margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.375rem;
+    word-break: break-word;
   }
-
 }
 
 /* ============================================================================
-   Grid Mode (default)
+   Grid Mode
    ============================================================================ */
 
-.grid-mode {
+.course-card.grid-mode {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
   .course-image-wrapper {
+    width: 100%;
     height: 180px;
+  }
+
+  .course-card-meta-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.375rem;
   }
 }
 
@@ -127,24 +218,50 @@
    List Mode
    ============================================================================ */
 
-.list-mode {
+.course-card.list-mode {
   flex-direction: row;
+  align-items: stretch;
 
   .course-image-wrapper {
     width: 280px;
-    height: 208px;
+    min-width: 280px;
     flex-shrink: 0;
+    align-self: stretch;
+    height: auto;
+    min-height: 180px;
+  }
+
+
+  .course-card-body {
+    justify-content: space-between;
+    min-width: 0;
+  }
+
+  .course-card-content {
+    min-width: 0;
+  }
+
+  .course-card-action.course-card-action--list {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
-/* Mobile fallback for list mode */
 @media (max-width: 992px) {
-  .list-mode {
+  .course-card.list-mode {
     flex-direction: column;
 
     .course-image-wrapper {
       width: 100%;
+      min-width: 0;
       height: 200px;
+      min-height: 200px;
+      align-self: auto;
+    }
+
+    .course-image {
+      min-height: 0;
+      height: 100%;
     }
   }
 }

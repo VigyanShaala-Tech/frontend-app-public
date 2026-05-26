@@ -54,11 +54,17 @@
     padding: 0 1px;        /* tiny padding to prevent edge clipping */
     scroll-padding-left: 1rem;   /* nicer scroll start position */
     scroll-padding-right: 1rem;
+    align-items: stretch;
   }
 
   .course-card-wrapper {
     flex: 0 0 auto;        /* important: prevent growing/shrinking unexpectedly */
     width: 365px;          /* desktop base width */
+    display: flex;
+
+    .course-card.grid-mode {
+      width: 100%;
+    }
   }
 
   .scrollbar-hide {

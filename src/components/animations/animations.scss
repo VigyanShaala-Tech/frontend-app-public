@@ -1,0 +1,30 @@
+.page-transition {
+  width: 100%;
+}
+
+.course-about-page .page-mapped a {
+  transition: color 0.25s ease;
+}
+
+.course-about-tab-panel {
+  width: 100%;
+}
+
+.course-about-tab-btn {
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.course-about-accordion-chevron {
+  transition: transform 0.3s ease;
+}
+
+.course-about-accordion-chevron.is-expanded {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-about-tab-btn,
+  .course-about-accordion-chevron {
+    transition: none;
+  }
+}

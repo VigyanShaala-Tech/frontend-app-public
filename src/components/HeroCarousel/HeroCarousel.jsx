@@ -5,8 +5,8 @@ import { Button } from '@openedx/paragon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import hero_1 from "../../assets/image/Home-images/hero_1.jpeg"
-import hero_2 from "../../assets//image/Home-images/hero_2.jpg"
+import hero_1 from '../../assets/image/Home-images/hero_1.jpeg';
+import hero_2 from '../../assets/image/Home-images/hero_2.jpg';
 
 import messages from '../../message/GlobalMessage.message';
 import './HeroCarousel.scss';
@@ -27,6 +27,14 @@ const slides = [
     description: messages['home.hero.seconddescription'],
     image: hero_2,
     layout: 'text-right',
+  },
+  {
+    id: 3,
+    title: messages['home.hero.thirdtitle'],
+    highlight: messages['home.hero.thirdhighlight'],
+    description: messages['home.hero.thirddescription'],
+    image: hero_1,
+    layout: 'text-left',
   },
 ];
 
@@ -83,7 +91,7 @@ const HeroCarousel = () => {
                   <div className="hero-image-wrapper rounded shadow">
                     <img
                       src={slide.image}
-                      alt="Hero illustration"
+                      alt={`${formatMessage(slide.title)} ${formatMessage(slide.highlight)}`}
                       className="img-fluid w-100 rounded object-cover"
                     />
                   </div>
@@ -115,18 +123,20 @@ const HeroCarousel = () => {
         ))}
       </div>
 
-      <button className="hero-nav hero-prev position-absolute top-50 start-0 translate-middle-y" onClick={prevSlide}>
+      <button type="button" className="hero-nav hero-prev position-absolute top-50 start-0 translate-middle-y" onClick={prevSlide} aria-label="Previous slide">
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
-      <button className="hero-nav hero-next position-absolute top-50 end-0 translate-middle-y" onClick={nextSlide}>
+      <button type="button" className="hero-nav hero-next position-absolute top-50 end-0 translate-middle-y" onClick={nextSlide} aria-label="Next slide">
         <FontAwesomeIcon icon={faChevronRight} />
       </button>
 
       {/* Indicators */}
       <div className="hero-indicators mb-3 d-flex align-items-center justify-center">
-        {slides.map((_, i) => (
+        {slides.map((slide, i) => (
           <button
-            key={i}
+            key={slide.id}
+            type="button"
+            aria-label={`Go to slide ${i + 1}`}
             onClick={() => setCurrentSlide(i)}
             className={`rounded-circle border-0 me-2 ${i === currentSlide ? 'active bg-primary' : 'bg-white opacity-50'}`}
             style={{ width: '12px', height: '12px' }}

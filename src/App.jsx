@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { AppProvider } from '@edx/frontend-platform/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { FooterSlot } from '@edx/frontend-component-footer';
 
-import { Routes, Route, BrowserRouter, useLocation, Navigate} from 'react-router-dom';
+import { Routes, Route, BrowserRouter, useLocation, Navigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+
+import PageTransition from './components/animations/PageTransition';
+import './components/animations/animations.scss';
 
 import CustomHeader from './components/CustomHeader/CustomHeader'
 
@@ -26,25 +30,31 @@ function Layout() {
   const location = useLocation();
 
   const params = new URLSearchParams(location.search);
-  const isMobile = params.get("mobile") === "true";
+  const isMobile = params.get('mobile') === 'true';
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
 
   return (
-    <div className='public-page'>
+    <div className="public-page">
       {!isMobile && <CustomHeader />}
 
-      <Routes>
-        <Route path="/public" element={<Home />} />
-        <Route path="/public/courses" element={<CourseCatalog />} />
-        <Route path="/public/courses/:id" element={<CourseAbout />} />
-        <Route path="/public/about" element={<Navigate to="/public/story" replace />} />
-        <Route path="/public/story" element={<OurStory />} />
-        <Route path="/public/team" element={<Team />} />
-        <Route path="/public/supporter" element={<Supporter />} />
-        <Route path="/public/financial" element={<Financial />} />
-        <Route path="/public/contact" element={<Contact />} />
-        <Route path="/public/terms" element={<Terms />} />
-        <Route path="/public/privacy" element={<Privacy />} />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/public" element={<PageTransition><Home /></PageTransition>} />
+          <Route path="/public/courses" element={<PageTransition><CourseCatalog /></PageTransition>} />
+          <Route path="/public/courses/:id" element={<PageTransition><CourseAbout /></PageTransition>} />
+          <Route path="/public/about" element={<Navigate to="/public/story" replace />} />
+          <Route path="/public/story" element={<PageTransition><OurStory /></PageTransition>} />
+          <Route path="/public/team" element={<PageTransition><Team /></PageTransition>} />
+          <Route path="/public/supporter" element={<PageTransition><Supporter /></PageTransition>} />
+          <Route path="/public/financial" element={<PageTransition><Financial /></PageTransition>} />
+          <Route path="/public/contact" element={<PageTransition><Contact /></PageTransition>} />
+          <Route path="/public/terms" element={<PageTransition><Terms /></PageTransition>} />
+          <Route path="/public/privacy" element={<PageTransition><Privacy /></PageTransition>} />
+        </Routes>
+      </AnimatePresence>
 
       {!isMobile && <FooterSlot />}
     </div>
