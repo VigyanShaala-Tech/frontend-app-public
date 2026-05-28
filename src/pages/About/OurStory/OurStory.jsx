@@ -134,7 +134,7 @@ const OurStory = () => {
             <div className="story-hero-image">
               <img
                 src={banner}
-                alt="Dr. Darshana Joshi"
+                alt={formatMessage(messages['story.hero.image.alt'])}
                 className="story-hero-img"
               />
             </div>
@@ -179,7 +179,11 @@ const OurStory = () => {
                     {formatMessage(messages[`story.timeline.${idx}`])}
                   </div>
                   <div className="story-timeline-image-wrapper">
-                    <img src={item.image} alt={`Timeline ${idx + 1}`} className="story-timeline-img" />
+                    <img
+                      src={item.image}
+                      alt={formatMessage(messages['story.timeline.image.alt'], { number: idx + 1 })}
+                      className="story-timeline-img"
+                    />
                   </div>
                 </div>
               ))}

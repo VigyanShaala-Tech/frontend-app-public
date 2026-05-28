@@ -102,17 +102,21 @@ const CoursesCarousel = () => {
         {/* Navigation Arrows */}
         <div className='navigation-arrow-container'>
             <button
+                type="button"
                 className="carousel-arrow left btn btn-primary rounded-circle d-flex align-items-center justify-content-center"
                 onClick={() => scroll('left')}
                 disabled={!canScrollLeft}
+                aria-label={formatMessage(messages['common.carousel.previous'])}
             >
                 <FontAwesomeIcon icon={faChevronLeft} className="text-white" />
             </button>
 
             <button
+                type="button"
                 className="carousel-arrow right btn btn-primary rounded-circle  d-flex align-items-center justify-content-center"
                 onClick={() => scroll('right')}
                 disabled={!canScrollRight}
+                aria-label={formatMessage(messages['common.carousel.next'])}
             >
                 <FontAwesomeIcon icon={faChevronRight} className="text-white" />
             </button>

@@ -81,6 +81,15 @@
   border-color: #E2E8F0 !important;
 }
 
+.filter-bar .filter-dropdown .custom-search-dropdown__trigger {
+  border-color: #E2E8F0 !important;
+  min-height: 40px;
+}
+
+.filter-bar .filter-dropdown .custom-search-dropdown__panel {
+  border-color: #E2E8F0 !important;
+}
+
 /* Keep all 3 filters in one line on narrow desktop widths. */
 @media (min-width: 1200px) and (max-width: 1321px) {
   .filter-bar .filter-container .d-flex {

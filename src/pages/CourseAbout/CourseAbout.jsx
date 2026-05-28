@@ -35,7 +35,12 @@ import { AppContext } from '@edx/frontend-platform/react';
 
 import './CourseAbout.scss';
 
-const tabs = ['Overview', 'Curriculum', 'Instructor', 'Reviews'];
+const COURSE_ABOUT_TABS = [
+  { id: 'overview', messageKey: 'courseAbout.tab.overview' },
+  { id: 'curriculum', messageKey: 'courseAbout.tab.curriculum' },
+  { id: 'instructor', messageKey: 'courseAbout.tab.instructor' },
+  { id: 'reviews', messageKey: 'courseAbout.tab.reviews' },
+];
 
 const CourseAbout = () => {
   const { formatMessage } = useIntl();
@@ -47,7 +52,7 @@ const CourseAbout = () => {
   const [instructors, setInstructors] = useState([]);
   const [reviews, setReviews] = useState([]);
 
-  const [activeTab, setActiveTab] = useState('Overview');
+  const [activeTab, setActiveTab] = useState('overview');
   const [expandedSections, setExpandedSections] = useState([]);
 
   const [loadingCourse, setLoadingCourse] = useState(true);
@@ -95,7 +100,7 @@ const CourseAbout = () => {
 
   // Lazy-load tab-specific data when tab changes
   useEffect(() => {
-    if (activeTab === 'Curriculum' && !curriculum) {
+    if (activeTab === 'curriculum' && !curriculum) {
       const fetchCurriculum = async () => {
         setLoadingCurriculum(true);
         try {
@@ -112,7 +117,7 @@ const CourseAbout = () => {
       fetchCurriculum();
     }
 
-    if (activeTab === 'Instructor' && instructors.length === 0) {
+    if (activeTab === 'instructor' && instructors.length === 0) {
       const fetchInstructors = async () => {
         setLoadingInstructors(true);
         try {
@@ -129,7 +134,7 @@ const CourseAbout = () => {
       fetchInstructors();
     }
 
-    if (activeTab === 'Reviews' && reviews.length === 0) {
+    if (activeTab === 'reviews' && reviews.length === 0) {
       const fetchReviews = async () => {
         setLoadingReviews(true);
         try {
@@ -305,17 +310,17 @@ const CourseAbout = () => {
               {/* Tabs */}
               <ScrollReveal direction="up" className="mb-4">
                 <div className="d-flex overflow-auto p-3">
-                  {tabs.map((tab) => (
+                  {COURSE_ABOUT_TABS.map((tab) => (
                     <motion.button
-                      key={tab}
+                      key={tab.id}
                       type="button"
                       whileHover={{ y: -2 }}
                       className={`btn mr-2 course-about-tab-btn ${
-                        activeTab === tab ? 'btn-primary fw-bold' : 'button-inactive-color'
+                        activeTab === tab.id ? 'btn-primary fw-bold' : 'button-inactive-color'
                       }`}
-                      onClick={() => setActiveTab(tab)}
+                      onClick={() => setActiveTab(tab.id)}
                     >
-                      {formatMessage(messages[`courseAbout.tab.${tab.toLowerCase()}`])}
+                      {formatMessage(messages[tab.messageKey])}
                     </motion.button>
                   ))}
                 </div>
@@ -333,7 +338,7 @@ const CourseAbout = () => {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                {activeTab === 'Overview' && (
+                {activeTab === 'overview' && (
                   <div className="pl-3 pt-4 pr-3 pb-4 ">
                     <div dangerouslySetInnerHTML={{ __html: course.overview || `
                     <p>
@@ -341,7 +346,7 @@ const CourseAbout = () => {
                   </div>
                 )}
 
-                {activeTab === 'Curriculum' && (
+                {activeTab === 'curriculum' && (
                   <div className="p-4">
                     {loadingCurriculum ? (
                       <Spinner animation="border" variant="primary" />
@@ -390,7 +395,7 @@ const CourseAbout = () => {
                   </div>
                 )}
 
-                {activeTab === 'Instructor' && (
+                {activeTab === 'instructor' && (
                   <div className="p-4">
                     {loadingInstructors ? (
                       <Spinner animation="border" variant="primary" />
@@ -425,7 +430,7 @@ const CourseAbout = () => {
                   </div>
                 )}
 
-                {activeTab === 'Reviews' && (
+                {activeTab === 'reviews' && (
                   <div className="p-4">
                     {loadingReviews ? (
                       <Spinner animation="border" variant="primary" />

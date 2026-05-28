@@ -7,14 +7,14 @@ import messages from '../../message/GlobalMessage.message';
 import './CommunitySection.scss';
 
 const profiles = [
-  { name: 'Aarav Patel', role: 'Data Analyst', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop' },
-  { name: 'Diya Sharma', role: 'Research Mentor', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop' },
-  { name: 'Ishaan Kumar', role: 'ML Engineer', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&h=120&fit=crop' },
-  { name: 'Ananya Reddy', role: 'Biotech Researcher', image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=120&h=120&fit=crop' },
-  { name: 'Vivaan Singh', role: 'Data Scientist', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop' },
-  { name: 'Kavya Nair', role: 'AI Researcher', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop' },
-  { name: 'Arjun Mehta', role: 'Product Manager', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&h=120&fit=crop' },
-  { name: 'Priya Desai', role: 'UX Designer', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop' },
+  { nameKey: 'home.community.profile1.name', roleKey: 'home.community.profile1.role', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop' },
+  { nameKey: 'home.community.profile2.name', roleKey: 'home.community.profile2.role', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop' },
+  { nameKey: 'home.community.profile3.name', roleKey: 'home.community.profile3.role', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&h=120&fit=crop' },
+  { nameKey: 'home.community.profile4.name', roleKey: 'home.community.profile4.role', image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=120&h=120&fit=crop' },
+  { nameKey: 'home.community.profile5.name', roleKey: 'home.community.profile5.role', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop' },
+  { nameKey: 'home.community.profile6.name', roleKey: 'home.community.profile6.role', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop' },
+  { nameKey: 'home.community.profile7.name', roleKey: 'home.community.profile7.role', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&h=120&fit=crop' },
+  { nameKey: 'home.community.profile8.name', roleKey: 'home.community.profile8.role', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop' },
 ];
 
 const VISIBLE_DESKTOP = 4;
@@ -90,7 +90,12 @@ const CommunitySection = () => {
           {/* Profile Slider */}
           <div className="community-slider">
 
-            <button className="community-arrow left" onClick={prevSlide}>
+            <button
+              type="button"
+              className="community-arrow left"
+              onClick={prevSlide}
+              aria-label={formatMessage(messages['common.carousel.previous'])}
+            >
               <FontAwesomeIcon icon={faChevronLeft} />
             </button>
 
@@ -100,18 +105,23 @@ const CommunitySection = () => {
 
                   <img
                     src={profile.image}
-                    alt={profile.name}
+                    alt={formatMessage(messages[profile.nameKey])}
                     className="profile-avatar"
                   />
 
-                  <p className="profile-name">{profile.name}</p>
-                  <p className="profile-role">{profile.role}</p>
+                  <p className="profile-name">{formatMessage(messages[profile.nameKey])}</p>
+                  <p className="profile-role">{formatMessage(messages[profile.roleKey])}</p>
 
                 </div>
               ))}
             </div>
 
-            <button className="community-arrow right" onClick={nextSlide}>
+            <button
+              type="button"
+              className="community-arrow right"
+              onClick={nextSlide}
+              aria-label={formatMessage(messages['common.carousel.next'])}
+            >
               <FontAwesomeIcon icon={faChevronRight} />
             </button>
 
@@ -119,7 +129,7 @@ const CommunitySection = () => {
 
           {/* Counter */}
           <div className="members-badge">
-            25,000+ members
+            {formatMessage(messages['home.community.membersBadge'])}
           </div>
 
           <p className="community-stat text-muted">

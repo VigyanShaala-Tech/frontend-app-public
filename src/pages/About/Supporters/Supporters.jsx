@@ -34,32 +34,32 @@ import Gurukulam      from '../../../assets/image/supporter-images/gurukulam-log
 
 
 const supporters = [
-  { id: 1, src: Mphasis, alt: 'Mphasis' },
-  { id: 2, src: Atlassian, alt: 'Atlassian' },
-  { id: 3, src: Nudge, alt: 'Nudge' },
-  { id: 4, src: J360, alt: 'J360' },
-  { id: 5, src: UOC, alt: 'UOC' },
-  { id: 6, src: MarieCurie, alt: 'Marie Curie' },
-  { id: 7, src: IIMB_NSRCEL, alt: 'IIMB NSRCEL' },
-  { id: 8, src: UCOST, alt: 'UCOST' },
-  { id: 9, src: DST, alt: 'DST' },
-  { id: 10, src: CaringFriends, alt: 'Caring Friends' },
-  { id: 11, src: F5, alt: 'F5' },
-  { id: 12, src: PSAIndia, alt: 'PSA India' },
-  { id: 13, src: EchoingGreen, alt: 'Echoing Green' },
-  { id: 14, src: SpringerNature, alt: 'Springer Nature' },
-  { id: 15, src: Cummins, alt: 'Cummins' },
-  { id: 16, src: SVP, alt: 'SVP' },
-  { id: 17, src: UGDH, alt: 'UGDH' },
-  { id: 18, src: G20, alt: 'G20' },
-  { id: 19, src: M2M, alt: 'M2M' },
-  { id: 20, src: Mudita, alt: 'Mudita' },
-  { id: 21, src: Suez, alt: 'Suez' },
-  { id: 22, src: Meta, alt: 'Meta' },
-  { id: 23, src: WEP, alt: 'WEP' },
-  { id: 24, src: AIM, alt: 'AIM' },
-  { id: 25, src: CentreGE, alt: 'Centre GE' },
-  { id: 26, src: Gurukulam, alt: 'Gurukulam' },
+  { id: 1, src: Mphasis, altKey: 'supporter.logo.mphasis' },
+  { id: 2, src: Atlassian, altKey: 'supporter.logo.atlassian' },
+  { id: 3, src: Nudge, altKey: 'supporter.logo.nudge' },
+  { id: 4, src: J360, altKey: 'supporter.logo.j360' },
+  { id: 5, src: UOC, altKey: 'supporter.logo.uoc' },
+  { id: 6, src: MarieCurie, altKey: 'supporter.logo.marieCurie' },
+  { id: 7, src: IIMB_NSRCEL, altKey: 'supporter.logo.iimbNsrcel' },
+  { id: 8, src: UCOST, altKey: 'supporter.logo.ucost' },
+  { id: 9, src: DST, altKey: 'supporter.logo.dst' },
+  { id: 10, src: CaringFriends, altKey: 'supporter.logo.caringFriends' },
+  { id: 11, src: F5, altKey: 'supporter.logo.f5' },
+  { id: 12, src: PSAIndia, altKey: 'supporter.logo.psaIndia' },
+  { id: 13, src: EchoingGreen, altKey: 'supporter.logo.echoingGreen' },
+  { id: 14, src: SpringerNature, altKey: 'supporter.logo.springerNature' },
+  { id: 15, src: Cummins, altKey: 'supporter.logo.cummins' },
+  { id: 16, src: SVP, altKey: 'supporter.logo.svp' },
+  { id: 17, src: UGDH, altKey: 'supporter.logo.ugdh' },
+  { id: 18, src: G20, altKey: 'supporter.logo.g20' },
+  { id: 19, src: M2M, altKey: 'supporter.logo.m2m' },
+  { id: 20, src: Mudita, altKey: 'supporter.logo.mudita' },
+  { id: 21, src: Suez, altKey: 'supporter.logo.suez' },
+  { id: 22, src: Meta, altKey: 'supporter.logo.meta' },
+  { id: 23, src: WEP, altKey: 'supporter.logo.wep' },
+  { id: 24, src: AIM, altKey: 'supporter.logo.aim' },
+  { id: 25, src: CentreGE, altKey: 'supporter.logo.centreGe' },
+  { id: 26, src: Gurukulam, altKey: 'supporter.logo.gurukulam' },
 ];
 
 const Supporters = () => {
@@ -93,7 +93,7 @@ const Supporters = () => {
           <div className="supporter-grid">
             {supporters.map((s) => (
               <div key={s.id} className="supporter-grid-item">
-                <img src={s.src} alt={s.alt} />
+                <img src={s.src} alt={formatMessage(messages[s.altKey])} />
               </div>
             ))}
           </div>
