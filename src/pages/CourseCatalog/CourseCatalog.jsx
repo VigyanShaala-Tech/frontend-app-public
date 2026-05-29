@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import {
   Form,
@@ -11,57 +11,94 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import messages from '../../message/GlobalMessage.message';
 import CourseCard from '../../components/CourseCard/CourseCard';
+import CustomSearchDropdown from '../../components/CustomSearchDropdown/CustomSearchDropdown';
 
 import './CourseCatalog.scss';
 import { fetchCatalogFilters, fetchCatalogCourses, mapCatalogCourses } from '../../api';
 
+const ALL_FILTER_VALUE = '';
+
+const LOCAL_SORT_OPTIONS = ['enrollment', 'created', 'popular'];
+
+const SORT_VALUE_MESSAGE_KEYS = {
+  enrollment: 'catalog.filter.sort.enrollment',
+  created: 'catalog.filter.sort.created',
+  popular: 'catalog.filter.sort.popular',
+};
+
 const CourseCatalog = () => {
   const { formatMessage } = useIntl();
+  const allCategoriesLabel = formatMessage(messages['catalog.filter.allCategories']);
+  const allLevelsLabel = formatMessage(messages['catalog.filter.allLevels']);
+  const allSubjectsLabel = formatMessage(messages['catalog.filter.allSubjects']);
+  const allSortByLabel = formatMessage(messages['catalog.filter.sortBy']);
 
-  // Filter options from /api/v1/catalog/filters/
-  const [categories, setCategories] = useState(['All Categories']);
-  const [levels, setLevels] = useState(['All Levels']);
-  const [subjects, setSubjects] = useState(['All Subjects']);
+  const [apiCategories, setApiCategories] = useState([]);
+  const [apiLevels, setApiLevels] = useState([]);
+  const [apiSubjects, setApiSubjects] = useState([]);
 
-  // User selections
   const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('All Categories');
-  const [level, setLevel] = useState('All Levels');
-  const [subject, setSubject] = useState('All Subjects');
+  const [category, setCategory] = useState(ALL_FILTER_VALUE);
+  const [level, setLevel] = useState(ALL_FILTER_VALUE);
+  const [subject, setSubject] = useState(ALL_FILTER_VALUE);
+  const [sortBy, setSortBy] = useState('');
   const [viewMode, setViewMode] = useState('grid');
 
-  // Pagination & courses
   const [courses, setCourses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalCourses, setTotalCourses] = useState(0);
 
-  // UI states
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const searchRef = useRef(null);
 
-  // Fetch filter options once
+  const categoryOptions = useMemo(() => [
+    { value: ALL_FILTER_VALUE, label: allCategoriesLabel },
+    ...apiCategories.map((item) => ({ value: item, label: item })),
+  ], [apiCategories, allCategoriesLabel]);
+
+  const levelOptions = useMemo(() => [
+    { value: ALL_FILTER_VALUE, label: allLevelsLabel },
+    ...apiLevels.map((item) => ({ value: item, label: item })),
+  ], [apiLevels, allLevelsLabel]);
+
+  const subjectOptions = useMemo(() => [
+    { value: ALL_FILTER_VALUE, label: allSubjectsLabel },
+    ...apiSubjects.map((item) => ({ value: item, label: item })),
+  ], [apiSubjects, allSubjectsLabel]);
+
+  const sortOptions = useMemo(() => [
+    { value: ALL_FILTER_VALUE, label: allSortByLabel },
+    ...LOCAL_SORT_OPTIONS.map((item) => ({
+      value: item,
+      label: formatMessage(messages[SORT_VALUE_MESSAGE_KEYS[item]]),
+    })),
+  ], [allSortByLabel, formatMessage]);
+
+  const getFilterLabel = (options, selectedValue) => (
+    options.find((option) => option.value === selectedValue)?.label || selectedValue
+  );
+
   useEffect(() => {
-    const fetchFilters = async () => {
+    const loadFilters = async () => {
       setError(null);
       try {
         const res = await fetchCatalogFilters();
 
         if (res.status === 200 && res.data) {
-          setCategories(['All Categories', ...(res.data.categories || [])]);
-          setLevels(['All Levels', ...(res.data.levels || [])]);
-          setSubjects(['All Subjects', ...(res.data.subjects || [])]);
+          setApiCategories(res.data.categories || []);
+          setApiLevels(res.data.levels || []);
+          setApiSubjects(res.data.subjects || []);
         }
       } catch (err) {
         console.error('Failed to load filter options:', err);
       }
     };
-    fetchFilters();
+
+    loadFilters();
   }, []);
 
-
-  // Fetch courses for current page + filters
   const fetchCourses = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -69,9 +106,10 @@ const CourseCatalog = () => {
     try {
       const response = await fetchCatalogCourses({
         search_term: search.trim() || undefined,
-        category: category !== 'All Categories' ? category : undefined,
-        level: level !== 'All Levels' ? level : undefined,
-        subject: subject !== 'All Subjects' ? subject : undefined,
+        category: category || undefined,
+        level: level || undefined,
+        subject: subject || undefined,
+        sort: sortBy || undefined,
         page: currentPage,
       });
 
@@ -88,61 +126,60 @@ const CourseCatalog = () => {
       }
     } catch (err) {
       console.error('Courses fetch failed:', err);
-      setError(
-        formatMessage(messages['catalog.error.fetch'])
-      );
+      setError(formatMessage(messages['catalog.error.fetch']));
       setCourses([]);
       setTotalPages(1);
       setTotalCourses(0);
     } finally {
       setLoading(false);
     }
-  }, [search, category, level, subject, currentPage, formatMessage]);
+  }, [search, category, level, subject, sortBy, currentPage, formatMessage]);
 
-  // Fetch when filters or page changes
   useEffect(() => {
     fetchCourses();
   }, [fetchCourses]);
 
-  // Reset to page 1 when any filter/search changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, category, level, subject]);
+  }, [search, category, level, subject, sortBy]);
 
   useEffect(() => {
     searchRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+      behavior: 'smooth',
+      block: 'start',
     });
   }, [currentPage]);
 
-
   const clearFilters = () => {
     setSearch('');
-    setCategory('All Categories');
-    setLevel('All Levels');
-    setSubject('All Subjects');
+    setCategory(ALL_FILTER_VALUE);
+    setLevel(ALL_FILTER_VALUE);
+    setSubject(ALL_FILTER_VALUE);
+    setSortBy('');
     setCurrentPage(1);
   };
 
   const activeFilters = [
-    category !== 'All Categories' && {
-      label: category,
-      onClear: () => { setCategory('All Categories'); setCurrentPage(1); },
+    category && {
+      label: getFilterLabel(categoryOptions, category),
+      onClear: () => { setCategory(ALL_FILTER_VALUE); setCurrentPage(1); },
     },
-    level !== 'All Levels' && {
-      label: level,
-      onClear: () => { setLevel('All Levels'); setCurrentPage(1); },
+    level && {
+      label: getFilterLabel(levelOptions, level),
+      onClear: () => { setLevel(ALL_FILTER_VALUE); setCurrentPage(1); },
     },
-    subject !== 'All Subjects' && {
-      label: subject,
-      onClear: () => { setSubject('All Subjects'); setCurrentPage(1); },
+    subject && {
+      label: getFilterLabel(subjectOptions, subject),
+      onClear: () => { setSubject(ALL_FILTER_VALUE); setCurrentPage(1); },
+    },
+    sortBy && {
+      label: getFilterLabel(sortOptions, sortBy),
+      onClear: () => { setSortBy(''); setCurrentPage(1); },
     },
   ].filter(Boolean);
 
   return (
     <div className="course-catalog-page">
-      {/* Hero */}
       <section className="py-5 text-center">
         <div className="container banner">
           <h1 className="mb-3 course-catalog-page-heading">{formatMessage(messages['catalog.title'])}</h1>
@@ -150,18 +187,15 @@ const CourseCatalog = () => {
         </div>
       </section>
 
-      {/* Filters & Content */}
       <section ref={searchRef} className="pb-5 ">
         <div className="container">
-          {/* Filter Bar */}
           <div className="filter-bar rounded p-4 mb-5 bg-white">
             <div className="row g-3 align-items-center">
-              {/* Search */}
               <div className="search-bar col-lg-5 position-relative">
                 <Form.Control
                   type="text"
                   value={search}
-                  onChange={(e) => { setSearch(e.target.value);}}
+                  onChange={(e) => { setSearch(e.target.value); }}
                   placeholder={formatMessage(messages['catalog.search.placeholder'])}
                   className="ps-5"
                 />
@@ -171,96 +205,88 @@ const CourseCatalog = () => {
                 />
               </div>
 
-              {/* Dropdown Filters */}
               <div className="col-lg-5 filter-container">
                 <div className="d-flex flex-wrap gap-3">
-                  <Form.Group className="flex-grow-1 filter-dropdown">
-                    <Form.Control
-                      as="select"
+                  <div className="flex-grow-1 filter-dropdown">
+                    <CustomSearchDropdown
+                      id="catalog-category-dropdown"
+                      options={categoryOptions}
                       value={category}
-                      onChange={(e) => { setCategory(e.target.value); setCurrentPage(1); }}
-                    >
-                      {categories.map(cat => (
-                        <option key={cat} value={cat}>
-                          {cat === 'All Categories' ? formatMessage(messages['catalog.filter.allCategories']) : cat}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  </Form.Group>
+                      onChange={(selected) => { setCategory(selected); setCurrentPage(1); }}
+                    />
+                  </div>
 
-                  <Form.Group className="flex-grow-1 filter-dropdown">
-                    <Form.Control
-                      as="select"
+                  <div className="flex-grow-1 filter-dropdown">
+                    <CustomSearchDropdown
+                      id="catalog-level-dropdown"
+                      options={levelOptions}
                       value={level}
-                      onChange={(e) => { setLevel(e.target.value); setCurrentPage(1); }}
-                    >
-                      {levels.map(lv => (
-                        <option key={lv} value={lv}>
-                          {lv === 'All Levels' ? formatMessage(messages['catalog.filter.allLevels']) : lv}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  </Form.Group>
+                      onChange={(selected) => { setLevel(selected); setCurrentPage(1); }}
+                    />
+                  </div>
 
-                  <Form.Group className="flex-grow-1 filter-dropdown">
-                    <Form.Control
-                      as="select"
+                  <div className="flex-grow-1 filter-dropdown">
+                    <CustomSearchDropdown
+                      id="catalog-subject-dropdown"
+                      options={subjectOptions}
                       value={subject}
-                      onChange={(e) => { setSubject(e.target.value); setCurrentPage(1); }}
-                    >
-                      {subjects.map(sub => (
-                        <option key={sub} value={sub}>
-                          {sub === 'All Subjects' ? formatMessage(messages['catalog.filter.allSubjects']) : sub}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  </Form.Group>
+                      onChange={(selected) => { setSubject(selected); setCurrentPage(1); }}
+                    />
+                  </div>
+
+                  <div className="flex-grow-1 filter-dropdown">
+                    <CustomSearchDropdown
+                      id="catalog-sort-dropdown"
+                      options={sortOptions}
+                      value={sortBy}
+                      onChange={(selected) => { setSortBy(selected); setCurrentPage(1); }}
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* View Toggle */}
               <div className="col-lg-2 d-flex justify-content-end">
                 <div className="btn-group">
-                    <Button
-                        variant={viewMode === 'grid' ? 'primary' : 'outline-primary'}
-                        onClick={() => setViewMode('grid')}
-                        title={formatMessage(messages['catalog.view.grid'])} // tooltip on hover
-                        className='border'
-                    >
+                  <Button
+                    variant={viewMode === 'grid' ? 'primary' : 'outline-primary'}
+                    onClick={() => setViewMode('grid')}
+                    title={formatMessage(messages['catalog.view.grid'])}
+                    className="border"
+                  >
                     <FontAwesomeIcon icon={faTh} />
-                    </Button>
-                    <Button
-                        variant={viewMode === 'list' ? 'primary' : 'outline-primary'}
-                        onClick={() => setViewMode('list')}
-                        title={formatMessage(messages['catalog.view.list'])} // tooltip on hover
-                        className='border'
-                    >
+                  </Button>
+                  <Button
+                    variant={viewMode === 'list' ? 'primary' : 'outline-primary'}
+                    onClick={() => setViewMode('list')}
+                    title={formatMessage(messages['catalog.view.list'])}
+                    className="border"
+                  >
                     <FontAwesomeIcon icon={faList} />
-                    </Button>
+                  </Button>
                 </div>
               </div>
             </div>
 
-            {/* Active Filters */}
             {activeFilters.length > 0 && (
               <div className="active-filter-container mt-4 pt-3 border-top d-flex flex-wrap gap-2 align-items-center">
                 <span className="text-muted small me-2">
                   {formatMessage(messages['catalog.activeFilters.label'])}
                 </span>
-                {activeFilters.map((f, idx) => (
-                  <span key={idx} className="badge bg-light text-dark border m-2">
+                {activeFilters.map((f) => (
+                  <span key={f.label} className="badge bg-light text-dark border m-2">
                     {f.label}
                     <button
-                        type="button"
-                        className="close-filter-btn p-0 border-0 bg-transparent ms-2"
-                        onClick={f.onClear}
-                        aria-label="remove filter" 
+                      type="button"
+                      className="close-filter-btn p-0 border-0 bg-transparent ms-2"
+                      onClick={f.onClear}
+                      aria-label={formatMessage(messages['catalog.clearAll.label'])}
                     >
-                        <FontAwesomeIcon icon={faTimes} size="sm" className="text-muted ml-1" />
+                      <FontAwesomeIcon icon={faTimes} size="sm" className="text-muted ml-1" />
                     </button>
                   </span>
                 ))}
                 <button
+                  type="button"
                   className="btn btn-link btn-sm text-muted ms-2 p-0"
                   onClick={clearFilters}
                 >
@@ -269,18 +295,16 @@ const CourseCatalog = () => {
               </div>
             )}
           </div>
-          
-          {/* Results count */}
+
           <p className="result-count text-muted mb-4">
             {formatMessage(messages['catalog.results.showing'], { count: totalCourses, perPage: courses.length })}
           </p>
 
-          {/* Course Grid / List or Loading */}
           {loading ? (
             <div className="d-flex justify-content-center align-items-center py-8">
               <Spinner
                 animation="border"
-                variant="primary"      
+                variant="primary"
                 screenReaderText={formatMessage(messages['catalog.loading'])}
               />
               <span className="ms-3 sr-only">{formatMessage(messages['catalog.loading'])}</span>
@@ -296,7 +320,7 @@ const CourseCatalog = () => {
             </div>
           ) : viewMode === 'grid' ? (
             <div className="row g-4">
-              {courses.map(course => (
+              {courses.map((course) => (
                 <div key={course.id} className="col-md-6 col-lg-4 d-flex">
                   <CourseCard course={course} layout="grid" />
                 </div>
@@ -304,14 +328,14 @@ const CourseCatalog = () => {
             </div>
           ) : (
             <div className="d-flex flex-column gap-4">
-              {courses.map(course => (
+              {courses.map((course) => (
                 <div key={course.id} className="mb-4">
-                    <CourseCard key={course.id} course={course} layout="list" />
+                  <CourseCard course={course} layout="list" />
                 </div>
               ))}
             </div>
           )}
-          {/* Pagination */}
+
           {totalPages > 1 && (
             <div className="d-flex justify-content-center mt-5">
               <Pagination

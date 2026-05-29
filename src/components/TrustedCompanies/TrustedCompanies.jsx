@@ -35,35 +35,35 @@ import UIUC from "../../assets/image/Trusted-company/Universities&Colleges/Unive
 
 
 const companies = [
-  { name: 'Amazon', logo: Amazon },
-  { name: 'AMD', logo: AMD },
-  { name: 'Atlassian', logo: Atlassian },
-  { name: 'BD', logo: BD },
-  { name: 'Cummins', logo: Cummins },
-  { name: 'Dispelix', logo: Dispelix },
-  { name: 'EY', logo: EY },
-  { name: 'Galiencom', logo: Galiencom },
-  { name: 'Gartner', logo: Gartner },
-  { name: 'JNCC', logo: JNCC },
-  { name: 'Microsoft', logo: Microsoft },
-  { name: 'Mphasis', logo: Mphasis },
-  { name: 'Nagarro', logo: Nagarro },
-  { name: 'NIH', logo: NIH },
-  { name: 'SLB', logo: SLB },
-  { name: 'Springer Nature', logo: SpringerNature },
-  { name: 'Thermo Fisher Scientific', logo: ThermoFisher },
-  { name: 'Wells Fargo', logo: WellsFargo },
-  { name: 'NRBC', logo: NBRC},
-  { name: 'Coat_of_Arms_of_Columbia_University', logo: Coat_of_Arms_of_Columbia_University},
-  { name: 'IIT BHU', logo: IITBHU },
-  { name: 'Indian Institute of Science', logo: IISc },
-  { name: 'IIT Bombay', logo: IITBombay },
-  { name: 'Nanyang Technological University', logo: NTU },
-  { name: 'St. Stephens College', logo: StStephens },
-  { name: 'UC San Diego', logo: UCSD },
-  { name: 'University of Cambridge', logo: Cambridge },
-  { name: 'University of Edinburgh', logo: Edinburgh },
-  { name: 'University of Illinois', logo: UIUC },
+  { nameKey: 'home.trusted.company.amazon', logo: Amazon },
+  { nameKey: 'home.trusted.company.amd', logo: AMD },
+  { nameKey: 'home.trusted.company.atlassian', logo: Atlassian },
+  { nameKey: 'home.trusted.company.bd', logo: BD },
+  { nameKey: 'home.trusted.company.cummins', logo: Cummins },
+  { nameKey: 'home.trusted.company.dispelix', logo: Dispelix },
+  { nameKey: 'home.trusted.company.ey', logo: EY },
+  { nameKey: 'home.trusted.company.galiencom', logo: Galiencom },
+  { nameKey: 'home.trusted.company.gartner', logo: Gartner },
+  { nameKey: 'home.trusted.company.jncc', logo: JNCC },
+  { nameKey: 'home.trusted.company.microsoft', logo: Microsoft },
+  { nameKey: 'home.trusted.company.mphasis', logo: Mphasis },
+  { nameKey: 'home.trusted.company.nagarro', logo: Nagarro },
+  { nameKey: 'home.trusted.company.nih', logo: NIH },
+  { nameKey: 'home.trusted.company.slb', logo: SLB },
+  { nameKey: 'home.trusted.company.springerNature', logo: SpringerNature },
+  { nameKey: 'home.trusted.company.thermoFisher', logo: ThermoFisher },
+  { nameKey: 'home.trusted.company.wellsFargo', logo: WellsFargo },
+  { nameKey: 'home.trusted.company.nbrc', logo: NBRC },
+  { nameKey: 'home.trusted.company.columbia', logo: Coat_of_Arms_of_Columbia_University },
+  { nameKey: 'home.trusted.company.iitBhu', logo: IITBHU },
+  { nameKey: 'home.trusted.company.iisc', logo: IISc },
+  { nameKey: 'home.trusted.company.iitBombay', logo: IITBombay },
+  { nameKey: 'home.trusted.company.ntu', logo: NTU },
+  { nameKey: 'home.trusted.company.stStephens', logo: StStephens },
+  { nameKey: 'home.trusted.company.ucsd', logo: UCSD },
+  { nameKey: 'home.trusted.company.cambridge', logo: Cambridge },
+  { nameKey: 'home.trusted.company.edinburgh', logo: Edinburgh },
+  { nameKey: 'home.trusted.company.uiuc', logo: UIUC },
 ];
 
 const TrustedCompanies = () => {
@@ -87,7 +87,7 @@ const TrustedCompanies = () => {
                 <div className="card text-center p-3 rounded">
                   <img
                     src={company.logo}
-                    alt={company.name}
+                    alt={formatMessage(messages[company.nameKey])}
                     className="img-fluid mx-auto"
                   />
                 </div>

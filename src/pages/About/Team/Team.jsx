@@ -149,7 +149,7 @@ const ProfileCard = ({ person }) => {
 
   const name = person.nameMsg
     ? formatMessage(messages[person.nameMsg])
-    : (person.name || 'Team Member');
+    : (person.name || formatMessage(messages['team.member.defaultName']));
 
   const role = person.roleMsg
     ? formatMessage(messages[person.roleMsg])
@@ -186,7 +186,7 @@ const AuthorityProfile = ({ person }) => {
 
   const name = person.nameMsg
     ? formatMessage(messages[person.nameMsg])
-    : (person.name || 'Team Member');
+    : (person.name || formatMessage(messages['team.member.defaultName']));
 
   const role = person.roleMsg
     ? formatMessage(messages[person.roleMsg])

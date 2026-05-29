@@ -22,6 +22,9 @@ export const fetchCatalogCourses = (params = {}) => {
   if (params.page && params.page > 1) {
     searchParams.append('page', params.page);
   }
+  if (params.sort) {
+    searchParams.append('sort', params.sort);
+  }
 
   const query = searchParams.toString();
   const url = query ? `${catalogUrl('/courses/')}?${query}` : catalogUrl('/courses/');

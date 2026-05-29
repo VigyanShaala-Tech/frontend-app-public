@@ -44,6 +44,16 @@ const messages = defineMessages({
     id: 'story.hero.conclusion',
     defaultMessage: 'What could have been the journey of a single girl who loved science, turned into a mission to change the lives of millions. Darshana and her husband Vijay co-founded VigyanShaala, meaning the School of Science.',
   },
+  'story.hero.image.alt': {
+    id: 'story.hero.image.alt',
+    defaultMessage: 'Dr. Darshana Joshi',
+    description: 'Alt text for story hero image',
+  },
+  'story.timeline.image.alt': {
+    id: 'story.timeline.image.alt',
+    defaultMessage: 'Timeline milestone {number}',
+    description: 'Alt text for timeline images',
+  },
 
   // Timeline items
   'story.timeline.0': {

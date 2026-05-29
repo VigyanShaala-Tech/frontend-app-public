@@ -34,6 +34,11 @@ const messages = defineMessages({
     id: 'team.section.teamMembers',
     defaultMessage: 'Team Members',
   },
+  'team.member.defaultName': {
+    id: 'team.member.defaultName',
+    defaultMessage: 'Team Member',
+    description: 'Fallback name when team member name is missing',
+  },
 
   // ── Subsections ───────────────────────────────────────────────────────────
   'team.subsection.sheForStemAdvisors': {

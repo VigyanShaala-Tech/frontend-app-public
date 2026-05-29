@@ -118,9 +118,11 @@ const MeetExperts = () => {
         <div className="meet-experts-carousel">
           {/* Left Arrow */}
           <button
+            type="button"
             className="meet-arrow left"
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
+            aria-label={formatMessage(messages['common.carousel.previous'])}
           >
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
@@ -162,9 +164,11 @@ const MeetExperts = () => {
 
           {/* Right Arrow */}
           <button
+            type="button"
             className="meet-arrow right"
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
+            aria-label={formatMessage(messages['common.carousel.next'])}
           >
             <FontAwesomeIcon icon={faChevronRight} />
           </button>

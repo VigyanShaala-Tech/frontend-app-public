@@ -123,10 +123,10 @@ const HeroCarousel = () => {
         ))}
       </div>
 
-      <button type="button" className="hero-nav hero-prev position-absolute top-50 start-0 translate-middle-y" onClick={prevSlide} aria-label="Previous slide">
+      <button type="button" className="hero-nav hero-prev position-absolute top-50 start-0 translate-middle-y" onClick={prevSlide} aria-label={formatMessage(messages['common.carousel.previous'])}>
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
-      <button type="button" className="hero-nav hero-next position-absolute top-50 end-0 translate-middle-y" onClick={nextSlide} aria-label="Next slide">
+      <button type="button" className="hero-nav hero-next position-absolute top-50 end-0 translate-middle-y" onClick={nextSlide} aria-label={formatMessage(messages['common.carousel.next'])}>
         <FontAwesomeIcon icon={faChevronRight} />
       </button>
 
@@ -136,7 +136,7 @@ const HeroCarousel = () => {
           <button
             key={slide.id}
             type="button"
-            aria-label={`Go to slide ${i + 1}`}
+            aria-label={formatMessage(messages['common.carousel.goToSlide'], { slideNumber: i + 1 })}
             onClick={() => setCurrentSlide(i)}
             className={`rounded-circle border-0 me-2 ${i === currentSlide ? 'active bg-primary' : 'bg-white opacity-50'}`}
             style={{ width: '12px', height: '12px' }}

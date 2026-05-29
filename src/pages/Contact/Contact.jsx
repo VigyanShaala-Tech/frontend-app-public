@@ -48,20 +48,20 @@ const Contact = () => {
 
   const validateField = (name, value) => {
     if (!value.trim()) {
-      return formatMessage(messages['contact.form.required'] || 'This field is required');
+      return formatMessage(messages['contact.form.required']);
     }
 
     if (name === 'email' && !/\S+@\S+\.\S+/.test(value)) {
-      return formatMessage(messages['contact.form.email.invalid'] || 'Please enter a valid email address');
+      return formatMessage(messages['contact.form.email.invalid']);
     }
 
     if (name === 'phone') {
       const digits = value.replace(/\D/g, '');
       if (digits.length === 0) {
-        return formatMessage(messages['contact.form.phone.required'] || 'Phone number is required');
+        return formatMessage(messages['contact.form.phone.required']);
       }
       if (digits.length < 7 || digits.length > 15) {
-        return formatMessage(messages['contact.form.phone.invalid'] || 'Please enter a valid phone number (7-15 digits)');
+        return formatMessage(messages['contact.form.phone.invalid']);
       }
     }
 

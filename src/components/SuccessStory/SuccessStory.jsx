@@ -117,7 +117,7 @@ const SuccessStory = () => {
                   width="100%"
                   height="100%"
                   src={`https://www.youtube.com/embed/${youtubeVideos[currentIndex]}?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&fs=1&cc_load_policy=0&disablekb=0`}
-                  title="Success Story"
+                  title={formatMessage(messages['home.success.video.title'])}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -126,16 +126,20 @@ const SuccessStory = () => {
 
               {/* Navigation Buttons */}
               <div className="d-flex navigation-button justify-content-center mt-3">
-                <button 
+                <button
+                  type="button"
                   className="btn btn-outline-primary rounded-circle mr-4"
                   onClick={handlePrev}
+                  aria-label={formatMessage(messages['common.carousel.previous'])}
                 >
                   <FontAwesomeIcon icon={faChevronLeft} size="lg" />
                 </button>
-                
-                <button 
+
+                <button
+                  type="button"
                   className="btn btn-outline-primary rounded-circle"
                   onClick={handleNext}
+                  aria-label={formatMessage(messages['common.carousel.next'])}
                 >
                   <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </button>
@@ -143,7 +147,10 @@ const SuccessStory = () => {
 
               {/* Video Counter */}
               <div className="text-center text-white mt-2">
-                {currentIndex + 1} / {youtubeVideos.length}
+                {formatMessage(messages['home.success.video.counter'], {
+                  current: currentIndex + 1,
+                  total: youtubeVideos.length,
+                })}
               </div>
             </div>
           </div>
