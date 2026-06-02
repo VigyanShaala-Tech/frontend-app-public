@@ -203,6 +203,16 @@ const messages = defineMessages({
     defaultMessage: 'Certificate of completion',
     description: 'Feature bullet in sidebar',
   },
+  'courseAbout.previewVideo.play': {
+    id: 'courseAbout.previewVideo.play',
+    defaultMessage: 'Play course preview video',
+    description: 'Aria label for course preview play button on enroll card',
+  },
+  'courseAbout.previewVideo.title': {
+    id: 'courseAbout.previewVideo.title',
+    defaultMessage: 'Course preview video',
+    description: 'Accessible title for course preview YouTube iframe',
+  },
 
   // Breadcrumb
   'courseAbout.breadcrumb.home': {

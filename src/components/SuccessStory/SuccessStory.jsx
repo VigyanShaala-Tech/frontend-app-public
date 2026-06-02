@@ -19,6 +19,17 @@ const SuccessStory = () => {
   ];
 
   useEffect(() => {
+    if (!isVideoOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isVideoOpen]);
+
+  useEffect(() => {
     if (!isVideoOpen) return;
 
     const handleYouTubeMessage = (event) => {
@@ -99,19 +110,22 @@ const SuccessStory = () => {
         {/* Video Modal - Design kept same as your SCSS */}
         {isVideoOpen && (
           <div className="video-open-model" onClick={closeModal}>
-            <div 
-              className="video-modal-content" 
-              onClick={e => e.stopPropagation()}
+            <div
+              className="video-modal-shell"
+              onClick={(e) => e.stopPropagation()}
             >
-              <button
-                type="button"
-                className="video-close-btn position-fixed btn btn-light rounded-circle p-3 shadow"
-                onClick={closeModal}
-                aria-label={formatMessage(messages['common.close'])}
-              >
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
+              <div className="video-modal-header">
+                <button
+                  type="button"
+                  className="video-close-btn btn btn-light rounded-circle shadow"
+                  onClick={closeModal}
+                  aria-label={formatMessage(messages['common.close'])}
+                >
+                  <FontAwesomeIcon icon={faTimes} />
+                </button>
+              </div>
 
+              <div className="video-modal-content">
               <div className="video-wrapper">
                 <iframe
                   width="100%"
@@ -125,10 +139,10 @@ const SuccessStory = () => {
               </div>
 
               {/* Navigation Buttons */}
-              <div className="d-flex navigation-button justify-content-center mt-3">
+              <div className="d-flex navigation-button justify-content-center align-items-center mt-3">
                 <button
                   type="button"
-                  className="btn btn-outline-primary rounded-circle mr-4"
+                  className="btn btn-outline-light rounded-circle navigation-button__btn"
                   onClick={handlePrev}
                   aria-label={formatMessage(messages['common.carousel.previous'])}
                 >
@@ -137,7 +151,7 @@ const SuccessStory = () => {
 
                 <button
                   type="button"
-                  className="btn btn-outline-primary rounded-circle"
+                  className="btn btn-outline-light rounded-circle navigation-button__btn"
                   onClick={handleNext}
                   aria-label={formatMessage(messages['common.carousel.next'])}
                 >
@@ -146,11 +160,12 @@ const SuccessStory = () => {
               </div>
 
               {/* Video Counter */}
-              <div className="text-center text-white mt-2">
+              <div className="text-center text-white mt-2 video-modal-counter">
                 {formatMessage(messages['home.success.video.counter'], {
                   current: currentIndex + 1,
                   total: youtubeVideos.length,
                 })}
+              </div>
               </div>
             </div>
           </div>
