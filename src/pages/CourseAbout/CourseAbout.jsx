@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Button, Spinner, Alert } from '@openedx/paragon';
 import {
@@ -10,6 +10,8 @@ import {
   faAward,
   faChevronDown,
   faHeart,
+  faPlay,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,6 +35,7 @@ import PlaceholderProfileImage from '../../assets/image/profile-placeholder.jpeg
 import { useContext } from 'react';
 import { AppContext } from '@edx/frontend-platform/react';
 
+import { getYoutubeVideoId } from '../../utils/youtube';
 import './CourseAbout.scss';
 
 const COURSE_ABOUT_TABS = [
@@ -69,11 +72,32 @@ const CourseAbout = () => {
   const [isEnrolling, setIsEnrolling] = useState(false);
   const [enrollError, setEnrollError] = useState(null);
   const [isCourseWhishlisted, setIsCourseWhishlisted] = useState(false);
+  const [isCourseVideoOpen, setIsCourseVideoOpen] = useState(false);
+
+  const coursePreviewVideoId = useMemo(
+    () => getYoutubeVideoId(course?.media?.course_video?.uri),
+    [course?.media?.course_video?.uri],
+  );
   const hasDisplayValue = (value) => {
     if (value === null || value === undefined) return false;
     if (typeof value === 'number') return value > 0;
     const normalized = String(value).trim().toLowerCase();
     return normalized !== '' && normalized !== '0' && normalized !== 'null' && normalized !== 'undefined';
+  };
+
+  useEffect(() => {
+    if (!isCourseVideoOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isCourseVideoOpen]);
+
+  const closeCourseVideo = () => {
+    setIsCourseVideoOpen(false);
   };
 
   // Fetch main course details once on mount
@@ -497,6 +521,18 @@ const CourseAbout = () => {
                       e.currentTarget.src = PlaceholderImage;
                     }}
                   />
+                  {coursePreviewVideoId && (
+                    <button
+                      type="button"
+                      className="course-video-play-btn"
+                      onClick={() => setIsCourseVideoOpen(true)}
+                      aria-label={formatMessage(messages['courseAbout.previewVideo.play'])}
+                    >
+                      <span className="course-video-play-btn__icon">
+                        <FontAwesomeIcon icon={faPlay} className="course-video-play-btn__glyph" />
+                      </span>
+                    </button>
+                  )}
                   <button
                     type="button"
                     className={`heart-btn ${isCourseWhishlisted ? 'heart-btn--active' : 'heart-btn--outline'}`}
@@ -587,6 +623,38 @@ const CourseAbout = () => {
           </div>
         </div>
       </section>
+      {isCourseVideoOpen && coursePreviewVideoId && (
+        <div className="course-video-open-model" onClick={closeCourseVideo}>
+          <div
+            className="course-video-modal-shell"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="course-video-modal-header">
+              <button
+                type="button"
+                className="course-video-close-btn btn btn-light rounded-circle shadow"
+                onClick={closeCourseVideo}
+                aria-label={formatMessage(messages['common.close'])}
+              >
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+            </div>
+            <div className="course-video-modal-content">
+              <div className="course-video-wrapper">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${coursePreviewVideoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3`}
+                  title={formatMessage(messages['courseAbout.previewVideo.title'])}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
