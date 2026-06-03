@@ -18,14 +18,6 @@ import { fetchCatalogFilters, fetchCatalogCourses, mapCatalogCourses } from '../
 
 const ALL_FILTER_VALUE = '';
 
-const LOCAL_SORT_OPTIONS = ['enrollment', 'created', 'popular'];
-
-const SORT_VALUE_MESSAGE_KEYS = {
-  enrollment: 'catalog.filter.sort.enrollment',
-  created: 'catalog.filter.sort.created',
-  popular: 'catalog.filter.sort.popular',
-};
-
 const CourseCatalog = () => {
   const { formatMessage } = useIntl();
   const allCategoriesLabel = formatMessage(messages['catalog.filter.allCategories']);
@@ -36,6 +28,7 @@ const CourseCatalog = () => {
   const [apiCategories, setApiCategories] = useState([]);
   const [apiLevels, setApiLevels] = useState([]);
   const [apiSubjects, setApiSubjects] = useState([]);
+  const [apiSortBy, setApiSortBy] = useState([]);
 
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState(ALL_FILTER_VALUE);
@@ -70,11 +63,8 @@ const CourseCatalog = () => {
 
   const sortOptions = useMemo(() => [
     { value: ALL_FILTER_VALUE, label: allSortByLabel },
-    ...LOCAL_SORT_OPTIONS.map((item) => ({
-      value: item,
-      label: formatMessage(messages[SORT_VALUE_MESSAGE_KEYS[item]]),
-    })),
-  ], [allSortByLabel, formatMessage]);
+    ...apiSortBy.map((item) => ({ value: item, label: item })),
+  ], [apiSortBy, allSortByLabel]);
 
   const getFilterLabel = (options, selectedValue) => (
     options.find((option) => option.value === selectedValue)?.label || selectedValue
@@ -90,6 +80,7 @@ const CourseCatalog = () => {
           setApiCategories(res.data.categories || []);
           setApiLevels(res.data.levels || []);
           setApiSubjects(res.data.subjects || []);
+          setApiSortBy(res.data.sortby || res.data.sort_by || []);
         }
       } catch (err) {
         console.error('Failed to load filter options:', err);
