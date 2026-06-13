@@ -698,17 +698,17 @@ const messages = defineMessages({
   },
   'home.hero.thirdtitle': {
     id: 'home.hero.thirdtitle',
-    defaultMessage: 'Creating Job Opportunities',
+    defaultMessage: 'Creating Job Opportunities in',
     description: 'Main hero title part 1 for third slide',
   },
   'home.hero.thirdhighlight': {
     id: 'home.hero.thirdhighlight',
-    defaultMessage: 'In Science and Technology',
+    defaultMessage: 'Science and Technology',
     description: 'Highlighted part of hero title for third slide',
   },
   'home.hero.thirddescription': {
     id: 'home.hero.thirddescription',
-    defaultMessage: 'We connect learners with mentorship, skills, and industry pathways to build meaningful careers across science, technology, engineering, and mathematics.',
+    defaultMessage: 'Discover the latest job opportunities in Science and Technology and apply for the ones that match your skills and interests.',
     description: 'Hero description text for third slide',
   },
   'home.hero.getStarted': {
