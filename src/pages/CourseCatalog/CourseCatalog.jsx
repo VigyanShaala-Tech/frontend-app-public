@@ -310,19 +310,15 @@ const CourseCatalog = () => {
               </Button>
             </div>
           ) : viewMode === 'grid' ? (
-            <div className="row g-4">
+            <div className="course-catalog-grid">
               {courses.map((course) => (
-                <div key={course.id} className="col-md-6 col-lg-4 d-flex">
-                  <CourseCard course={course} layout="grid" />
-                </div>
+                <CourseCard key={course.id} course={course} layout="grid" />
               ))}
             </div>
           ) : (
-            <div className="d-flex flex-column gap-4">
+            <div className="course-catalog-list">
               {courses.map((course) => (
-                <div key={course.id} className="mb-4">
-                  <CourseCard course={course} layout="list" />
-                </div>
+                <CourseCard key={course.id} course={course} layout="list" />
               ))}
             </div>
           )}

@@ -7,6 +7,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { useNavigate } from 'react-router-dom';
 import hero_1 from '../../assets/image/Home-images/hero_1.jpeg';
 import hero_2 from '../../assets/image/Home-images/hero_2.jpg';
+import hero_3 from '../../assets/image/Home-images/hero_3.jpg';
 
 import messages from '../../message/GlobalMessage.message';
 import './HeroCarousel.scss';
@@ -33,7 +34,7 @@ const slides = [
     title: messages['home.hero.thirdtitle'],
     highlight: messages['home.hero.thirdhighlight'],
     description: messages['home.hero.thirddescription'],
-    image: hero_1,
+    image: hero_3,
     layout: 'text-left',
   },
 ];
