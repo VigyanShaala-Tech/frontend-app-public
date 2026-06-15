@@ -19,6 +19,8 @@ import PlaceholderImage from '../../assets/image/placeholder-image.jpeg';
 const CourseCard = ({ course, layout = 'grid' }) => {
   const { formatMessage } = useIntl();
   const isList = layout === 'list';
+  const courseDetailUrl = `/public/courses/${course.id}`;
+  const courseImageLabel = formatMessage(messages['catalog.course.enroll']);
 
   const hasDisplayValue = (value) => {
     if (value === null || value === undefined) return false;
@@ -77,27 +79,37 @@ const CourseCard = ({ course, layout = 'grid' }) => {
 
   const renderAction = (listAction = false) => (
     <div className={`course-card-action${listAction ? ' course-card-action--list' : ''}`}>
-      <Link to={`/public/courses/${course.id}`} className={listAction ? '' : 'd-block'}>
+      <Link to={courseDetailUrl} className={listAction ? '' : 'd-block'}>
         <Button block variant="primary" className={listAction ? 'w-100' : undefined}>
-          {formatMessage(messages['catalog.course.enroll'])}
+          {courseImageLabel}
         </Button>
       </Link>
     </div>
+  );
+
+  const renderCourseImage = () => (
+    <Link
+      to={courseDetailUrl}
+      className="course-image-link"
+      aria-label={courseImageLabel}
+    >
+      <img
+        src={course.image || PlaceholderImage}
+        alt={course.title}
+        className="course-image"
+        onError={(e) => {
+          e.currentTarget.onerror = null;
+          e.currentTarget.src = PlaceholderImage;
+        }}
+      />
+    </Link>
   );
 
   if (!isList) {
     return (
       <div className="course-card grid-mode rounded h-100 w-100">
         <div className="course-image-wrapper">
-          <img
-            src={course.image || PlaceholderImage}
-            alt={course.title}
-            className="course-image"
-            onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = PlaceholderImage;
-            }}
-          />
+          {renderCourseImage()}
           {hasDisplayValue(course.category) && (
             <span className="badge position-absolute">
               {course.category}
@@ -144,15 +156,7 @@ const CourseCard = ({ course, layout = 'grid' }) => {
   return (
     <div className="course-card list-mode d-flex rounded w-100">
       <div className="course-image-wrapper">
-        <img
-          src={course.image || PlaceholderImage}
-          alt={course.title}
-          className="course-image"
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = PlaceholderImage;
-          }}
-        />
+        {renderCourseImage()}
         {hasDisplayValue(course.category) && (
           <span className="badge position-absolute">
             {course.category}
