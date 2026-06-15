@@ -21,8 +21,44 @@ $enable-dark-mode: false !default;
 @import "~@openedx/paragon/dist/light.min.css";
 
 $primary: #69AB4A;
+$custom-scrollbar-thumb: #e3d8d1;
+$custom-scrollbar-track: #ffffff;
+
 :root {
   --pgn-color-primary-base: #{$primary};
+}
+
+// Page-level scrollbar (html/body; class added in index.jsx)
+html,
+body,
+html.custom-page-scroll,
+body.custom-page-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: $custom-scrollbar-thumb $custom-scrollbar-track;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+html.custom-page-scroll::-webkit-scrollbar,
+body.custom-page-scroll::-webkit-scrollbar {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+html.custom-page-scroll::-webkit-scrollbar-track,
+body.custom-page-scroll::-webkit-scrollbar-track {
+  background: $custom-scrollbar-track;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+html.custom-page-scroll::-webkit-scrollbar-thumb,
+body.custom-page-scroll::-webkit-scrollbar-thumb {
+  background-color: $custom-scrollbar-thumb;
+  border-radius: 999px;
+  border: 2px solid $custom-scrollbar-track;
 }
 
 .container,
