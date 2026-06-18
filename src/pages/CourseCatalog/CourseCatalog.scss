@@ -254,3 +254,15 @@
     gap: 0 !important;
   }
 }
+
+@media (max-width: 767px) {
+  .course-catalog-page {
+    .course-catalog-grid > .course-card.grid-mode,
+    .course-catalog-list > .course-card {
+      width: 100%;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
