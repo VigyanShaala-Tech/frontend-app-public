@@ -97,7 +97,12 @@ const Testimonials = () => {
 
         {/* SLIDER */}
         <div className="testimonial-slider position-relative">
-          <button className="nav-arrow nav-arrow-left" onClick={prev}>
+          <button
+            type="button"
+            className="nav-arrow nav-arrow-left"
+            onClick={prev}
+            aria-label={formatMessage(messages['common.carousel.previous'])}
+          >
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
 
@@ -143,7 +148,12 @@ const Testimonials = () => {
             </div>
           </div>
 
-          <button className="nav-arrow nav-arrow-right" onClick={next}>
+          <button
+            type="button"
+            className="nav-arrow nav-arrow-right"
+            onClick={next}
+            aria-label={formatMessage(messages['common.carousel.next'])}
+          >
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
 
@@ -152,8 +162,10 @@ const Testimonials = () => {
             {testimonials.map((_, i) => (
               <button
                 key={i}
+                type="button"
                 onClick={() => setCurrentIndex(i)}
                 className={i === currentIndex ? 'active bg-primary' : ''}
+                aria-label={formatMessage(messages['common.carousel.goToSlide'], { slideNumber: i + 1 })}
               />
             ))}
           </div>

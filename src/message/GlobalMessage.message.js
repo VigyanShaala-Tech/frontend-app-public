@@ -31,6 +31,26 @@ const messages = defineMessages({
     defaultMessage: 'All Subjects',
     description: 'Default option in subject dropdown',
   },
+  'catalog.filter.sortBy': {
+    id: 'catalog.filter.sortBy',
+    defaultMessage: 'Sort by',
+    description: 'Placeholder for sort dropdown',
+  },
+  'catalog.filter.sort.enrollment': {
+    id: 'catalog.filter.sort.enrollment',
+    defaultMessage: 'Enrollment',
+    description: 'Sort option by enrollment count',
+  },
+  'catalog.filter.sort.created': {
+    id: 'catalog.filter.sort.created',
+    defaultMessage: 'Created date',
+    description: 'Sort option by created date',
+  },
+  'catalog.filter.sort.popular': {
+    id: 'catalog.filter.sort.popular',
+    defaultMessage: 'Popular',
+    description: 'Sort option by popularity',
+  },
   'catalog.activeFilters.label': {
     id: 'catalog.activeFilters.label',
     defaultMessage: 'Active filters:',
@@ -183,6 +203,16 @@ const messages = defineMessages({
     defaultMessage: 'Certificate of completion',
     description: 'Feature bullet in sidebar',
   },
+  'courseAbout.previewVideo.play': {
+    id: 'courseAbout.previewVideo.play',
+    defaultMessage: 'Play course preview video',
+    description: 'Aria label for course preview play button on enroll card',
+  },
+  'courseAbout.previewVideo.title': {
+    id: 'courseAbout.previewVideo.title',
+    defaultMessage: 'Course preview video',
+    description: 'Accessible title for course preview YouTube iframe',
+  },
 
   // Breadcrumb
   'courseAbout.breadcrumb.home': {
@@ -224,6 +254,16 @@ const messages = defineMessages({
     id: 'courseAbout.enrollment.enrollNow',
     defaultMessage: 'Enroll Now',
     description: 'Enroll button label',
+  },
+  'courseAbout.wishlist.add': {
+    id: 'courseAbout.wishlist.add',
+    defaultMessage: 'Add to wishlist',
+    description: 'Aria label for add to wishlist button',
+  },
+  'courseAbout.wishlist.remove': {
+    id: 'courseAbout.wishlist.remove',
+    defaultMessage: 'Remove from wishlist',
+    description: 'Aria label for remove from wishlist button',
   },
 
   //--------------------About-us page --------------------------------------------
@@ -656,6 +696,21 @@ const messages = defineMessages({
     defaultMessage: 'Access world-class education from renowned instructors and gain practical knowledge that sets you apart.',
     description: 'Hero description text',
   },
+  'home.hero.thirdtitle': {
+    id: 'home.hero.thirdtitle',
+    defaultMessage: 'Creating Job Opportunities in',
+    description: 'Main hero title part 1 for third slide',
+  },
+  'home.hero.thirdhighlight': {
+    id: 'home.hero.thirdhighlight',
+    defaultMessage: 'Science and Technology',
+    description: 'Highlighted part of hero title for third slide',
+  },
+  'home.hero.thirddescription': {
+    id: 'home.hero.thirddescription',
+    defaultMessage: 'Discover the latest job opportunities in Science and Technology and apply for the ones that match your skills and interests.',
+    description: 'Hero description text for third slide',
+  },
   'home.hero.getStarted': {
     id: 'home.hero.getStarted',
     defaultMessage: 'Get Started',
@@ -996,6 +1051,87 @@ const messages = defineMessages({
     defaultMessage: 'Full Stack Developer at TCS',
     description: 'Role/position of person in testimonial 6',
   },
+
+  'common.carousel.previous': {
+    id: 'common.carousel.previous',
+    defaultMessage: 'Previous',
+    description: 'Accessible label for previous carousel control',
+  },
+  'common.carousel.next': {
+    id: 'common.carousel.next',
+    defaultMessage: 'Next',
+    description: 'Accessible label for next carousel control',
+  },
+  'common.carousel.goToSlide': {
+    id: 'common.carousel.goToSlide',
+    defaultMessage: 'Go to slide {slideNumber}',
+    description: 'Accessible label for carousel slide indicator',
+  },
+  'common.error.loadData': {
+    id: 'common.error.loadData',
+    defaultMessage: 'Unable to load data. Please try again later.',
+    description: 'Generic error when data fetch fails',
+  },
+  'about.whoWeAre.image.alt': {
+    id: 'about.whoWeAre.image.alt',
+    defaultMessage: 'Our team collaborating',
+    description: 'Alt text for who we are section image',
+  },
+  'home.community.membersBadge': {
+    id: 'home.community.membersBadge',
+    defaultMessage: '25,000+ members',
+    description: 'Member count badge in community section',
+  },
+  'home.community.profile1.name': { id: 'home.community.profile1.name', defaultMessage: 'Aarav Patel', description: 'Community profile 1 name' },
+  'home.community.profile1.role': { id: 'home.community.profile1.role', defaultMessage: 'Data Analyst', description: 'Community profile 1 role' },
+  'home.community.profile2.name': { id: 'home.community.profile2.name', defaultMessage: 'Diya Sharma', description: 'Community profile 2 name' },
+  'home.community.profile2.role': { id: 'home.community.profile2.role', defaultMessage: 'Research Mentor', description: 'Community profile 2 role' },
+  'home.community.profile3.name': { id: 'home.community.profile3.name', defaultMessage: 'Ishaan Kumar', description: 'Community profile 3 name' },
+  'home.community.profile3.role': { id: 'home.community.profile3.role', defaultMessage: 'ML Engineer', description: 'Community profile 3 role' },
+  'home.community.profile4.name': { id: 'home.community.profile4.name', defaultMessage: 'Ananya Reddy', description: 'Community profile 4 name' },
+  'home.community.profile4.role': { id: 'home.community.profile4.role', defaultMessage: 'Biotech Researcher', description: 'Community profile 4 role' },
+  'home.community.profile5.name': { id: 'home.community.profile5.name', defaultMessage: 'Vivaan Singh', description: 'Community profile 5 name' },
+  'home.community.profile5.role': { id: 'home.community.profile5.role', defaultMessage: 'Data Scientist', description: 'Community profile 5 role' },
+  'home.community.profile6.name': { id: 'home.community.profile6.name', defaultMessage: 'Kavya Nair', description: 'Community profile 6 name' },
+  'home.community.profile6.role': { id: 'home.community.profile6.role', defaultMessage: 'AI Researcher', description: 'Community profile 6 role' },
+  'home.community.profile7.name': { id: 'home.community.profile7.name', defaultMessage: 'Arjun Mehta', description: 'Community profile 7 name' },
+  'home.community.profile7.role': { id: 'home.community.profile7.role', defaultMessage: 'Product Manager', description: 'Community profile 7 role' },
+  'home.community.profile8.name': { id: 'home.community.profile8.name', defaultMessage: 'Priya Desai', description: 'Community profile 8 name' },
+  'home.community.profile8.role': { id: 'home.community.profile8.role', defaultMessage: 'UX Designer', description: 'Community profile 8 role' },
+  'home.success.video.counter': {
+    id: 'home.success.video.counter',
+    defaultMessage: '{current} / {total}',
+    description: 'Video position counter in success story modal',
+  },
+  'home.trusted.company.amazon': { id: 'home.trusted.company.amazon', defaultMessage: 'Amazon', description: 'Trusted company logo alt' },
+  'home.trusted.company.amd': { id: 'home.trusted.company.amd', defaultMessage: 'AMD', description: 'Trusted company logo alt' },
+  'home.trusted.company.atlassian': { id: 'home.trusted.company.atlassian', defaultMessage: 'Atlassian', description: 'Trusted company logo alt' },
+  'home.trusted.company.bd': { id: 'home.trusted.company.bd', defaultMessage: 'BD', description: 'Trusted company logo alt' },
+  'home.trusted.company.cummins': { id: 'home.trusted.company.cummins', defaultMessage: 'Cummins', description: 'Trusted company logo alt' },
+  'home.trusted.company.dispelix': { id: 'home.trusted.company.dispelix', defaultMessage: 'Dispelix', description: 'Trusted company logo alt' },
+  'home.trusted.company.ey': { id: 'home.trusted.company.ey', defaultMessage: 'EY', description: 'Trusted company logo alt' },
+  'home.trusted.company.galiencom': { id: 'home.trusted.company.galiencom', defaultMessage: 'Galiencom', description: 'Trusted company logo alt' },
+  'home.trusted.company.gartner': { id: 'home.trusted.company.gartner', defaultMessage: 'Gartner', description: 'Trusted company logo alt' },
+  'home.trusted.company.jncc': { id: 'home.trusted.company.jncc', defaultMessage: 'JNCC', description: 'Trusted company logo alt' },
+  'home.trusted.company.microsoft': { id: 'home.trusted.company.microsoft', defaultMessage: 'Microsoft', description: 'Trusted company logo alt' },
+  'home.trusted.company.mphasis': { id: 'home.trusted.company.mphasis', defaultMessage: 'Mphasis', description: 'Trusted company logo alt' },
+  'home.trusted.company.nagarro': { id: 'home.trusted.company.nagarro', defaultMessage: 'Nagarro', description: 'Trusted company logo alt' },
+  'home.trusted.company.nih': { id: 'home.trusted.company.nih', defaultMessage: 'NIH', description: 'Trusted company logo alt' },
+  'home.trusted.company.slb': { id: 'home.trusted.company.slb', defaultMessage: 'SLB', description: 'Trusted company logo alt' },
+  'home.trusted.company.springerNature': { id: 'home.trusted.company.springerNature', defaultMessage: 'Springer Nature', description: 'Trusted company logo alt' },
+  'home.trusted.company.thermoFisher': { id: 'home.trusted.company.thermoFisher', defaultMessage: 'Thermo Fisher Scientific', description: 'Trusted company logo alt' },
+  'home.trusted.company.wellsFargo': { id: 'home.trusted.company.wellsFargo', defaultMessage: 'Wells Fargo', description: 'Trusted company logo alt' },
+  'home.trusted.company.nbrc': { id: 'home.trusted.company.nbrc', defaultMessage: 'NRBC', description: 'Trusted company logo alt' },
+  'home.trusted.company.columbia': { id: 'home.trusted.company.columbia', defaultMessage: 'Columbia University', description: 'Trusted company logo alt' },
+  'home.trusted.company.iitBhu': { id: 'home.trusted.company.iitBhu', defaultMessage: 'IIT BHU', description: 'Trusted company logo alt' },
+  'home.trusted.company.iisc': { id: 'home.trusted.company.iisc', defaultMessage: 'Indian Institute of Science', description: 'Trusted company logo alt' },
+  'home.trusted.company.iitBombay': { id: 'home.trusted.company.iitBombay', defaultMessage: 'IIT Bombay', description: 'Trusted company logo alt' },
+  'home.trusted.company.ntu': { id: 'home.trusted.company.ntu', defaultMessage: 'Nanyang Technological University', description: 'Trusted company logo alt' },
+  'home.trusted.company.stStephens': { id: 'home.trusted.company.stStephens', defaultMessage: 'St. Stephens College', description: 'Trusted company logo alt' },
+  'home.trusted.company.ucsd': { id: 'home.trusted.company.ucsd', defaultMessage: 'UC San Diego', description: 'Trusted company logo alt' },
+  'home.trusted.company.cambridge': { id: 'home.trusted.company.cambridge', defaultMessage: 'University of Cambridge', description: 'Trusted company logo alt' },
+  'home.trusted.company.edinburgh': { id: 'home.trusted.company.edinburgh', defaultMessage: 'University of Edinburgh', description: 'Trusted company logo alt' },
+  'home.trusted.company.uiuc': { id: 'home.trusted.company.uiuc', defaultMessage: 'University of Illinois', description: 'Trusted company logo alt' },
 });
 
 export default messages;

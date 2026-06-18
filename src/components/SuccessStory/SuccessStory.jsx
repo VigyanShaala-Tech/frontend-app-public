@@ -19,6 +19,17 @@ const SuccessStory = () => {
   ];
 
   useEffect(() => {
+    if (!isVideoOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isVideoOpen]);
+
+  useEffect(() => {
     if (!isVideoOpen) return;
 
     const handleYouTubeMessage = (event) => {
@@ -99,25 +110,28 @@ const SuccessStory = () => {
         {/* Video Modal - Design kept same as your SCSS */}
         {isVideoOpen && (
           <div className="video-open-model" onClick={closeModal}>
-            <div 
-              className="video-modal-content" 
-              onClick={e => e.stopPropagation()}
+            <div
+              className="video-modal-shell"
+              onClick={(e) => e.stopPropagation()}
             >
-              <button
-                type="button"
-                className="video-close-btn position-fixed btn btn-light rounded-circle p-3 shadow"
-                onClick={closeModal}
-                aria-label={formatMessage(messages['common.close'])}
-              >
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
+              <div className="video-modal-header">
+                <button
+                  type="button"
+                  className="video-close-btn btn btn-light rounded-circle shadow"
+                  onClick={closeModal}
+                  aria-label={formatMessage(messages['common.close'])}
+                >
+                  <FontAwesomeIcon icon={faTimes} />
+                </button>
+              </div>
 
+              <div className="video-modal-content">
               <div className="video-wrapper">
                 <iframe
                   width="100%"
                   height="100%"
                   src={`https://www.youtube.com/embed/${youtubeVideos[currentIndex]}?autoplay=1&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&fs=1&cc_load_policy=0&disablekb=0`}
-                  title="Success Story"
+                  title={formatMessage(messages['home.success.video.title'])}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -125,25 +139,33 @@ const SuccessStory = () => {
               </div>
 
               {/* Navigation Buttons */}
-              <div className="d-flex navigation-button justify-content-center mt-3">
-                <button 
-                  className="btn btn-outline-primary rounded-circle mr-4"
+              <div className="d-flex navigation-button justify-content-center align-items-center mt-3">
+                <button
+                  type="button"
+                  className="btn btn-outline-light rounded-circle navigation-button__btn"
                   onClick={handlePrev}
+                  aria-label={formatMessage(messages['common.carousel.previous'])}
                 >
                   <FontAwesomeIcon icon={faChevronLeft} size="lg" />
                 </button>
-                
-                <button 
-                  className="btn btn-outline-primary rounded-circle"
+
+                <button
+                  type="button"
+                  className="btn btn-outline-light rounded-circle navigation-button__btn"
                   onClick={handleNext}
+                  aria-label={formatMessage(messages['common.carousel.next'])}
                 >
                   <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </button>
               </div>
 
               {/* Video Counter */}
-              <div className="text-center text-white mt-2">
-                {currentIndex + 1} / {youtubeVideos.length}
+              <div className="text-center text-white mt-2 video-modal-counter">
+                {formatMessage(messages['home.success.video.counter'], {
+                  current: currentIndex + 1,
+                  total: youtubeVideos.length,
+                })}
+              </div>
               </div>
             </div>
           </div>

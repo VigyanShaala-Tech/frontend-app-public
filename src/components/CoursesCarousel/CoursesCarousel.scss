@@ -10,10 +10,11 @@
   h2 {
     font-weight: 700;
     line-height: 1.3;
+    font-size: 3rem;
   }
 
   .lead {
-    font-size: 1.250rem;
+    font-size: 1.250rem !important;
     max-width: 576px;
     margin: 0 auto;
   }
@@ -53,11 +54,17 @@
     padding: 0 1px;        /* tiny padding to prevent edge clipping */
     scroll-padding-left: 1rem;   /* nicer scroll start position */
     scroll-padding-right: 1rem;
+    align-items: stretch;
   }
 
   .course-card-wrapper {
     flex: 0 0 auto;        /* important: prevent growing/shrinking unexpectedly */
     width: 365px;          /* desktop base width */
+    display: flex;
+
+    .course-card.grid-mode {
+      width: 100%;
+    }
   }
 
   .scrollbar-hide {
@@ -106,9 +113,17 @@
 
   /* Mobile — show 1 card */
   @media (max-width: 576px) {
+    .course-carousel-header {
+      font-size: 1.875rem !important; // 30px
+    }
+
+    .lead {
+      font-size: 1.125rem !important; // 18px
+    }
+
     .course-card-wrapper {
       width: 100% !important;
-      max-width: 380px;
+      max-width: 450px;
       margin: 0 auto;
     }
 

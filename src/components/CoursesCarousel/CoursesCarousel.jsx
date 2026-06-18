@@ -9,10 +9,7 @@ import {
 import CourseCard from '../CourseCard/CourseCard';
 import messages from '../../message/GlobalMessage.message';
 import { useNavigate } from 'react-router-dom';
-import { getConfig } from '@edx/frontend-platform';
-import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
-
-
+import { fetchCatalogCourses, mapCatalogCourses } from '../../api';
 
 import './CoursesCarousel.scss';
 
@@ -46,25 +43,10 @@ const CoursesCarousel = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await getAuthenticatedHttpClient().get(
-          `${getConfig().LMS_BASE_URL}/api/v1/catalog/courses/`
-        );
+        const response = await fetchCatalogCourses();
 
         if (response.status === 200 && response.data?.results) {
-          const mappedCourses = response.data.results.map((item) => ({
-            id: item.id || item.course_id,
-            title: item.name,
-            description: item.short_description,
-            category: item.category,
-            level: item.level,
-            duration: item.effort,
-            rating: item.rating,
-            reviews: item.no_of_reviews,
-            instructor: item.instructor_name,
-            image: item.media?.image?.large,
-          }));
-
-          setCourses(mappedCourses);
+          setCourses(mapCatalogCourses(response.data.results));
         } 
       } catch (err) {
         console.error('Courses fetch failed:', err);
@@ -109,7 +91,7 @@ const CoursesCarousel = () => {
             {courses.map((course) => (
               <div
                 key={course.id}
-                className="flex-shrink-0 mr-4 py-3 course-card-wrapper"
+                className="flex-shrink-0 mr-4 py-3 course-card-wrapper d-flex"
               >
                 <CourseCard course={course} layout="grid" />
               </div>
@@ -120,17 +102,21 @@ const CoursesCarousel = () => {
         {/* Navigation Arrows */}
         <div className='navigation-arrow-container'>
             <button
+                type="button"
                 className="carousel-arrow left btn btn-primary rounded-circle d-flex align-items-center justify-content-center"
                 onClick={() => scroll('left')}
                 disabled={!canScrollLeft}
+                aria-label={formatMessage(messages['common.carousel.previous'])}
             >
                 <FontAwesomeIcon icon={faChevronLeft} className="text-white" />
             </button>
 
             <button
+                type="button"
                 className="carousel-arrow right btn btn-primary rounded-circle  d-flex align-items-center justify-content-center"
                 onClick={() => scroll('right')}
                 disabled={!canScrollRight}
+                aria-label={formatMessage(messages['common.carousel.next'])}
             >
                 <FontAwesomeIcon icon={faChevronRight} className="text-white" />
             </button>
