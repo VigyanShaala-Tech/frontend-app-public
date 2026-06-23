@@ -833,89 +833,89 @@ const messages = defineMessages({
     // Meet Our Expert Instructors - individual experts
   'home.experts.expert1.name': {
     id: 'home.experts.expert1.name',
-    defaultMessage: 'Dr. Priya Sharma',
+    defaultMessage: 'Prachi Mittal',
     description: 'Name of expert 1',
   },
   'home.experts.expert1.subject': {
     id: 'home.experts.expert1.subject',
-    defaultMessage: 'Python & Data Science',
+    defaultMessage: 'Vehicle Connectivity Expert at Lead Corporation, Germany',
     description: 'Subject taught by expert 1',
   },
 
   'home.experts.expert2.name': {
     id: 'home.experts.expert2.name',
-    defaultMessage: 'Prof. Rajesh Kumar',
+    defaultMessage: 'Dr. Sesha Manuguri',
     description: 'Name of expert 2',
   },
   'home.experts.expert2.subject': {
     id: 'home.experts.expert2.subject',
-    defaultMessage: 'Machine Learning',
+    defaultMessage: 'Manufacturing Engineer at Dispelix Oy, Finland, Kalpana Mentor',
     description: 'Subject taught by expert 2',
   },
 
   'home.experts.expert3.name': {
     id: 'home.experts.expert3.name',
-    defaultMessage: 'Dr. Ananya Desai',
+    defaultMessage: 'Dr. Nikita Hari',
     description: 'Name of expert 3',
   },
   'home.experts.expert3.subject': {
     id: 'home.experts.expert3.subject',
-    defaultMessage: 'Business Strategy',
+    defaultMessage: 'Innovation and Learning Expert Lead at Dyson Institute of Engineering & Technology',
     description: 'Subject taught by expert 3',
   },
 
   'home.experts.expert4.name': {
     id: 'home.experts.expert4.name',
-    defaultMessage: 'Vikram Mehta',
+    defaultMessage: 'Dr. Shailendra Fuloria',
     description: 'Name of expert 4',
   },
   'home.experts.expert4.subject': {
     id: 'home.experts.expert4.subject',
-    defaultMessage: 'UI/UX Design',
+    defaultMessage: 'Managing Director – Nagarro',
     description: 'Subject taught by expert 4',
   },
 
   'home.experts.expert5.name': {
     id: 'home.experts.expert5.name',
-    defaultMessage: 'Dr. Kavita Reddy',
+    defaultMessage: 'Raj Ramanatha',
     description: 'Name of expert 5',
   },
   'home.experts.expert5.subject': {
     id: 'home.experts.expert5.subject',
-    defaultMessage: 'Finance & Analytics',
+    defaultMessage: 'Senior Program (and PMO) Manager',
     description: 'Subject taught by expert 5',
   },
 
   'home.experts.expert6.name': {
     id: 'home.experts.expert6.name',
-    defaultMessage: 'Arjun Nair',
+    defaultMessage: 'Pratha Jhawar',
     description: 'Name of expert 6',
   },
   'home.experts.expert6.subject': {
     id: 'home.experts.expert6.subject',
-    defaultMessage: 'Digital Marketing',
+    defaultMessage: 'Former Deputy Programme Manager, Renewable Energy, Centre for Science and Environment (CSE)',
     description: 'Subject taught by expert 6',
   },
 
   'home.experts.expert7.name': {
     id: 'home.experts.expert7.name',
-    defaultMessage: 'Sneha Gupta',
+    defaultMessage: 'Kavita Kaushik',
     description: 'Name of expert 7',
   },
   'home.experts.expert7.subject': {
     id: 'home.experts.expert7.subject',
-    defaultMessage: 'Content Writing',
+    defaultMessage: 'Director, Head of Quality and Six Sigma at Cummins, India',
     description: 'Subject taught by expert 7',
   },
 
   'home.experts.expert8.name': {
     id: 'home.experts.expert8.name',
-    defaultMessage: 'Rohan Patel',
+    defaultMessage: 'Dr. Geetanjali Sethi',
     description: 'Name of expert 8',
   },
   'home.experts.expert8.subject': {
     id: 'home.experts.expert8.subject',
-    defaultMessage: 'Web Development',
+    defaultMessage: 'St. Stephan’s, DU',
     description: 'Subject taught by expert 8',
   },
 
