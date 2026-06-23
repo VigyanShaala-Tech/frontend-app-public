@@ -19,6 +19,7 @@ import CourseAbout from "./pages/CourseAbout/CourseAbout";
 import Contact from './pages/Contact/Contact';
 import Terms from './pages/Terms/Terms';
 import Privacy from './pages/Privacy/Privacy';
+import FAQ from './pages/FAQ/FAQ';
 import OurStory from './pages/About/OurStory/OurStory'
 import Team from './pages/About/Team/Team';
 import Supporter from './pages/About/Supporters/Supporters';
@@ -53,6 +54,7 @@ function Layout() {
           <Route path="/public/contact" element={<PageTransition><Contact /></PageTransition>} />
           <Route path="/public/terms" element={<PageTransition><Terms /></PageTransition>} />
           <Route path="/public/privacy" element={<PageTransition><Privacy /></PageTransition>} />
+          <Route path="/public/faq" element={<PageTransition><FAQ /></PageTransition>} />
         </Routes>
       </AnimatePresence>
 
