@@ -2,68 +2,76 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 import messages from '../../message/GlobalMessage.message';
 import './MeetExperts.scss';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { Link } from 'react-router-dom';
+
+import prachiMittalImg from '../../assets/image/Our Expert/Prachi Mittal.jpg';
+import seshaManuguriImg from '../../assets/image/Our Expert/Dr. Sesha Manuguri-.jpg';
+import nikitaHariImg from '../../assets/image/Our Expert/Dr. Nikita Hari.jpg';
+import shailendraFuloriaImg from '../../assets/image/Our Expert/Dr. Shailendra Fuloria.png';
+import rajRamanathaImg from '../../assets/image/Our Expert/Raj Ramanatha.jpg';
+import prathaJhawarImg from '../../assets/image/Our Expert/Pratha Jhawar.png';
+import kavitaKaushikImg from '../../assets/image/Our Expert/Kavita Kaushik.jpg';
+import geetanjaliSethiImg from '../../assets/image/Our Expert/Dr. Geetanjali Sethi.jpg';
 
 const experts = [
   {
     id: 1,
     nameKey: 'home.experts.expert1.name',
     subjectKey: 'home.experts.expert1.subject',
-    image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=500&fit=crop',
-    linkedin: '/linkedin/expert1',
+    image: prachiMittalImg,
+    linkedin: 'https://www.linkedin.com/in/prachmatic/',
   },
   {
     id: 2,
     nameKey: 'home.experts.expert2.name',
     subjectKey: 'home.experts.expert2.subject',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop',
-    linkedin: '/linkedin/expert1',
+    image: seshaManuguriImg,
+    linkedin: 'https://www.linkedin.com/in/sesha-manuguri/',
   },
   {
     id: 3,
     nameKey: 'home.experts.expert3.name',
     subjectKey: 'home.experts.expert3.subject',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=500&fit=crop',
-    linkedin: '/linkedin/expert1',
+    image: nikitaHariImg,
+    linkedin: 'https://www.linkedin.com/in/nikitahari/',
   },
   {
     id: 4,
     nameKey: 'home.experts.expert4.name',
     subjectKey: 'home.experts.expert4.subject',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop',
-    linkedin: '/linkedin/expert1',
+    image: shailendraFuloriaImg,
+    linkedin: 'https://www.linkedin.com/in/sfuloria/',
   },
   {
     id: 5,
     nameKey: 'home.experts.expert5.name',
     subjectKey: 'home.experts.expert5.subject',
-    image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=500&fit=crop',
-    linkedin: '/linkedin/expert1',
+    image: rajRamanathaImg,
+    linkedin: 'https://www.linkedin.com/in/rajramanatha/',
   },
   {
     id: 6,
     nameKey: 'home.experts.expert6.name',
     subjectKey: 'home.experts.expert6.subject',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop',
-    linkedin: '/linkedin/expert1',
+    image: prathaJhawarImg,
+    linkedin: 'https://www.linkedin.com/in/pratha-jhawar/',
   },
   {
     id: 7,
     nameKey: 'home.experts.expert7.name',
     subjectKey: 'home.experts.expert7.subject',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop',
-    linkedin: '/linkedin/expert1',
+    image: kavitaKaushikImg,
+    linkedin: 'https://www.linkedin.com/in/kavita-kaushik-53a663a/',
   },
   {
     id: 8,
     nameKey: 'home.experts.expert8.name',
     subjectKey: 'home.experts.expert8.subject',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=500&fit=crop',
-    linkedin: '/linkedin/expert1',
+    image: geetanjaliSethiImg,
+    linkedin: 'https://www.linkedin.com/in/geetanjali-sethi-a7b201aa/',
   },
 ];
 
@@ -149,14 +157,14 @@ const MeetExperts = () => {
                   <p className="text-muted small mb-0 expert-subject">
                     {formatMessage(messages[expert.subjectKey])}
                   </p>
-                  <Link
-                    to={expert.linkedin}
+                  <a
+                    href={expert.linkedin}
                     className="expert-linkedin text-decoration-none"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <FontAwesomeIcon icon={faLinkedin} />
-                  </Link>
+                  </a>
                 </div>
               </div>
             ))}
