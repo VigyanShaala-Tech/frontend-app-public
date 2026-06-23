@@ -13,7 +13,7 @@
     color: #6c757d;
   }
   .terms-container{
-    padding: 7.5rem 13.75rem !important;
+    padding: 2rem 13.75rem !important;
     .terms-content{
       padding: 3rem !important;
 
@@ -26,6 +26,7 @@
       a {
         overflow-wrap: anywhere;
         word-break: break-word;
+        color: var(--pgn-color-primary-base);
       }
 
       img,

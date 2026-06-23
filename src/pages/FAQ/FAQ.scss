@@ -1,0 +1,128 @@
+.faq-page {
+  .page-mapped {
+    font-size: 14px;
+  }
+
+  .faq-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+  }
+
+  .faq-subheading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #6c757d;
+  }
+
+  .faq-intro {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+
+  .faq-container {
+    padding: 2rem 13.75rem !important;
+
+    .faq-content {
+      padding: 3rem !important;
+
+      * {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      a {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      img,
+      iframe,
+      video,
+      table {
+        max-width: 100%;
+      }
+
+      pre,
+      code {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+    }
+  }
+
+  .faq-section {
+    margin-bottom: 2.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .faq-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #2b2c2c;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e5e7eb;
+
+    .collapsible-trigger {
+      padding: 1rem 0;
+      font-weight: 600;
+      text-decoration: none;
+      color: #000000;
+    }
+
+    .collapsible-body {
+      padding-bottom: 1rem;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .faq-answer {
+    color: #495057;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .additional-info {
+    font-style: italic;
+    color: var(--pgn-color-primary-base);
+  }
+
+  @media (max-width: 1024px) {
+    .faq-container {
+      padding: 4rem 4rem !important;
+
+      .faq-content {
+        padding: 2rem !important;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .faq-heading {
+      font-size: 1.875rem !important; // 30px
+    }
+
+    .faq-subheading {
+      font-size: 1rem !important; // 16px
+    }
+
+    .faq-container {
+      padding: 2rem 1rem !important;
+
+      .faq-content {
+        padding: 1rem !important;
+      }
+    }
+  }
+}
