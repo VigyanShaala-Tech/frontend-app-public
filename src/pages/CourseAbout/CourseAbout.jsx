@@ -234,8 +234,13 @@ const CourseAbout = () => {
       const response = await enrollInCourse(courseId);
 
       if (response.status === 200) {
-        // Redirect to dashboard
-        window.location.href = `${baseUrl}/dashboard`;
+        const { redirect_url: redirectUrl } = response.data || {};
+        if (redirectUrl) {
+          // e.g. the course is gated behind a cohort registration form.
+          window.location.href = /^https?:\/\//i.test(redirectUrl) ? redirectUrl : `${baseUrl}${redirectUrl}`;
+        } else {
+          window.location.href = `${baseUrl}/dashboard`;
+        }
       }
     } catch (err) {
       if (err.response?.status === 403 || err.response?.status === 401) {
@@ -246,9 +251,7 @@ const CourseAbout = () => {
         window.location.href = `${loginBaseUrl}?next=${nextPath}`;
       } else {
         // Other errors
-        setEnrollError(
-          err.response?.data?.message
-        );
+        setEnrollError(err.response?.data?.error);
       }
     } finally {
       setIsEnrolling(false);
