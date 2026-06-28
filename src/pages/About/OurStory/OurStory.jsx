@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 import "./OurStory.scss";
 import messages from './messages';
 
-import banner from '../../../assets/image/Story-images/2021-our-story-300x200.jpg'
-import timeline_1 from "../../../assets/image/Story-images/timeline-1-300x200.jpg"
-import timeline_2 from '../../../assets/image/Story-images/timeline-2-300x169.jpg';
-import timeline_3 from '../../../assets/image/Story-images/timeline-3-300x201.jpg';
-import timeline_4 from '../../../assets/image/Story-images/timeline-4-300x200.jpg';
-import timeline_5 from '../../../assets/image/Story-images/2020-our-story-300x200.jpg';
-import timeline_6 from '../../../assets/image/Story-images/2021-our-story-300x200.jpg';
+import banner from '../../../assets/image/Story-images/our-story-1.png'
+import timeline_1 from "../../../assets/image/Story-images/our-story-2.png"
+import timeline_2 from '../../../assets/image/Story-images/our-story-3.png';
+import timeline_3 from '../../../assets/image/Story-images/our-story-4.png';
+import timeline_4 from '../../../assets/image/Story-images/our-story-5.png';
+import timeline_5 from '../../../assets/image/Story-images/our-story-6.png';
+import timeline_6 from '../../../assets/image/Story-images/our-story-7.png';
 
 const timelineData = [
   { id: 0, year: "2015", image: timeline_1 },
@@ -104,11 +104,6 @@ const OurStory = () => {
               {formatMessage(messages['story.breadcrumb.story'])}
             </span>
           </nav>
-
-          <h1 className="team-page-heading ">
-            {formatMessage(messages['story.page.title'])}
-          </h1>
-
           <div className="story-vision-mission">
             <h2 className="story-section-subtitle">
               {formatMessage(messages['story.vision.title'])}
@@ -124,7 +119,9 @@ const OurStory = () => {
               {formatMessage(messages['story.mission.text'])}
             </p>
           </div>
-
+          <h1 className="team-page-heading our-story-heading">
+            {formatMessage(messages['story.page.title'])}
+          </h1>
           <div className="story-hero">
             <div className="story-hero-text">
               <p className="story-paragraph">

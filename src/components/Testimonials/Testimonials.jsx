@@ -119,7 +119,7 @@ const Testimonials = () => {
                   <div className="testimonial-slide" key={item.id}>
                     <div className="testimonial-card">
                       <div className="d-flex align-items-left">
-                        <div className="quote-icon">
+                        <div className="quote-icon text-primary">
                           <FontAwesomeIcon icon={faQuoteLeft} />
                         </div>
 
@@ -138,7 +138,7 @@ const Testimonials = () => {
                       </blockquote>
 
                       <h5>{formatMessage(messages[item.nameKey])}</h5>
-                      <p className="role">
+                      <p className="role text-primary">
                         {formatMessage(messages[item.roleKey])}
                       </p>
                     </div>
