@@ -104,11 +104,6 @@ const OurStory = () => {
               {formatMessage(messages['story.breadcrumb.story'])}
             </span>
           </nav>
-
-          <h1 className="team-page-heading ">
-            {formatMessage(messages['story.page.title'])}
-          </h1>
-
           <div className="story-vision-mission">
             <h2 className="story-section-subtitle">
               {formatMessage(messages['story.vision.title'])}
@@ -124,7 +119,9 @@ const OurStory = () => {
               {formatMessage(messages['story.mission.text'])}
             </p>
           </div>
-
+          <h1 className="team-page-heading our-story-heading">
+            {formatMessage(messages['story.page.title'])}
+          </h1>
           <div className="story-hero">
             <div className="story-hero-text">
               <p className="story-paragraph">
