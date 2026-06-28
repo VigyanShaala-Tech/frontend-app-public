@@ -48,6 +48,7 @@
       padding: 0.35rem 0.9rem;
       border-radius: 999px !important;
       background: #F0F5ED !important;
+      font-weight: normal;
     }
 
     .ribbon-top-right {
@@ -97,6 +98,7 @@
     flex: 1 1 auto;
     gap: 0.75rem;
     min-height: 0;
+    padding-bottom: 0.75rem;
   }
 
   .course-card-meta {
@@ -148,6 +150,7 @@
     padding-top: 0.75rem;
     flex-shrink: 0;
     width: 100%;
+    border-top: 1px solid #E2E8F0;
   }
 
   .course-title-grid {

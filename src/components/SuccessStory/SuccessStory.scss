@@ -1,3 +1,13 @@
+@keyframes pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
 .success-story {
   padding: 3.5rem 0 !important;
 
@@ -29,17 +39,50 @@
 
     .play-button-overlay {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       z-index: 10;
 
+      .rounded-circle{
+        width: 6rem;
+        height: 6rem;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .rounded-circle::before,
+      .rounded-circle::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: var(--pgn-color-primary-base);
+        opacity: 0.6;
+        animation: pulse-ring 2s ease-out infinite;
+      }
+
+      .rounded-circle::after {
+        animation-delay: 1s;
+      }
       .video-play-btn {
-        display: flex;
         align-items: center;
         justify-content: center;
-        width: 3rem;
-        height: 3rem;
+        width: 25px;
+        height: 25px;
+        margin-left: 4px;
+        display: block;
       }
     }
 
