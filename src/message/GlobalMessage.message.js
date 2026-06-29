@@ -931,8 +931,8 @@ const messages = defineMessages({
   },
   'home.community.stat': {
     id: 'home.community.stat',
-    defaultMessage: 'Over 25,000+ happy learners have transformed their careers with VigyanShaala',
-    description: 'Community stats text',
+    defaultMessage: 'Over {count} happy learners have transformed their careers with VigyanShaala',
+    description: 'Community stats text. {count} is a highlighted learner count like "15,000+"',
   },
     // Community Section - additional translatable strings
   'home.community.happyStudents': {
@@ -942,7 +942,7 @@ const messages = defineMessages({
   },
   'home.community.avatarPlus': {
     id: 'home.community.avatarPlus',
-    defaultMessage: '+25k',
+    defaultMessage: '+15k',
     description: 'Avatar count text inside community card',
   },
 
@@ -1079,7 +1079,7 @@ const messages = defineMessages({
   },
   'home.community.membersBadge': {
     id: 'home.community.membersBadge',
-    defaultMessage: '25,000+ members',
+    defaultMessage: '15,000+ members',
     description: 'Member count badge in community section',
   },
   'home.community.profile1.name': { id: 'home.community.profile1.name', defaultMessage: 'Aarav Patel', description: 'Community profile 1 name' },

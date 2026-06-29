@@ -196,7 +196,7 @@ const CourseCatalog = () => {
                 />
               </div>
 
-              <div className="col-lg-5 filter-container">
+              <div className="col-lg-6 filter-container">
                 <div className="d-flex flex-wrap gap-3">
                   <div className="flex-grow-1 filter-dropdown">
                     <CustomSearchDropdown
@@ -236,7 +236,7 @@ const CourseCatalog = () => {
                 </div>
               </div>
 
-              <div className="col-lg-2 d-flex justify-content-end">
+              <div className="col-lg-1 d-flex justify-content-end">
                 <div className="btn-group">
                   <Button
                     variant={viewMode === 'grid' ? 'primary' : 'outline-primary'}

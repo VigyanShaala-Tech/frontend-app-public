@@ -8,6 +8,12 @@
     margin-bottom: 2.5rem;
 }
 
+.our-story-heading {
+  font-weight: 700;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  line-height: 2.25rem;
+}
 .story-vision-mission {
   background: #f8fbff;
   padding: 2rem;
@@ -21,8 +27,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
-  align-items: center;
+  align-items: flex-start;
   margin: 3rem 0;
+  align-content: flex-start;
+  margin-top: 0;
 
   @media (max-width: 992px) {
     flex-direction: column;

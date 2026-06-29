@@ -111,7 +111,7 @@ const CourseCard = ({ course, layout = 'grid' }) => {
         <div className="course-image-wrapper">
           {renderCourseImage()}
           {hasDisplayValue(course.category) && (
-            <span className="badge position-absolute">
+            <span className="badge position-absolute text-primary">
               {course.category}
             </span>
           )}
@@ -158,7 +158,7 @@ const CourseCard = ({ course, layout = 'grid' }) => {
       <div className="course-image-wrapper">
         {renderCourseImage()}
         {hasDisplayValue(course.category) && (
-          <span className="badge position-absolute">
+          <span className="badge position-absolute text-primary">
             {course.category}
           </span>
         )}

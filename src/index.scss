@@ -277,13 +277,16 @@ body.custom-page-scroll::-webkit-scrollbar-thumb {
         border-color: var(--pgn-color-primary-base) !important;
         color: var(--pgn-color-primary-base) !important;
         &:hover{
-            background: none !important;         
+            background: var(--pgn-color-primary-base) !important;
+            color: var(--pgn-color-btn-text-primary) !important;
         }
         &:active{
-            background: none !important;         
+            background: var(--pgn-color-primary-base) !important;
+            color: var(--pgn-color-btn-text-primary) !important;
         }   
         &:focus{
-            background: none !important;         
+            background: var(--pgn-color-primary-base) !important;
+            color: var(--pgn-color-btn-text-primary) !important;
         }
     }
     .badge{
