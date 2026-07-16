@@ -885,40 +885,96 @@ const messages = defineMessages({
     defaultMessage: 'Senior Program (and PMO) Manager',
     description: 'Subject taught by expert 5',
   },
-
   'home.experts.expert6.name': {
     id: 'home.experts.expert6.name',
-    defaultMessage: 'Pratha Jhawar',
+    defaultMessage: 'Amol Kelkar',
     description: 'Name of expert 6',
   },
   'home.experts.expert6.subject': {
     id: 'home.experts.expert6.subject',
-    defaultMessage: 'Former Deputy Programme Manager, Renewable Energy, Centre for Science and Environment (CSE)',
+    defaultMessage: 'Business Development Lead & Alliance Management',
     description: 'Subject taught by expert 6',
   },
-
   'home.experts.expert7.name': {
     id: 'home.experts.expert7.name',
-    defaultMessage: 'Kavita Kaushik',
+    defaultMessage: 'Pratha Jhawar',
     description: 'Name of expert 7',
   },
   'home.experts.expert7.subject': {
     id: 'home.experts.expert7.subject',
-    defaultMessage: 'Director, Head of Quality and Six Sigma at Cummins, India',
+    defaultMessage: 'Former Deputy Programme Manager, Renewable Energy, Centre for Science and Environment (CSE)',
     description: 'Subject taught by expert 7',
   },
-
   'home.experts.expert8.name': {
     id: 'home.experts.expert8.name',
-    defaultMessage: 'Dr. Geetanjali Sethi',
+    defaultMessage: 'Kavita Kaushik',
     description: 'Name of expert 8',
   },
   'home.experts.expert8.subject': {
     id: 'home.experts.expert8.subject',
-    defaultMessage: 'St. Stephan’s, DU',
+    defaultMessage: 'Director, Head of Quality and Six Sigma at Cummins, India',
     description: 'Subject taught by expert 8',
   },
-
+  'home.experts.expert9.name': {
+    id: 'home.experts.expert9.name',
+    defaultMessage: 'Dr. Geetanjali Sethi',
+    description: 'Name of expert 9',
+  },
+  'home.experts.expert9.subject': {
+    id: 'home.experts.expert9.subject',
+    defaultMessage: "St. Stephen's College, Delhi",
+    description: 'Subject taught by expert 9',
+  },
+  'home.experts.expert10.name': {
+    id: 'home.experts.expert10.name',
+    defaultMessage: 'Guratinder Kaur',
+    description: 'Name of expert 10',
+  },
+  'home.experts.expert10.subject': {
+    id: 'home.experts.expert10.subject',
+    defaultMessage: 'Research Fellow, Institute of Condensed Matter & Complex Systems, School of Physics and Astronomy, University of Edinburgh',
+    description: 'Subject taught by expert 10',
+  },
+  'home.experts.expert11.name': {
+    id: 'home.experts.expert11.name',
+    defaultMessage: 'Rucha Kapare',
+    description: 'Name of expert 11',
+  },
+  'home.experts.expert11.subject': {
+    id: 'home.experts.expert11.subject',
+    defaultMessage: 'Global Head of External DEI – Data, Springer Nature Technology and Publishing Solutions',
+    description: 'Subject taught by expert 11',
+  },
+  'home.experts.expert12.name': {
+    id: 'home.experts.expert12.name',
+    defaultMessage: 'Jaishri Sanwal Bhatt',
+    description: 'Name of expert 12',
+  },
+  'home.experts.expert12.subject': {
+    id: 'home.experts.expert12.subject',
+    defaultMessage: 'Research Scientist, Geosciences Unit, Jawaharlal Nehru Centre for Advanced Scientific Research',
+    description: 'Subject taught by expert 12',
+  },
+  'home.experts.expert13.name': {
+    id: 'home.experts.expert13.name',
+    defaultMessage: 'Bhavana Yerrumreddy',
+    description: 'Name of expert 13',
+  },
+  'home.experts.expert13.subject': {
+    id: 'home.experts.expert13.subject',
+    defaultMessage: 'Technology Consulting & Strategic Accounts, EY',
+    description: 'Subject taught by expert 13',
+  },
+  'home.experts.expert14.name': {
+    id: 'home.experts.expert14.name',
+    defaultMessage: 'Neema Nair',
+    description: 'Name of expert 14',
+  },
+  'home.experts.expert14.subject': {
+    id: 'home.experts.expert14.subject',
+    defaultMessage: 'Technical Director – Engine Business, Cummins Inc.',
+    description: 'Subject taught by expert 14',
+  },
   'home.community.heading': {
     id: 'home.community.heading',
     defaultMessage: 'Join Our Growing Community',
@@ -1082,22 +1138,96 @@ const messages = defineMessages({
     defaultMessage: '15,000+ members',
     description: 'Member count badge in community section',
   },
-  'home.community.profile1.name': { id: 'home.community.profile1.name', defaultMessage: 'Aarav Patel', description: 'Community profile 1 name' },
-  'home.community.profile1.role': { id: 'home.community.profile1.role', defaultMessage: 'Data Analyst', description: 'Community profile 1 role' },
-  'home.community.profile2.name': { id: 'home.community.profile2.name', defaultMessage: 'Diya Sharma', description: 'Community profile 2 name' },
-  'home.community.profile2.role': { id: 'home.community.profile2.role', defaultMessage: 'Research Mentor', description: 'Community profile 2 role' },
-  'home.community.profile3.name': { id: 'home.community.profile3.name', defaultMessage: 'Ishaan Kumar', description: 'Community profile 3 name' },
-  'home.community.profile3.role': { id: 'home.community.profile3.role', defaultMessage: 'ML Engineer', description: 'Community profile 3 role' },
-  'home.community.profile4.name': { id: 'home.community.profile4.name', defaultMessage: 'Ananya Reddy', description: 'Community profile 4 name' },
-  'home.community.profile4.role': { id: 'home.community.profile4.role', defaultMessage: 'Biotech Researcher', description: 'Community profile 4 role' },
-  'home.community.profile5.name': { id: 'home.community.profile5.name', defaultMessage: 'Vivaan Singh', description: 'Community profile 5 name' },
-  'home.community.profile5.role': { id: 'home.community.profile5.role', defaultMessage: 'Data Scientist', description: 'Community profile 5 role' },
-  'home.community.profile6.name': { id: 'home.community.profile6.name', defaultMessage: 'Kavya Nair', description: 'Community profile 6 name' },
-  'home.community.profile6.role': { id: 'home.community.profile6.role', defaultMessage: 'AI Researcher', description: 'Community profile 6 role' },
-  'home.community.profile7.name': { id: 'home.community.profile7.name', defaultMessage: 'Arjun Mehta', description: 'Community profile 7 name' },
-  'home.community.profile7.role': { id: 'home.community.profile7.role', defaultMessage: 'Product Manager', description: 'Community profile 7 role' },
-  'home.community.profile8.name': { id: 'home.community.profile8.name', defaultMessage: 'Priya Desai', description: 'Community profile 8 name' },
-  'home.community.profile8.role': { id: 'home.community.profile8.role', defaultMessage: 'UX Designer', description: 'Community profile 8 role' },
+  'home.community.profile1.name': {
+    id: 'home.community.profile1.name',
+    defaultMessage: 'Priyanka Kajal',
+    description: 'Community profile 1 name',
+  },
+  'home.community.profile1.role': {
+    id: 'home.community.profile1.role',
+    defaultMessage: 'Nanyang Technological University, Singapore',
+    description: 'Community profile 1 role',
+  },
+  'home.community.profile2.name': {
+    id: 'home.community.profile2.name',
+    defaultMessage: 'Dr. Neha Varshney',
+    description: 'Community profile 2 name',
+  },
+  'home.community.profile2.role': {
+    id: 'home.community.profile2.role',
+    defaultMessage: 'UC San Diego',
+    description: 'Community profile 2 role',
+  },
+  'home.community.profile3.name': {
+    id: 'home.community.profile3.name',
+    defaultMessage: 'Swathi Bisana',
+    description: 'Community profile 3 name',
+  },
+  'home.community.profile3.role': {
+    id: 'home.community.profile3.role',
+    defaultMessage: 'Deakin University, BD',
+    description: 'Community profile 3 role',
+  },
+  'home.community.profile4.name': {
+    id: 'home.community.profile4.name',
+    defaultMessage: 'Shilpi Mitra',
+    description: 'Community profile 4 name',
+  },
+  'home.community.profile4.role': {
+    id: 'home.community.profile4.role',
+    defaultMessage: 'Principal Engineering Leader at Microsoft Azure',
+    description: 'Community profile 4 role',
+  },
+  'home.community.profile5.name': {
+    id: 'home.community.profile5.name',
+    defaultMessage: 'Jamuna Vignesh',
+    description: 'Community profile 5 name',
+  },
+  'home.community.profile5.role': {
+    id: 'home.community.profile5.role',
+    defaultMessage: 'Ph.D., Wells Fargo',
+    description: 'Community profile 5 role',
+  },
+  'home.community.profile6.name': {
+    id: 'home.community.profile6.name',
+    defaultMessage: 'Atul Gopal',
+    description: 'Community profile 6 name',
+  },
+  'home.community.profile6.role': {
+    id: 'home.community.profile6.role',
+    defaultMessage: 'NIH, USA',
+    description: 'Community profile 6 role',
+  },
+  'home.community.profile7.name': {
+    id: 'home.community.profile7.name',
+    defaultMessage: 'Adrika Raybarman',
+    description: 'Community profile 7 name',
+  },
+  'home.community.profile7.role': {
+    id: 'home.community.profile7.role',
+    defaultMessage: 'University of Illinois, Thermo Scientific',
+    description: 'Community profile 7 role',
+  },
+  'home.community.profile8.name': {
+    id: 'home.community.profile8.name',
+    defaultMessage: 'Trupti Arabatti',
+    description: 'Community profile 8 name',
+  },
+  'home.community.profile8.role': {
+    id: 'home.community.profile8.role',
+    defaultMessage: 'Founder and CEO- Earthworks Biomat',
+    description: 'Community profile 8 role',
+  },
+  'home.community.profile9.name': {
+    id: 'home.community.profile8.name',
+    defaultMessage: 'Manorama Yadav',
+    description: 'Community profile 9 name',
+  },
+  'home.community.profile9.role': {
+    id: 'home.community.profile9.role',
+    defaultMessage: 'Gartner',
+    description: 'Community profile 9 role',
+  },
   'home.success.video.counter': {
     id: 'home.success.video.counter',
     defaultMessage: '{current} / {total}',

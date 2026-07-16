@@ -75,7 +75,7 @@ const Testimonials = () => {
     setCurrentIndex((prev) => (prev - 1 + total) % total);
 
   useEffect(() => {
-    const timer = setInterval(next, 6000);
+    const timer = setInterval(next, 60000);
     return () => clearInterval(timer);
   }, [total]);
 

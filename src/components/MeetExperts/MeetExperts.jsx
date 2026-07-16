@@ -12,10 +12,15 @@ import seshaManuguriImg from '../../assets/image/Our Expert/Dr. Sesha Manuguri-.
 import nikitaHariImg from '../../assets/image/Our Expert/Dr. Nikita Hari.jpg';
 import shailendraFuloriaImg from '../../assets/image/Our Expert/Dr. Shailendra Fuloria.png';
 import rajRamanathaImg from '../../assets/image/Our Expert/Raj Ramanatha.jpg';
+import amolKelkarImg from '../../assets/image/Our Expert/Amol Kelkar.jpg';
 import prathaJhawarImg from '../../assets/image/Our Expert/Pratha Jhawar.png';
 import kavitaKaushikImg from '../../assets/image/Our Expert/Kavita Kaushik.jpg';
 import geetanjaliSethiImg from '../../assets/image/Our Expert/Dr. Geetanjali Sethi.jpg';
-
+import guratinderKaurImg from '../../assets/image/Our Expert/Guratinder Kaur.jpg';
+import ruchaKapareImg from '../../assets/image/Our Expert/Rucha Kapare.jpg';
+import jaishriSanwalBhattImg from '../../assets/image/Our Expert/Jaishri Sanwal Bhatt.jpg';
+import bhavanaYerrumreddyImg from '../../assets/image/Our Expert/Bhavana Yerrumreddy.jpg';
+import neemaNairImg from '../../assets/image/Our Expert/Neema Nair.jpg';
 const experts = [
   {
     id: 1,
@@ -56,23 +61,65 @@ const experts = [
     id: 6,
     nameKey: 'home.experts.expert6.name',
     subjectKey: 'home.experts.expert6.subject',
-    image: prathaJhawarImg,
-    linkedin: 'https://www.linkedin.com/in/pratha-jhawar/',
+    image: amolKelkarImg,
+    linkedin: 'https://www.linkedin.com/in/amolkelkar/',
   },
   {
     id: 7,
     nameKey: 'home.experts.expert7.name',
     subjectKey: 'home.experts.expert7.subject',
-    image: kavitaKaushikImg,
-    linkedin: 'https://www.linkedin.com/in/kavita-kaushik-53a663a/',
+    image: prathaJhawarImg,
+    linkedin: 'https://www.linkedin.com/in/pratha-jhawar/',
   },
   {
     id: 8,
     nameKey: 'home.experts.expert8.name',
     subjectKey: 'home.experts.expert8.subject',
+    image: kavitaKaushikImg,
+    linkedin: 'https://www.linkedin.com/in/kavita-kaushik-53a663a/',
+  },
+  {
+    id: 9,
+    nameKey: 'home.experts.expert9.name',
+    subjectKey: 'home.experts.expert9.subject',
     image: geetanjaliSethiImg,
     linkedin: 'https://www.linkedin.com/in/geetanjali-sethi-a7b201aa/',
   },
+  {
+    id: 10,
+    nameKey: 'home.experts.expert10.name',
+    subjectKey: 'home.experts.expert10.subject',
+    image: guratinderKaurImg,
+    linkedin: 'https://www.linkedin.com/in/guratinder-kaur-089611a0/',
+  },
+  {
+    id: 11,
+    nameKey: 'home.experts.expert11.name',
+    subjectKey: 'home.experts.expert11.subject',
+    image: ruchaKapareImg,
+    linkedin: 'https://www.linkedin.com/in/ruchakapare/',
+  },
+  {
+    id: 12,
+    nameKey: 'home.experts.expert12.name',
+    subjectKey: 'home.experts.expert12.subject',
+    image: jaishriSanwalBhattImg,
+    linkedin: 'https://www.linkedin.com/in/jaishri-sanwal-bhatt-046399323/',
+  },
+  {
+    id: 13,
+    nameKey: 'home.experts.expert13.name',
+    subjectKey: 'home.experts.expert13.subject',
+    image: bhavanaYerrumreddyImg,
+    linkedin: 'https://www.linkedin.com/in/byerrumreddy/',
+  },
+  {
+    id: 14,
+    nameKey: 'home.experts.expert14.name',
+    subjectKey: 'home.experts.expert14.subject',
+    image: neemaNairImg,
+    linkedin: 'https://www.linkedin.com/in/neema-nair/',
+  }
 ];
 
 const MeetExperts = () => {
