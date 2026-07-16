@@ -885,40 +885,96 @@ const messages = defineMessages({
     defaultMessage: 'Senior Program (and PMO) Manager',
     description: 'Subject taught by expert 5',
   },
-
   'home.experts.expert6.name': {
     id: 'home.experts.expert6.name',
-    defaultMessage: 'Pratha Jhawar',
+    defaultMessage: 'Amol Kelkar',
     description: 'Name of expert 6',
   },
   'home.experts.expert6.subject': {
     id: 'home.experts.expert6.subject',
-    defaultMessage: 'Former Deputy Programme Manager, Renewable Energy, Centre for Science and Environment (CSE)',
+    defaultMessage: 'Business Development Lead & Alliance Management',
     description: 'Subject taught by expert 6',
   },
-
   'home.experts.expert7.name': {
     id: 'home.experts.expert7.name',
-    defaultMessage: 'Kavita Kaushik',
+    defaultMessage: 'Pratha Jhawar',
     description: 'Name of expert 7',
   },
   'home.experts.expert7.subject': {
     id: 'home.experts.expert7.subject',
-    defaultMessage: 'Director, Head of Quality and Six Sigma at Cummins, India',
+    defaultMessage: 'Former Deputy Programme Manager, Renewable Energy, Centre for Science and Environment (CSE)',
     description: 'Subject taught by expert 7',
   },
-
   'home.experts.expert8.name': {
     id: 'home.experts.expert8.name',
-    defaultMessage: 'Dr. Geetanjali Sethi',
+    defaultMessage: 'Kavita Kaushik',
     description: 'Name of expert 8',
   },
   'home.experts.expert8.subject': {
     id: 'home.experts.expert8.subject',
-    defaultMessage: 'St. Stephan’s, DU',
+    defaultMessage: 'Director, Head of Quality and Six Sigma at Cummins, India',
     description: 'Subject taught by expert 8',
   },
-
+  'home.experts.expert9.name': {
+    id: 'home.experts.expert9.name',
+    defaultMessage: 'Dr. Geetanjali Sethi',
+    description: 'Name of expert 9',
+  },
+  'home.experts.expert9.subject': {
+    id: 'home.experts.expert9.subject',
+    defaultMessage: "St. Stephen's College, Delhi",
+    description: 'Subject taught by expert 9',
+  },
+  'home.experts.expert10.name': {
+    id: 'home.experts.expert10.name',
+    defaultMessage: 'Guratinder Kaur',
+    description: 'Name of expert 10',
+  },
+  'home.experts.expert10.subject': {
+    id: 'home.experts.expert10.subject',
+    defaultMessage: 'Research Fellow, Institute of Condensed Matter & Complex Systems, School of Physics and Astronomy, University of Edinburgh',
+    description: 'Subject taught by expert 10',
+  },
+  'home.experts.expert11.name': {
+    id: 'home.experts.expert11.name',
+    defaultMessage: 'Rucha Kapare',
+    description: 'Name of expert 11',
+  },
+  'home.experts.expert11.subject': {
+    id: 'home.experts.expert11.subject',
+    defaultMessage: 'Global Head of External DEI – Data, Springer Nature Technology and Publishing Solutions',
+    description: 'Subject taught by expert 11',
+  },
+  'home.experts.expert12.name': {
+    id: 'home.experts.expert12.name',
+    defaultMessage: 'Jaishri Sanwal Bhatt',
+    description: 'Name of expert 12',
+  },
+  'home.experts.expert12.subject': {
+    id: 'home.experts.expert12.subject',
+    defaultMessage: 'Research Scientist, Geosciences Unit, Jawaharlal Nehru Centre for Advanced Scientific Research',
+    description: 'Subject taught by expert 12',
+  },
+  'home.experts.expert13.name': {
+    id: 'home.experts.expert13.name',
+    defaultMessage: 'Bhavana Yerrumreddy',
+    description: 'Name of expert 13',
+  },
+  'home.experts.expert13.subject': {
+    id: 'home.experts.expert13.subject',
+    defaultMessage: 'Technology Consulting & Strategic Accounts, EY',
+    description: 'Subject taught by expert 13',
+  },
+  'home.experts.expert14.name': {
+    id: 'home.experts.expert14.name',
+    defaultMessage: 'Neema Nair',
+    description: 'Name of expert 14',
+  },
+  'home.experts.expert14.subject': {
+    id: 'home.experts.expert14.subject',
+    defaultMessage: 'Technical Director – Engine Business, Cummins Inc.',
+    description: 'Subject taught by expert 14',
+  },
   'home.community.heading': {
     id: 'home.community.heading',
     defaultMessage: 'Join Our Growing Community',
