@@ -65,7 +65,7 @@ const CoursesCarousel = () => {
   }, [courses]);
 
   return (
-    <section className="courses-carousel py-5">
+    <section className="courses-carousel">
       <div className="container">
         {/* Heading */}
         <div className="text-center mb-3">
@@ -123,7 +123,7 @@ const CoursesCarousel = () => {
         </div>
 
         {/* Explore All CTA */}
-        <div className="text-center mt-5">
+        <div className="text-center mt-5 courses-carousel-cta">
           <button className="btn btn-outline-primary px-5 py-3" onClick={() => navigate('/public/courses')}>
             {formatMessage(messages['home.courses.exploreAll'])}
           </button>

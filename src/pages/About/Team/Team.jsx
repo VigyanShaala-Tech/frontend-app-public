@@ -225,15 +225,6 @@ export default function Team() {
     <div className="team-page">
       <section className="py-5">
         <div className="container">
-          {/* Breadcrumb */}
-          <nav className="breadcrumb text-muted small mb-4">
-            <Link to="/public" className="text-muted text-decoration-none">
-              {formatMessage(messages['team.breadcrumb.home'])}
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-dark">{formatMessage(messages['team.breadcrumb.team'])}</span>
-          </nav>
-
           <h1 className="team-page-heading mb-5 text-start">
             {formatMessage(messages['team.page.title'])}
           </h1>

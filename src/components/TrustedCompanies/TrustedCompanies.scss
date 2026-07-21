@@ -24,11 +24,17 @@
 
   .companies-track {
     display: flex;
-    // width: fit-content;
-    animation: scrollLeft 5s linear infinite;
-    justify-content: center;
+    width: max-content;
+    animation: scrollLeft 60s linear infinite;
+    will-change: transform;
+  }
+
+  .companies-track-group {
+    display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 16px;
+    padding-right: 16px;
   }
 
   .companies-wrapper:hover .companies-track {
@@ -37,8 +43,6 @@
 
   .company-item {
     flex: 0 0 auto;
-    // width: 180px;
-    // margin-right: 1.5rem;
 
     .card {
       border: 1px solid #dee2e6;

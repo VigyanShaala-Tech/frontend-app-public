@@ -127,7 +127,9 @@
 
   .community-stat {
     font-size: 1rem;
-    .text-primary{
+
+    .community-stat__count {
+      color: var(--pgn-color-primary-base, #69AB4A) !important;
       font-weight: 700;
     }
   }

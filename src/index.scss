@@ -67,7 +67,7 @@ body.custom-page-scroll::-webkit-scrollbar-thumb {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 15px !important;
+    padding: 0 32px !important;
 }
 
 @media (max-width: 991px) {
@@ -273,6 +273,24 @@ body.custom-page-scroll::-webkit-scrollbar-thumb {
     }
 
                      //------------------------------ Common--------------------------------------------------------------
+    button,
+    .btn,
+    a,
+    [type='button'],
+    [type='submit'],
+    [type='reset'] {
+        &:focus:not(:focus-visible) {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--pgn-color-primary-base, #69AB4A) !important;
+            outline-offset: 2px;
+            box-shadow: none !important;
+        }
+    }
+
     .btn-outline-primary{
         border-color: var(--pgn-color-primary-base) !important;
         color: var(--pgn-color-primary-base) !important;

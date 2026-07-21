@@ -985,6 +985,16 @@ const messages = defineMessages({
     defaultMessage: 'Be part of a vibrant learning community that supports and inspires each other',
     description: 'Subheading for community',
   },
+  'home.community.statPrefix': {
+    id: 'home.community.statPrefix',
+    defaultMessage: 'Over',
+    description: 'Text before the highlighted learner count in community section',
+  },
+  'home.community.statSuffix': {
+    id: 'home.community.statSuffix',
+    defaultMessage: 'happy learners have transformed their careers with VigyanShaala',
+    description: 'Text after the highlighted learner count in community section',
+  },
   'home.community.stat': {
     id: 'home.community.stat',
     defaultMessage: 'Over {count} happy learners have transformed their careers with VigyanShaala',

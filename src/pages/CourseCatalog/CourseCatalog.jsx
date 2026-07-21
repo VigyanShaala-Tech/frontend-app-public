@@ -178,17 +178,17 @@ const CourseCatalog = () => {
         </div>
       </section>
 
-      <section ref={searchRef} className="pb-5 ">
+      <section ref={searchRef} className="course-catalog-container">
         <div className="container">
-          <div className="filter-bar rounded p-4 mb-5 bg-white">
-            <div className="row g-3 align-items-center">
-              <div className="search-bar col-lg-5 position-relative">
+          <div className="filter-bar rounded bg-white">
+            <div className="catalog-filter-row">
+              <div className="search-bar position-relative">
                 <Form.Control
                   type="text"
                   value={search}
                   onChange={(e) => { setSearch(e.target.value); }}
                   placeholder={formatMessage(messages['catalog.search.placeholder'])}
-                  className="ps-5"
+                  className="ps-5 catalog-search-input"
                 />
                 <FontAwesomeIcon
                   icon={faSearch}
@@ -196,53 +196,51 @@ const CourseCatalog = () => {
                 />
               </div>
 
-              <div className="col-lg-6 filter-container">
-                <div className="d-flex flex-wrap gap-3">
-                  <div className="flex-grow-1 filter-dropdown">
-                    <CustomSearchDropdown
-                      id="catalog-category-dropdown"
-                      options={categoryOptions}
-                      value={category}
-                      onChange={(selected) => { setCategory(selected); setCurrentPage(1); }}
-                    />
-                  </div>
+              <div className="catalog-filters-group">
+                <div className="filter-dropdown">
+                  <CustomSearchDropdown
+                    id="catalog-category-dropdown"
+                    options={categoryOptions}
+                    value={category}
+                    onChange={(selected) => { setCategory(selected); setCurrentPage(1); }}
+                  />
+                </div>
 
-                  <div className="flex-grow-1 filter-dropdown">
-                    <CustomSearchDropdown
-                      id="catalog-level-dropdown"
-                      options={levelOptions}
-                      value={level}
-                      onChange={(selected) => { setLevel(selected); setCurrentPage(1); }}
-                    />
-                  </div>
+                <div className="filter-dropdown">
+                  <CustomSearchDropdown
+                    id="catalog-level-dropdown"
+                    options={levelOptions}
+                    value={level}
+                    onChange={(selected) => { setLevel(selected); setCurrentPage(1); }}
+                  />
+                </div>
 
-                  <div className="flex-grow-1 filter-dropdown">
-                    <CustomSearchDropdown
-                      id="catalog-subject-dropdown"
-                      options={subjectOptions}
-                      value={subject}
-                      onChange={(selected) => { setSubject(selected); setCurrentPage(1); }}
-                    />
-                  </div>
+                <div className="filter-dropdown">
+                  <CustomSearchDropdown
+                    id="catalog-subject-dropdown"
+                    options={subjectOptions}
+                    value={subject}
+                    onChange={(selected) => { setSubject(selected); setCurrentPage(1); }}
+                  />
+                </div>
 
-                  <div className="flex-grow-1 filter-dropdown">
-                    <CustomSearchDropdown
-                      id="catalog-sort-dropdown"
-                      options={sortOptions}
-                      value={sortBy}
-                      onChange={(selected) => { setSortBy(selected); setCurrentPage(1); }}
-                    />
-                  </div>
+                <div className="filter-dropdown filter-dropdown--sort">
+                  <CustomSearchDropdown
+                    id="catalog-sort-dropdown"
+                    options={sortOptions}
+                    value={sortBy}
+                    onChange={(selected) => { setSortBy(selected); setCurrentPage(1); }}
+                  />
                 </div>
               </div>
 
-              <div className="col-lg-1 d-flex justify-content-end">
+              <div className="catalog-view-toggle">
                 <div className="btn-group">
                   <Button
                     variant={viewMode === 'grid' ? 'primary' : 'outline-primary'}
                     onClick={() => setViewMode('grid')}
                     title={formatMessage(messages['catalog.view.grid'])}
-                    className="border"
+                    className="border catalog-view-btn"
                   >
                     <FontAwesomeIcon icon={faTh} />
                   </Button>
@@ -250,7 +248,7 @@ const CourseCatalog = () => {
                     variant={viewMode === 'list' ? 'primary' : 'outline-primary'}
                     onClick={() => setViewMode('list')}
                     title={formatMessage(messages['catalog.view.list'])}
-                    className="border"
+                    className="border catalog-view-btn"
                   >
                     <FontAwesomeIcon icon={faList} />
                   </Button>

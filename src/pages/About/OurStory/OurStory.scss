@@ -15,12 +15,18 @@
   line-height: 2.25rem;
 }
 .story-vision-mission {
-  background: #f8fbff;
+  background: #3F7755;
+  color: #ffffff;
   padding: 2rem;
   border-radius: 12px;
   margin: 2.5rem 0;
   text-align: center;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+  .story-section-subtitle,
+  .story-paragraph {
+    color: #ffffff;
+  }
 }
 
 .story-hero {

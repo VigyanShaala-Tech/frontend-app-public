@@ -68,19 +68,8 @@ const Supporters = () => {
   return (
     <div className="supporters-page">
       {/* Header / Banner */}
-      <section className="py-5">
-        <div className="container">
-          {/* Breadcrumb */}
-          <nav className="page-mapped text-muted small mb-4">
-            <Link to="/public" className="text-muted text-decoration-none">
-              {formatMessage(messages['supporter.breadcrumb.home'])}
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-dark">
-              {formatMessage(messages['supporter.breadcrumb.supporters'])}
-            </span>
-          </nav>
-
+      <section className="supporters-header">
+        <div className="container supporters-container">
           <h1 className="supporters-page-heading mb-3">
             {formatMessage(messages['supporter.page.title'])}
           </h1>
@@ -89,7 +78,7 @@ const Supporters = () => {
 
       {/* Supporter Images */}
       <section className="main-content">
-        <div className="container">
+        <div className="container supporters-container">
           <div className="supporter-grid">
             {supporters.map((s) => (
               <div key={s.id} className="supporter-grid-item">
