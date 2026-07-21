@@ -1,48 +1,88 @@
-.supporters-page{
+.supporters-page {
   min-height: 100vh;
-}
-.page-mapped{
-  font-size: 14px;
-}
-.supporters-page-heading{
-  font-size: 3rem;
-}
-.supporter-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
 
-  @media (max-width: 992px) { // tablets
-    grid-template-columns: repeat(3, 1fr);
+  .supporters-container {
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  @media (max-width: 576px) { // mobile
-    grid-template-columns: repeat(2, 1fr);
+  .supporters-header {
+    padding-top: 40px;
+    padding-bottom: 1.5rem;
+  }
+
+  .page-mapped {
+    font-size: 14px;
+    margin-bottom: 16px !important;
+  }
+
+  .main-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 64rem !important;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem; // pb-16
+  }
+}
+
+.supporters-page-heading {
+  font-size: 3rem;
+  margin-bottom: 8px !important;
+}
+
+.cta-text {
+  font-size: 18px;
+  color: #718096;
+  font-weight: 400;
+}
+
+/* Match reference: grid-cols-2 sm:3 md:4 lg:5, gap-6 sm:gap-8 */
+.supporter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem; // gap-6 = 24px
+
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem; // gap-8 = 32px
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .supporter-grid-item {
     display: flex;
     justify-content: center;
     align-items: center;
+    aspect-ratio: 1 / 1;
+    width: 100%;
     padding: 1rem;
-    background-color: #fff;
     border-radius: 0.5rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    overflow: hidden;
 
     img {
-      max-width: 100%;
+      max-width: 85%;
+      max-height: 85%;
+      width: auto;
       height: auto;
+      object-fit: contain;
       display: block;
     }
   }
 }
+
+.supporter-cta {
+  margin-top: 3rem;
+}
+
 @media (max-width: 576px) {
-  .supporters-page{
-    section{
-      padding: 2rem 0 !important;
-    }
-  }
-  .supporters-page-heading{
-    font-size: 1.875rem !important; // 30px
+  .supporters-page-heading {
+    font-size: 1.875rem !important;
   }
 }

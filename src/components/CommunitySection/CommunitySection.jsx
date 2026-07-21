@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useIntl, FormattedMessage } from '@edx/frontend-platform/i18n';
+import { useIntl } from '@edx/frontend-platform/i18n';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -176,12 +176,11 @@ const CommunitySection = () => {
           </div>
 
           <p className="community-stat text-muted">
-            <FormattedMessage
-              {...messages['home.community.stat']}
-              values={{
-                count: <span className="text-primary fw-bold">15,000+</span>,
-              }}
-            />
+            {formatMessage(messages['home.community.statPrefix'])}
+            {' '}
+            <span className="community-stat__count">15,000+</span>
+            {' '}
+            {formatMessage(messages['home.community.statSuffix'])}
           </p>
 
         </div>

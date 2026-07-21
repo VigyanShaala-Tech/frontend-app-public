@@ -64,10 +64,10 @@ const ImpactNumbers = () => {
         <div className="row">
           {stats.map((stat, idx) => (
             <div key={idx} className="col-6 col-md-3 mb-3 mt-3">
-              <div className="impact-icon mb-md-3">
+              <div className="impact-icon">
                 <FontAwesomeIcon icon={stat.icon} />
               </div>
-              <h3 className="fw-bold mb-1 mb-md-3">
+              <h3 className="fw-bold">
                 <CountUp target={stat.number} suffix={stat.suffix} format={stat.format} />
               </h3>
               <p className="mb-0">
