@@ -21,10 +21,10 @@ const messages = defineMessages({
     defaultMessage: 'All Categories',
     description: 'Default option in category dropdown',
   },
-  'catalog.filter.allLevels': {
-    id: 'catalog.filter.allLevels',
-    defaultMessage: 'All Levels',
-    description: 'Default option in level dropdown',
+  'catalog.filter.allTags': {
+    id: 'catalog.filter.allTags',
+    defaultMessage: 'All Tags',
+    description: 'Default option in tag dropdown',
   },
   'catalog.filter.allSubjects': {
     id: 'catalog.filter.allSubjects',
