@@ -21,18 +21,18 @@ const ALL_FILTER_VALUE = '';
 const CourseCatalog = () => {
   const { formatMessage } = useIntl();
   const allCategoriesLabel = formatMessage(messages['catalog.filter.allCategories']);
-  const allLevelsLabel = formatMessage(messages['catalog.filter.allLevels']);
+  const allTagsLabel = formatMessage(messages['catalog.filter.allTags']);
   const allSubjectsLabel = formatMessage(messages['catalog.filter.allSubjects']);
   const allSortByLabel = formatMessage(messages['catalog.filter.sortBy']);
 
   const [apiCategories, setApiCategories] = useState([]);
-  const [apiLevels, setApiLevels] = useState([]);
+  const [apiTags, setApiTags] = useState([]);
   const [apiSubjects, setApiSubjects] = useState([]);
   const [apiSortBy, setApiSortBy] = useState([]);
 
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState(ALL_FILTER_VALUE);
-  const [level, setLevel] = useState(ALL_FILTER_VALUE);
+  const [tag, setTag] = useState(ALL_FILTER_VALUE);
   const [subject, setSubject] = useState(ALL_FILTER_VALUE);
   const [sortBy, setSortBy] = useState('');
   const [viewMode, setViewMode] = useState('grid');
@@ -51,10 +51,10 @@ const CourseCatalog = () => {
     ...apiCategories.map((item) => ({ value: item, label: item })),
   ], [apiCategories, allCategoriesLabel]);
 
-  const levelOptions = useMemo(() => [
-    { value: ALL_FILTER_VALUE, label: allLevelsLabel },
-    ...apiLevels.map((item) => ({ value: item, label: item })),
-  ], [apiLevels, allLevelsLabel]);
+  const tagOptions = useMemo(() => [
+    { value: ALL_FILTER_VALUE, label: allTagsLabel },
+    ...apiTags.map((item) => ({ value: item, label: item })),
+  ], [apiTags, allTagsLabel]);
 
   const subjectOptions = useMemo(() => [
     { value: ALL_FILTER_VALUE, label: allSubjectsLabel },
@@ -78,7 +78,7 @@ const CourseCatalog = () => {
 
         if (res.status === 200 && res.data) {
           setApiCategories(res.data.categories || []);
-          setApiLevels(res.data.levels || []);
+          setApiTags(res.data.tags || []);
           setApiSubjects(res.data.subjects || []);
           setApiSortBy(res.data.sortby || res.data.sort_by || []);
         }
@@ -98,7 +98,7 @@ const CourseCatalog = () => {
       const response = await fetchCatalogCourses({
         search_term: search.trim() || undefined,
         category: category || undefined,
-        level: level || undefined,
+        level: tag || undefined, // backend query param is still named `level`, but now filters by tag
         subject: subject || undefined,
         sort: sortBy || undefined,
         page: currentPage,
@@ -124,7 +124,7 @@ const CourseCatalog = () => {
     } finally {
       setLoading(false);
     }
-  }, [search, category, level, subject, sortBy, currentPage, formatMessage]);
+  }, [search, category, tag, subject, sortBy, currentPage, formatMessage]);
 
   useEffect(() => {
     fetchCourses();
@@ -132,7 +132,7 @@ const CourseCatalog = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, category, level, subject, sortBy]);
+  }, [search, category, tag, subject, sortBy]);
 
   useEffect(() => {
     searchRef.current?.scrollIntoView({
@@ -144,7 +144,7 @@ const CourseCatalog = () => {
   const clearFilters = () => {
     setSearch('');
     setCategory(ALL_FILTER_VALUE);
-    setLevel(ALL_FILTER_VALUE);
+    setTag(ALL_FILTER_VALUE);
     setSubject(ALL_FILTER_VALUE);
     setSortBy('');
     setCurrentPage(1);
@@ -155,9 +155,9 @@ const CourseCatalog = () => {
       label: getFilterLabel(categoryOptions, category),
       onClear: () => { setCategory(ALL_FILTER_VALUE); setCurrentPage(1); },
     },
-    level && {
-      label: getFilterLabel(levelOptions, level),
-      onClear: () => { setLevel(ALL_FILTER_VALUE); setCurrentPage(1); },
+    tag && {
+      label: getFilterLabel(tagOptions, tag),
+      onClear: () => { setTag(ALL_FILTER_VALUE); setCurrentPage(1); },
     },
     subject && {
       label: getFilterLabel(subjectOptions, subject),
@@ -208,10 +208,10 @@ const CourseCatalog = () => {
 
                 <div className="filter-dropdown">
                   <CustomSearchDropdown
-                    id="catalog-level-dropdown"
-                    options={levelOptions}
-                    value={level}
-                    onChange={(selected) => { setLevel(selected); setCurrentPage(1); }}
+                    id="catalog-tag-dropdown"
+                    options={tagOptions}
+                    value={tag}
+                    onChange={(selected) => { setTag(selected); setCurrentPage(1); }}
                   />
                 </div>
 
