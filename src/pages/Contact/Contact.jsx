@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Button, Form, Spinner, Alert } from '@openedx/paragon';
 import {
-  faMapMarkerAlt,
-  faEnvelope,
-  faPhone,
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,6 +9,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useContext } from 'react';
 import { AppContext } from '@edx/frontend-platform/react';
 import { submitContactForm } from '../../api';
+import { ContactAddressIcon, ContactEmailIcon, ContactPhoneIcon } from './ContactIcons';
 
 import messages from '../../message/GlobalMessage.message';
 
@@ -175,19 +173,9 @@ const Contact = () => {
 
                 <div className="d-flex flex-column gap-4">
                   <div className="d-flex align-items-center p-3 contact-info">
-                    <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-4" />
-                    <div>
-                      <h5 className="mb-1 contact-details-heading">
-                        {formatMessage(messages['contact.info.address.title'])}
-                      </h5>
-                      <div className="text-muted small mb-0 d-flex flex-column contact-detail-data">
-                        <span>{formatMessage(messages['contact.info.address.text'])}</span>
-                      </div>
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <ContactEmailIcon />
                     </div>
-                  </div>
-
-                  <div className="d-flex align-items-center p-3 contact-info">
-                    <FontAwesomeIcon icon={faEnvelope} className="text-primary mr-4" />
                     <div>
                       <h5 className="mb-1 contact-details-heading">
                         {formatMessage(messages['contact.info.email.title'])}
@@ -199,7 +187,23 @@ const Contact = () => {
                   </div>
 
                   <div className="d-flex align-items-center p-3 contact-info">
-                    <FontAwesomeIcon icon={faPhone} className="text-primary mr-4 contact-phone-icon" />
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <ContactAddressIcon />
+                    </div>
+                    <div>
+                      <h5 className="mb-1 contact-details-heading">
+                        {formatMessage(messages['contact.info.address.title'])}
+                      </h5>
+                      <div className="text-muted small mb-0 d-flex flex-column contact-detail-data">
+                        <span>{formatMessage(messages['contact.info.address.text'])}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="d-flex align-items-center p-3 contact-info">
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <ContactPhoneIcon />
+                    </div>
                     <div className="flex-grow-1">
                       <h5 className="mb-1 contact-details-heading">
                         {formatMessage(messages['contact.info.phone.title'])}

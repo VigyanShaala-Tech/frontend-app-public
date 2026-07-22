@@ -303,7 +303,7 @@ const CourseCatalog = () => {
               <h4 className="text-muted mb-4">
                 {formatMessage(messages['catalog.noResults.title'])}
               </h4>
-              <Button variant="outline-primary" onClick={clearFilters}>
+              <Button variant="primary" className="clear-filters-btn" onClick={clearFilters}>
                 {formatMessage(messages['catalog.noResults.action'])}
               </Button>
             </div>
@@ -324,6 +324,7 @@ const CourseCatalog = () => {
           {totalPages > 1 && (
             <div className="d-flex justify-content-center mt-5">
               <Pagination
+                className="course-catalog-pagination"
                 paginationLabel="Course catalog pagination"
                 pageCount={totalPages}
                 currentPage={currentPage}
