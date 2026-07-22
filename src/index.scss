@@ -105,7 +105,12 @@ body.custom-page-scroll::-webkit-scrollbar-thumb {
                     }
                 }
                 &:hover{
+                    background: var(--pgn-color-primary-base) !important;
                     border-color: var(--pgn-color-primary-base) !important;
+
+                    svg path {
+                        fill: #ffffff !important;
+                    }
                 }
             }
             .hero-track{
@@ -198,43 +203,6 @@ body.custom-page-scroll::-webkit-scrollbar-thumb {
     }
 
     //------------------------------ Course catalog--------------------------------------------------------------
-    .pagination-primary{
-        .pagination{
-            .page-item{
-                button{
-                    span{
-                        span{
-                            svg{
-                                path{
-                                    fill: var(--pgn-color-primary-base) !important;
-                                }
-                            }
-                        }
-                    }
-                    &:hover{
-                        background: var(--pgn-color-primary-base) !important;
-                        span{
-                        span{
-                            svg{
-                                path{
-                                    fill: #ffffff !important;
-                                }
-                            }
-                        }
-                    }
-                    }
-                    &:active{
-                        background: var(--pgn-color-primary-base) !important;
-
-                    }
-                    &:focus{
-                        border-color: var(--pgn-color-primary-base) !important;
-                        box-shadow: none !important;
-                    }
-                }
-            }
-        }
-    }
 
     //------------------------------ Course details--------------------------------------------------------------
     .course-about-page{
@@ -311,7 +279,10 @@ body.custom-page-scroll::-webkit-scrollbar-thumb {
         font-size: 0.875rem !important;
         padding: 0.4rem 0.9rem !important;
         border-radius: 999px !important;
-        background: color-mix(in srgb, var(--pgn-color-primary-base) 35%, transparent) !important;
+        background: #F5F7F4 !important;
+        color: #2D3748 !important;
+        font-weight: 500 !important;
+        border: none !important;
     }
     .form-control{
         &:focus{

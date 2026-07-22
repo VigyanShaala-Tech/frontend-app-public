@@ -19,7 +19,6 @@
 
     .lead {
       font-size: 18px;
-      max-width: 420px;
       line-height: 1.6;
     }
   }
@@ -82,8 +81,22 @@
       border-radius: .75rem;
     }
 
-    .contact-phone-icon {
-      transform: scaleX(-1);
+    &__icon {
+      flex-shrink: 0;
+      width: 4rem;
+      height: 4rem;
+      margin-right: 1rem;
+      border-radius: 50%;
+      background: var(--pgn-color-primary-base, #69ab4a);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
     }
 
     .contact-phone-btn {
@@ -124,7 +137,6 @@
       }
 
       .lead {
-        max-width: 100%;
         font-size: 1rem;
       }
     }

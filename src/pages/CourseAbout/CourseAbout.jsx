@@ -6,7 +6,6 @@ import {
   faClock,
   faChartLine,
   faUsers,
-  faPlayCircle,
   faAward,
   faChevronDown,
   faHeart,
@@ -15,7 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import ScrollReveal from '../../components/animations/ScrollReveal';
@@ -44,6 +43,17 @@ const COURSE_ABOUT_TABS = [
   { id: 'instructor', messageKey: 'courseAbout.tab.instructor' },
   { id: 'reviews', messageKey: 'courseAbout.tab.reviews' },
 ];
+
+const getLessonDetails = (lesson) => {
+  if (typeof lesson === 'string') {
+    return { title: lesson, duration: null };
+  }
+
+  return {
+    title: lesson?.title || lesson?.name || '',
+    duration: lesson?.duration || lesson?.length || null,
+  };
+};
 
 const CourseAbout = () => {
   const { formatMessage } = useIntl();
@@ -131,6 +141,7 @@ const CourseAbout = () => {
           const res = await fetchCourseCurriculum(courseId);
           if (res.status === 200 && res.data) {
             setCurriculum(res.data);
+            setExpandedSections([0]);
           }
         } catch (err) {
           console.error('Failed to fetch curriculum:', err);
@@ -280,21 +291,6 @@ const CourseAbout = () => {
       <section className="py-5">
         <div className="container">
           <ScrollReveal direction="up">
-          {/* Breadcrumb */}
-          <nav className="page-mapped text-muted small mb-3">
-            <Link to="/public" className="text-muted text-decoration-none">
-              {formatMessage(messages['courseAbout.breadcrumb.home'])}
-            </Link>
-            <span className="mx-2">/</span>
-            <Link to="/public/courses" className="text-muted text-decoration-none">
-              {formatMessage(messages['courseAbout.breadcrumb.courses'])}
-            </Link>
-            <span className="mx-2">/</span>
-            {course.name &&
-            <span className="text-dark">{course.name}</span>
-            }
-          </nav>
-
           {/* Title & Meta */}
           {course.name &&
           <h1 className="course-heading mb-3">{course.name}</h1>
@@ -336,7 +332,7 @@ const CourseAbout = () => {
             <div className="col-lg-8">
               {/* Tabs */}
               <ScrollReveal direction="up" className="mb-4">
-                <div className="d-flex overflow-auto p-3">
+                <div className="d-flex overflow-auto py-3 px-0">
                   {COURSE_ABOUT_TABS.map((tab) => (
                     <motion.button
                       key={tab.id}
@@ -355,7 +351,7 @@ const CourseAbout = () => {
 
               {/* Tab Content */}
               <ScrollReveal direction="up">
-              <div className="tab-container container rounded">
+              <div className="tab-container rounded">
                 <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
@@ -366,7 +362,7 @@ const CourseAbout = () => {
                   transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
                 >
                 {activeTab === 'overview' && (
-                  <div className="pl-3 pt-4 pr-3 pb-4 ">
+                  <div className="course-about-tab-content">
                     <div dangerouslySetInnerHTML={{ __html: course.overview || `
                     <p>
                     </p>` }} />
@@ -374,48 +370,65 @@ const CourseAbout = () => {
                 )}
 
                 {activeTab === 'curriculum' && (
-                  <div className="p-4">
+                  <div className="course-about-tab-content">
                     {loadingCurriculum ? (
                       <Spinner animation="border" variant="primary" />
-                    ) : curriculum && Object.keys(curriculum).length > 0 ?  (
-                      <>
-                      <h3 className="mb-4">{formatMessage(messages['courseAbout.courseCurriculum'])}</h3>
-                      <div className="accordion">
-                        {Object.entries(curriculum).map(([moduleTitle, lessons], idx) => (
-                          <div key={idx} className="accordion-item border rounded bg-white mb-2">
-                            <button
-                              className="accordion-button bg-white px-3 py-3 rounded w-100"
-                              type="button"
-                              onClick={() => toggleSection(idx)}
+                    ) : curriculum && Object.keys(curriculum).length > 0 ? (
+                      <div className="course-curriculum">
+                        <h3 className="course-curriculum__title">
+                          {formatMessage(messages['courseAbout.courseCurriculum'])}
+                        </h3>
+                        <div className="course-curriculum__accordion">
+                          {Object.entries(curriculum).map(([moduleTitle, lessons], idx) => (
+                            <div
+                              key={idx}
+                              className={`course-curriculum__item${
+                                expandedSections.includes(idx) ? ' is-expanded' : ''
+                              }`}
                             >
-                              <span className="fw-bold text-align-start">{moduleTitle}</span>
-                              <FontAwesomeIcon
-                                icon={faChevronDown}
-                                className={`course-about-accordion-chevron${
-                                  expandedSections.includes(idx) ? ' is-expanded' : ''
-                                }`}
-                              />
-                            </button>
+                              <button
+                                className="course-curriculum__header"
+                                type="button"
+                                onClick={() => toggleSection(idx)}
+                                aria-expanded={expandedSections.includes(idx)}
+                              >
+                                <span className="course-curriculum__header-title">{moduleTitle}</span>
+                                <FontAwesomeIcon
+                                  icon={faChevronDown}
+                                  className={`course-curriculum__chevron${
+                                    expandedSections.includes(idx) ? ' is-expanded' : ''
+                                  }`}
+                                />
+                              </button>
 
-                            {expandedSections.includes(idx) && (
-                              <div className="accordion-body px-4 pb-4">
-                                {lessons.map((lessonTitle, lIdx) => (
-                                  <div
-                                    key={lIdx}
-                                    className="d-flex justify-content-between align-items-center py-2 border-bottom last:border-0"
-                                  >
-                                    <div className="d-flex align-items-center">
-                                      <FontAwesomeIcon icon={faPlayCircle} className="text-primary mr-2" />
-                                      <span>{lessonTitle}</span>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        ))}
+                              {expandedSections.includes(idx) && (
+                                <div className="course-curriculum__body">
+                                  {lessons.map((lesson, lIdx) => {
+                                    const { title, duration } = getLessonDetails(lesson);
+
+                                    return (
+                                      <div
+                                        key={lIdx}
+                                        className="course-curriculum__lesson"
+                                      >
+                                        <div className="course-curriculum__lesson-info">
+                                          <span className="course-curriculum__lesson-icon" aria-hidden="true">
+                                            <FontAwesomeIcon icon={faPlay} />
+                                          </span>
+                                          <span className="course-curriculum__lesson-title">{title}</span>
+                                        </div>
+                                        {duration && (
+                                          <span className="course-curriculum__lesson-duration">{duration}</span>
+                                        )}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      </>
                     ) : (
                       <p className="text-muted"> </p>
                     )}
@@ -423,7 +436,7 @@ const CourseAbout = () => {
                 )}
 
                 {activeTab === 'instructor' && (
-                  <div className="p-4">
+                  <div className="course-about-tab-content">
                     {loadingInstructors ? (
                       <Spinner animation="border" variant="primary" />
                     ) : instructors.length > 0 ? (
@@ -458,7 +471,7 @@ const CourseAbout = () => {
                 )}
 
                 {activeTab === 'reviews' && (
-                  <div className="p-4">
+                  <div className="course-about-tab-content">
                     {loadingReviews ? (
                       <Spinner animation="border" variant="primary" />
                     ) : reviews.length > 0 ? (
@@ -565,7 +578,7 @@ const CourseAbout = () => {
                   ) : (
                     <>
                       <motion.div
-                        whileHover={{ scale: 1.02 }}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.98 }}
                         className="mb-4"
                       >
