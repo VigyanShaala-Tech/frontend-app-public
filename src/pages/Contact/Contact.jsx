@@ -229,10 +229,10 @@ const Contact = () => {
                 </h3>
 
                 {submitSuccess ? (
-                  <Alert variant="success" className="text-center py-4">
+                  <Alert variant="success" className="text-center py-4 contact-form-success">
                     <strong>{formatMessage(messages['contact.form.success.title'])}</strong>
                     <br />
-                    <small>{formatMessage(messages['contact.form.success.message'])}</small>
+                    {formatMessage(messages['contact.form.success.message'])}
                   </Alert>
                 ) : (
                   <Form onSubmit={handleSubmit} noValidate>

@@ -299,3 +299,10 @@ body.custom-page-scroll::-webkit-scrollbar-thumb {
         text-decoration: none;
     }
 }
+#root header.site-header-desktop .logo {
+    padding: .6rem 0 !important;
+    img {
+        height: auto !important;
+        width: 135px !important;
+    }
+}
