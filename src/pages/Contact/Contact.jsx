@@ -161,9 +161,6 @@ const Contact = () => {
               </div>
 
               <div className="mb-5 mr-4">
-                <span className="mb-4 badge text-primary">
-                  {formatMessage(messages['contact.info.heading'])}
-                </span>
                 <h3 className="mb-4 contact-info-subheading">
                   {formatMessage(messages['contact.info.subheading'])}
                 </h3>

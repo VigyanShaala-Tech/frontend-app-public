@@ -20,15 +20,6 @@ const Privacy = () => {
   return (
     <div className="privacy-page py-5">
       <div className="container">
-        <nav className="page-mapped text-muted small mb-3">
-          <Link to="/public" className="text-muted text-decoration-none">
-            {formatMessage(messages['privacy.breadcrumb.home'])}
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-dark">
-            {formatMessage(messages['privacy.breadcrumb.privacy'])}
-          </span>
-        </nav>
 
         {/* Page heading */}
         <h1 className="privacy-heading mb-4">

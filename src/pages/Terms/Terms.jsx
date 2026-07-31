@@ -20,13 +20,7 @@ const Terms = () => {
   return (
     <div className="terms-page py-5">
       <div className="container">
-        <nav className="page-mapped text-muted small mb-3">
-          <Link to="/public" className="text-muted text-decoration-none">
-            {formatMessage(messages['terms.breadcrumb.home'])}
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-dark">{formatMessage(messages['terms.breadcrumb.terms'])}</span>
-        </nav>
+
         {/* Page heading */}
         <h1 className="terms-heading mb-4">{formatMessage(messages['terms.title'])}</h1>
         <p className="terms-subheading mb-5">{formatMessage(messages['terms.subtitle'])}</p>
