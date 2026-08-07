@@ -12,6 +12,7 @@ import PageTransition from './components/animations/PageTransition';
 import './components/animations/animations.scss';
 
 import CustomHeader from './components/CustomHeader/CustomHeader'
+import Head from './head/Head';
 
 import Home from './pages/Home/Home';
 import CourseCatalog from './pages/CourseCatalog/CourseCatalog';
@@ -67,6 +68,7 @@ const App = () => (
   <BrowserRouter>
     <AppProvider wrapWithRouter={false}>
       <QueryClientProvider client={queryClient}>
+        <Head />
         <Layout />
       </QueryClientProvider>
     </AppProvider>

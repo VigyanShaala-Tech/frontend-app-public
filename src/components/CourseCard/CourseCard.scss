@@ -30,9 +30,15 @@
       color: inherit;
       cursor: pointer;
 
+      &:focus:not(:focus-visible) {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
       &:focus-visible {
-        outline: 2px solid var(--pgn-color-primary-base, #69ab4a);
+        outline: 2px solid var(--pgn-color-primary-base, #69AB4A) !important;
         outline-offset: 2px;
+        box-shadow: none !important;
       }
     }
 
@@ -151,6 +157,14 @@
     flex-shrink: 0;
     width: 100%;
     border-top: 1px solid #E2E8F0;
+
+    .btn {
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
   }
 
   .course-title-grid {
@@ -275,6 +289,7 @@
   .course-card-action.course-card-action--list {
     display: flex;
     justify-content: flex-end;
+    border-top: none;
   }
 }
 

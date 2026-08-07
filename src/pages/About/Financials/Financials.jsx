@@ -39,17 +39,6 @@ const Financials = () => {
       {/* Header / Banner */}
       <section className="py-4">
         <div className="container">
-          {/* Breadcrumb */}
-          <nav className="page-mapped text-muted small mb-4">
-            <Link to="/public" className="text-muted text-decoration-none">
-              {formatMessage(messages['financial.breadcrumb.home'])}
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-dark">
-              {formatMessage(messages['financial.breadcrumb.financial'])}
-            </span>
-          </nav>
-
           <h1 className="financials-page-heading mb-3">
             {formatMessage(messages['financial.page.title'])}
           </h1>

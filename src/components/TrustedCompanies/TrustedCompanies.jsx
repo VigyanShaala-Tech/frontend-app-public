@@ -32,8 +32,6 @@ import Cambridge from "../../assets/image/Trusted-company/Universities&Colleges/
 import Edinburgh from "../../assets/image/Trusted-company/Universities&Colleges/University_of_Edinburgh.png";
 import UIUC from "../../assets/image/Trusted-company/Universities&Colleges/University_of_Illinois.png";
 
-
-
 const companies = [
   { nameKey: 'home.trusted.company.amazon', logo: Amazon },
   { nameKey: 'home.trusted.company.amd', logo: AMD },
@@ -66,33 +64,42 @@ const companies = [
   { nameKey: 'home.trusted.company.uiuc', logo: UIUC },
 ];
 
+const CompanyLogo = ({ company, formatMessage }) => (
+  <div className="company-item">
+    <div className="card text-center p-3 rounded">
+      <img
+        src={company.logo}
+        alt={formatMessage(messages[company.nameKey])}
+        className="img-fluid mx-auto"
+      />
+    </div>
+  </div>
+);
+
 const TrustedCompanies = () => {
   const { formatMessage } = useIntl();
 
-  // Duplicate companies array to create seamless scrolling
-  const scrollingCompanies = [...companies, ...companies];
+  const renderTrack = (suffix) => (
+    <div className="companies-track-group" aria-hidden={suffix === 'duplicate' ? true : undefined}>
+      {companies.map((company) => (
+        <CompanyLogo
+          key={`${company.nameKey}-${suffix}`}
+          company={company}
+          formatMessage={formatMessage}
+        />
+      ))}
+    </div>
+  );
 
   return (
     <section className="trusted-companies">
       <div className="container">
         <h2 className="text-center mb-4">{formatMessage(messages['home.trusted.heading'])}</h2>
-        {/* <p className="text-center text-muted mb-5">
-          {formatMessage(messages['home.trusted.subheading'])}
-        </p> */}
 
         <div className="companies-wrapper">
-          <div className="companies-track py-2">
-            {scrollingCompanies.map((company, idx) => (
-              <div key={idx} className="company-item">
-                <div className="card text-center p-3 rounded">
-                  <img
-                    src={company.logo}
-                    alt={formatMessage(messages[company.nameKey])}
-                    className="img-fluid mx-auto"
-                  />
-                </div>
-              </div>
-            ))}
+          <div className="companies-track">
+            {renderTrack('primary')}
+            {renderTrack('duplicate')}
           </div>
         </div>
       </div>

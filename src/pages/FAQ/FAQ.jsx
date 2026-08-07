@@ -243,14 +243,6 @@ const FAQ = () => {
   return (
     <div className="faq-page py-5">
       <div className="container">
-        <nav className="page-mapped text-muted small mb-3">
-          <Link to="/public" className="text-muted text-decoration-none">
-            {formatMessage(messages['faq.breadcrumb.home'])}
-          </Link>
-          <span className="mx-2">/</span>
-          <span className="text-dark">{formatMessage(messages['faq.breadcrumb.faq'])}</span>
-        </nav>
-
         <h1 className="faq-heading mb-4">{formatMessage(messages['faq.title'])}</h1>
         <p className="faq-intro mb-5">{formatMessage(messages['faq.intro'])}</p>
 

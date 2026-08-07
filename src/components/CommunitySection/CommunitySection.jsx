@@ -1,21 +1,64 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useIntl, FormattedMessage } from '@edx/frontend-platform/i18n';
+import { useIntl } from '@edx/frontend-platform/i18n';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import messages from '../../message/GlobalMessage.message';
 import './CommunitySection.scss';
 
+import priyankaKajalImg from '../../assets/image/Our Tribe/Priyanka Kajal.jpg';
+import drNehaVarshneyImg from '../../assets/image/Our Tribe/Dr. Neha Varshney.jpg';
+import swathiBisanaImg from '../../assets/image/Our Tribe/Swathi Bisana.jpg';
+import shilpiMitraImg from '../../assets/image/Our Tribe/Shilpi Mitra.jpg';
+import jamunaVigneshImg from '../../assets/image/Our Tribe/Jamuna Vignesh.jpg';
+import atulGopalImg from '../../assets/image/Our Tribe/Atul Gopal.jpg';
+import adrikaRaybarmanImg from '../../assets/image/Our Tribe/Adrika Raybarman.jpg';
+import truptiArabattiImg from '../../assets/image/Our Tribe/Trupti Arabatti.jpg';
+
+
 const profiles = [
-  { nameKey: 'home.community.profile1.name', roleKey: 'home.community.profile1.role', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop' },
-  { nameKey: 'home.community.profile2.name', roleKey: 'home.community.profile2.role', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop' },
-  { nameKey: 'home.community.profile3.name', roleKey: 'home.community.profile3.role', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&h=120&fit=crop' },
-  { nameKey: 'home.community.profile4.name', roleKey: 'home.community.profile4.role', image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=120&h=120&fit=crop' },
-  { nameKey: 'home.community.profile5.name', roleKey: 'home.community.profile5.role', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop' },
-  { nameKey: 'home.community.profile6.name', roleKey: 'home.community.profile6.role', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop' },
-  { nameKey: 'home.community.profile7.name', roleKey: 'home.community.profile7.role', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&h=120&fit=crop' },
-  { nameKey: 'home.community.profile8.name', roleKey: 'home.community.profile8.role', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop' },
+  { 
+    nameKey: 'home.community.profile1.name', 
+    roleKey: 'home.community.profile1.role', 
+    image: priyankaKajalImg,
+  },
+  { 
+    nameKey: 'home.community.profile2.name', 
+    roleKey: 'home.community.profile2.role', 
+    image: drNehaVarshneyImg,
+  },
+  { 
+    nameKey: 'home.community.profile3.name', 
+    roleKey: 'home.community.profile3.role', 
+    image: swathiBisanaImg,
+  },
+  { 
+    nameKey: 'home.community.profile4.name', 
+    roleKey: 'home.community.profile4.role', 
+    image: shilpiMitraImg,
+  },
+  { 
+    nameKey: 'home.community.profile5.name', 
+    roleKey: 'home.community.profile5.role', 
+    image: jamunaVigneshImg,
+  },
+  { 
+    nameKey: 'home.community.profile6.name', 
+    roleKey: 'home.community.profile6.role', 
+    image: atulGopalImg,
+  },
+  { 
+    nameKey: 'home.community.profile7.name', 
+    roleKey: 'home.community.profile7.role', 
+    image: adrikaRaybarmanImg,
+  },
+  { 
+    nameKey: 'home.community.profile8.name', 
+    roleKey: 'home.community.profile8.role', 
+    image: truptiArabattiImg,
+  },
 ];
+
 
 const VISIBLE_DESKTOP = 4;
 const VISIBLE_MOBILE = 2;
@@ -133,12 +176,11 @@ const CommunitySection = () => {
           </div>
 
           <p className="community-stat text-muted">
-            <FormattedMessage
-              {...messages['home.community.stat']}
-              values={{
-                count: <span className="text-primary fw-bold">15,000+</span>,
-              }}
-            />
+            {formatMessage(messages['home.community.statPrefix'])}
+            {' '}
+            <span className="community-stat__count">15,000+</span>
+            {' '}
+            {formatMessage(messages['home.community.statSuffix'])}
           </p>
 
         </div>

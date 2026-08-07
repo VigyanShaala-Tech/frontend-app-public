@@ -1,9 +1,11 @@
 .testimonials {
-  padding: 6rem 0;
+  padding-top: 56px !important;
+  padding-bottom: 56px !important;
 
   h2 {
     font-size: 3rem;
     font-weight: 700;
+    margin-bottom: 16px;
   }
 
   .lead {
@@ -60,8 +62,8 @@
   position: absolute;
   left: 50%;
   transform: translate(-50px);
-  width: 90px;
-  height: 90px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 1.5rem;
@@ -74,7 +76,7 @@
 }
 
 blockquote {
-  margin-top: 50px !important;
+  margin-top: 80px !important;
   font-size: 1.25rem;
   font-style: italic;
   margin-bottom: 1.5rem;

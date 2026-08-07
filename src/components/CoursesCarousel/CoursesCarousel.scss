@@ -1,5 +1,6 @@
 .courses-carousel {
-  padding: 4rem 0;
+  padding-top: 56px !important;
+  padding-bottom: 56px !important;
 
   .badge {
     font-size: 0.875rem;
@@ -19,6 +20,16 @@
     margin: 0 auto;
   }
 
+  .courses-carousel-cta {
+    .btn {
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+
   .navigation-arrow-container {
     width: 100%;
     display: flex;
@@ -32,12 +43,13 @@
     height: 3rem;
     z-index: 10;
     opacity: 0.85;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease, color 0.3s ease;
 
-    &:hover {
+    &:hover:not(:disabled) {
       opacity: 1;
       background: var(--primary);
       color: white !important;
+      transform: scale(1.02);
     }
 
     &:disabled {
@@ -88,10 +100,8 @@
     }
   }
 
-  /* Tablet — show 2 cards (≈ 576px – 992px) */
+  /* Tablet */
   @media (max-width: 992px) {
-    padding: 3rem 0;
-
     h2 {
       font-size: 1.875rem;
     }

@@ -2,17 +2,14 @@ import React, { useState } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Button, Form, Spinner, Alert } from '@openedx/paragon';
 import {
-  faMapMarkerAlt,
-  faEnvelope,
-  faPhone,
   faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useContext } from 'react';
 import { AppContext } from '@edx/frontend-platform/react';
 import { submitContactForm } from '../../api';
+import { ContactAddressIcon, ContactEmailIcon, ContactPhoneIcon } from './ContactIcons';
 
 import messages from '../../message/GlobalMessage.message';
 
@@ -153,54 +150,29 @@ const Contact = () => {
 
   return (
     <div className="contact-page">
-      {/* Hero / Banner */}
-      <section className="banner">
-        <div className="container">
-          <nav className="page-mapped text-muted small mb-3">
-            <Link to="/public" className="text-muted text-decoration-none">
-              {formatMessage(messages['contact.breadcrumb.home'])}
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-dark">{formatMessage(messages['contact.breadcrumb.contact'])}</span>
-          </nav>
-
-          <h2 className="mb-3">{formatMessage(messages['contact.title'])}</h2>
-          <p className="lead text-muted mb-5">{formatMessage(messages['contact.subtitle'])}</p>
-        </div>
-      </section>
-
-      {/* Main Content */}
       <section className="main-content">
         <div className="container">
-          <div className="row g-5">
-            {/* Left - Contact Info */}
+          <div className="row g-5 align-items-start">
+            {/* Left - Heading + Contact Info */}
             <div className="col-lg-6">
+              <div className="contact-intro mb-4">
+                <h2 className="mb-3">{formatMessage(messages['contact.title'])}</h2>
+                <p className="lead text-muted mb-0">{formatMessage(messages['contact.subtitle'])}</p>
+              </div>
+
               <div className="mb-5 mr-4">
-                <span className="mb-4 badge text-primary">
-                  {formatMessage(messages['contact.info.heading'])}
-                </span>
                 <h3 className="mb-4 contact-info-subheading">
                   {formatMessage(messages['contact.info.subheading'])}
                 </h3>
-                <p className="text-muted mb-5 contact-info-description">
+                <p className="text-muted mb-2 contact-info-description">
                   {formatMessage(messages['contact.info.description'])}
                 </p>
 
                 <div className="d-flex flex-column gap-4">
-                  <div className="d-flex align-items-center mb-2 p-4 contact-info">
-                    <FontAwesomeIcon icon={faMapMarkerAlt} className="text-primary mr-4" />
-                    <div>
-                      <h5 className="mb-1 contact-details-heading">
-                        {formatMessage(messages['contact.info.address.title'])}
-                      </h5>
-                      <div className="text-muted small mb-0 d-flex flex-column contact-detail-data">
-                        <span>{formatMessage(messages['contact.info.address.text'])}</span>
-                      </div>
+                  <div className="d-flex align-items-center p-3 contact-info">
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <ContactEmailIcon />
                     </div>
-                  </div>
-
-                  <div className="d-flex align-items-center mb-2 p-4 contact-info">
-                    <FontAwesomeIcon icon={faEnvelope} className="text-primary mr-4" />
                     <div>
                       <h5 className="mb-1 contact-details-heading">
                         {formatMessage(messages['contact.info.email.title'])}
@@ -211,18 +183,34 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="d-flex align-items-center mb-2 p-4 contact-info">
-                    <FontAwesomeIcon icon={faPhone} className="text-primary mr-4" />
+                  <div className="d-flex align-items-center p-3 contact-info">
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <ContactAddressIcon />
+                    </div>
+                    <div>
+                      <h5 className="mb-1 contact-details-heading">
+                        {formatMessage(messages['contact.info.address.title'])}
+                      </h5>
+                      <div className="text-muted small mb-0 d-flex flex-column contact-detail-data">
+                        <span>{formatMessage(messages['contact.info.address.text'])}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="d-flex align-items-center p-3 contact-info">
+                    <div className="contact-info__icon" aria-hidden="true">
+                      <ContactPhoneIcon />
+                    </div>
                     <div className="flex-grow-1">
                       <h5 className="mb-1 contact-details-heading">
                         {formatMessage(messages['contact.info.phone.title'])}
                       </h5>
-                      
-                      <a 
+
+                      <a
                         href="tel:+917028422265"
-                        className="btn btn-primary btn-lg w-100 text-start d-flex align-items-center p-2 shadow-sm"
+                        className="btn btn-primary btn-lg text-start d-inline-flex align-items-center p-2 shadow-sm contact-phone-btn"
                       >
-                          <strong>{formatMessage(messages['contact.info.phone.text'])}</strong>
+                        <strong>{formatMessage(messages['contact.info.phone.text'])}</strong>
                       </a>
                     </div>
                   </div>
@@ -230,18 +218,18 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Right - Contact Form */}
-            <div className="col-lg-6">
+            {/* Right - Contact Form (top aligned) */}
+            <div className="col-lg-6 contact-form-col">
               <div className="card p-4 rounded shadow-sm">
                 <h3 className="mb-4 contact-form-heading">
                   {formatMessage(messages['contact.form.heading'])}
                 </h3>
 
                 {submitSuccess ? (
-                  <Alert variant="success" className="text-center py-4">
+                  <Alert variant="success" className="text-center py-4 contact-form-success">
                     <strong>{formatMessage(messages['contact.form.success.title'])}</strong>
                     <br />
-                    <small>{formatMessage(messages['contact.form.success.message'])}</small>
+                    {formatMessage(messages['contact.form.success.message'])}
                   </Alert>
                 ) : (
                   <Form onSubmit={handleSubmit} noValidate>

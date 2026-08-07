@@ -8,7 +8,7 @@ const messages = defineMessages({
   },
   'supporter.breadcrumb.supporters': {
     id: 'supporter.breadcrumb.supporters',
-    defaultMessage: 'Supporters',
+    defaultMessage: 'Our Supporters',
     description: 'Breadcrumb supporters',
   },
   'supporter.page.title': {

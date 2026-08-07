@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { useIntl } from '@edx/frontend-platform/i18n';
-import { Link } from 'react-router-dom';
 import "./OurStory.scss";
 import messages from './messages';
 
@@ -95,15 +94,6 @@ const OurStory = () => {
       <section className="py-5">
         <div className="container">
 
-          <nav className="breadcrumb text-muted small mb-4">
-            <Link to="/public" className="text-muted text-decoration-none">
-              {formatMessage(messages['story.breadcrumb.home'])}
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-dark">
-              {formatMessage(messages['story.breadcrumb.story'])}
-            </span>
-          </nav>
           <div className="story-vision-mission">
             <h2 className="story-section-subtitle">
               {formatMessage(messages['story.vision.title'])}

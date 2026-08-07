@@ -21,18 +21,18 @@ const ALL_FILTER_VALUE = '';
 const CourseCatalog = () => {
   const { formatMessage } = useIntl();
   const allCategoriesLabel = formatMessage(messages['catalog.filter.allCategories']);
-  const allLevelsLabel = formatMessage(messages['catalog.filter.allLevels']);
+  const allTagsLabel = formatMessage(messages['catalog.filter.allTags']);
   const allSubjectsLabel = formatMessage(messages['catalog.filter.allSubjects']);
   const allSortByLabel = formatMessage(messages['catalog.filter.sortBy']);
 
   const [apiCategories, setApiCategories] = useState([]);
-  const [apiLevels, setApiLevels] = useState([]);
+  const [apiTags, setApiTags] = useState([]);
   const [apiSubjects, setApiSubjects] = useState([]);
   const [apiSortBy, setApiSortBy] = useState([]);
 
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState(ALL_FILTER_VALUE);
-  const [level, setLevel] = useState(ALL_FILTER_VALUE);
+  const [tag, setTag] = useState(ALL_FILTER_VALUE);
   const [subject, setSubject] = useState(ALL_FILTER_VALUE);
   const [sortBy, setSortBy] = useState('');
   const [viewMode, setViewMode] = useState('grid');
@@ -51,10 +51,10 @@ const CourseCatalog = () => {
     ...apiCategories.map((item) => ({ value: item, label: item })),
   ], [apiCategories, allCategoriesLabel]);
 
-  const levelOptions = useMemo(() => [
-    { value: ALL_FILTER_VALUE, label: allLevelsLabel },
-    ...apiLevels.map((item) => ({ value: item, label: item })),
-  ], [apiLevels, allLevelsLabel]);
+  const tagOptions = useMemo(() => [
+    { value: ALL_FILTER_VALUE, label: allTagsLabel },
+    ...apiTags.map((item) => ({ value: item, label: item })),
+  ], [apiTags, allTagsLabel]);
 
   const subjectOptions = useMemo(() => [
     { value: ALL_FILTER_VALUE, label: allSubjectsLabel },
@@ -78,7 +78,7 @@ const CourseCatalog = () => {
 
         if (res.status === 200 && res.data) {
           setApiCategories(res.data.categories || []);
-          setApiLevels(res.data.levels || []);
+          setApiTags(res.data.tags || []);
           setApiSubjects(res.data.subjects || []);
           setApiSortBy(res.data.sortby || res.data.sort_by || []);
         }
@@ -98,7 +98,7 @@ const CourseCatalog = () => {
       const response = await fetchCatalogCourses({
         search_term: search.trim() || undefined,
         category: category || undefined,
-        level: level || undefined,
+        level: tag || undefined, // backend query param is still named `level`, but now filters by tag
         subject: subject || undefined,
         sort: sortBy || undefined,
         page: currentPage,
@@ -124,7 +124,7 @@ const CourseCatalog = () => {
     } finally {
       setLoading(false);
     }
-  }, [search, category, level, subject, sortBy, currentPage, formatMessage]);
+  }, [search, category, tag, subject, sortBy, currentPage, formatMessage]);
 
   useEffect(() => {
     fetchCourses();
@@ -132,7 +132,7 @@ const CourseCatalog = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, category, level, subject, sortBy]);
+  }, [search, category, tag, subject, sortBy]);
 
   useEffect(() => {
     searchRef.current?.scrollIntoView({
@@ -144,7 +144,7 @@ const CourseCatalog = () => {
   const clearFilters = () => {
     setSearch('');
     setCategory(ALL_FILTER_VALUE);
-    setLevel(ALL_FILTER_VALUE);
+    setTag(ALL_FILTER_VALUE);
     setSubject(ALL_FILTER_VALUE);
     setSortBy('');
     setCurrentPage(1);
@@ -155,9 +155,9 @@ const CourseCatalog = () => {
       label: getFilterLabel(categoryOptions, category),
       onClear: () => { setCategory(ALL_FILTER_VALUE); setCurrentPage(1); },
     },
-    level && {
-      label: getFilterLabel(levelOptions, level),
-      onClear: () => { setLevel(ALL_FILTER_VALUE); setCurrentPage(1); },
+    tag && {
+      label: getFilterLabel(tagOptions, tag),
+      onClear: () => { setTag(ALL_FILTER_VALUE); setCurrentPage(1); },
     },
     subject && {
       label: getFilterLabel(subjectOptions, subject),
@@ -178,17 +178,17 @@ const CourseCatalog = () => {
         </div>
       </section>
 
-      <section ref={searchRef} className="pb-5 ">
+      <section ref={searchRef} className="course-catalog-container">
         <div className="container">
-          <div className="filter-bar rounded p-4 mb-5 bg-white">
-            <div className="row g-3 align-items-center">
-              <div className="search-bar col-lg-5 position-relative">
+          <div className="filter-bar rounded bg-white">
+            <div className="catalog-filter-row">
+              <div className="search-bar position-relative">
                 <Form.Control
                   type="text"
                   value={search}
                   onChange={(e) => { setSearch(e.target.value); }}
                   placeholder={formatMessage(messages['catalog.search.placeholder'])}
-                  className="ps-5"
+                  className="ps-5 catalog-search-input"
                 />
                 <FontAwesomeIcon
                   icon={faSearch}
@@ -196,53 +196,51 @@ const CourseCatalog = () => {
                 />
               </div>
 
-              <div className="col-lg-6 filter-container">
-                <div className="d-flex flex-wrap gap-3">
-                  <div className="flex-grow-1 filter-dropdown">
-                    <CustomSearchDropdown
-                      id="catalog-category-dropdown"
-                      options={categoryOptions}
-                      value={category}
-                      onChange={(selected) => { setCategory(selected); setCurrentPage(1); }}
-                    />
-                  </div>
+              <div className="catalog-filters-group">
+                <div className="filter-dropdown">
+                  <CustomSearchDropdown
+                    id="catalog-category-dropdown"
+                    options={categoryOptions}
+                    value={category}
+                    onChange={(selected) => { setCategory(selected); setCurrentPage(1); }}
+                  />
+                </div>
 
-                  <div className="flex-grow-1 filter-dropdown">
-                    <CustomSearchDropdown
-                      id="catalog-level-dropdown"
-                      options={levelOptions}
-                      value={level}
-                      onChange={(selected) => { setLevel(selected); setCurrentPage(1); }}
-                    />
-                  </div>
+                <div className="filter-dropdown">
+                  <CustomSearchDropdown
+                    id="catalog-tag-dropdown"
+                    options={tagOptions}
+                    value={tag}
+                    onChange={(selected) => { setTag(selected); setCurrentPage(1); }}
+                  />
+                </div>
 
-                  <div className="flex-grow-1 filter-dropdown">
-                    <CustomSearchDropdown
-                      id="catalog-subject-dropdown"
-                      options={subjectOptions}
-                      value={subject}
-                      onChange={(selected) => { setSubject(selected); setCurrentPage(1); }}
-                    />
-                  </div>
+                <div className="filter-dropdown">
+                  <CustomSearchDropdown
+                    id="catalog-subject-dropdown"
+                    options={subjectOptions}
+                    value={subject}
+                    onChange={(selected) => { setSubject(selected); setCurrentPage(1); }}
+                  />
+                </div>
 
-                  <div className="flex-grow-1 filter-dropdown">
-                    <CustomSearchDropdown
-                      id="catalog-sort-dropdown"
-                      options={sortOptions}
-                      value={sortBy}
-                      onChange={(selected) => { setSortBy(selected); setCurrentPage(1); }}
-                    />
-                  </div>
+                <div className="filter-dropdown filter-dropdown--sort">
+                  <CustomSearchDropdown
+                    id="catalog-sort-dropdown"
+                    options={sortOptions}
+                    value={sortBy}
+                    onChange={(selected) => { setSortBy(selected); setCurrentPage(1); }}
+                  />
                 </div>
               </div>
 
-              <div className="col-lg-1 d-flex justify-content-end">
+              <div className="catalog-view-toggle">
                 <div className="btn-group">
                   <Button
                     variant={viewMode === 'grid' ? 'primary' : 'outline-primary'}
                     onClick={() => setViewMode('grid')}
                     title={formatMessage(messages['catalog.view.grid'])}
-                    className="border"
+                    className="border catalog-view-btn"
                   >
                     <FontAwesomeIcon icon={faTh} />
                   </Button>
@@ -250,7 +248,7 @@ const CourseCatalog = () => {
                     variant={viewMode === 'list' ? 'primary' : 'outline-primary'}
                     onClick={() => setViewMode('list')}
                     title={formatMessage(messages['catalog.view.list'])}
-                    className="border"
+                    className="border catalog-view-btn"
                   >
                     <FontAwesomeIcon icon={faList} />
                   </Button>
@@ -305,7 +303,7 @@ const CourseCatalog = () => {
               <h4 className="text-muted mb-4">
                 {formatMessage(messages['catalog.noResults.title'])}
               </h4>
-              <Button variant="outline-primary" onClick={clearFilters}>
+              <Button variant="primary" className="clear-filters-btn" onClick={clearFilters}>
                 {formatMessage(messages['catalog.noResults.action'])}
               </Button>
             </div>
@@ -326,6 +324,7 @@ const CourseCatalog = () => {
           {totalPages > 1 && (
             <div className="d-flex justify-content-center mt-5">
               <Pagination
+                className="course-catalog-pagination"
                 paginationLabel="Course catalog pagination"
                 pageCount={totalPages}
                 currentPage={currentPage}

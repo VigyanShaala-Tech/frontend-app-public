@@ -3,12 +3,17 @@
   padding: 0 !important;
 
   .impact-icon {
-    font-size: 2rem;
+    font-size: 3rem;
     color: #1B3A5C;
+    margin-bottom: 0;
+
+    @media (min-width: 768px) {
+      margin-bottom: 0.5rem;
+    }
 
     svg {
-      width: 2rem;
-      height: 2rem;
+      width: 3rem;
+      height: 3rem;
     }
   }
 
@@ -16,6 +21,11 @@
     line-height: 1.1;
     font-size: 2.25rem;
     color: #1b3a5c !important;
+    margin-bottom: 0.125rem;
+
+    @media (min-width: 768px) {
+      margin-bottom: 0.5rem;
+    }
   }
 
   p {
@@ -23,6 +33,7 @@
     margin-left: auto;
     margin-right: auto;
     font-size: 0.95rem;
+    font-weight: 700;
     color: #1b3a5c !important;
   }
 
