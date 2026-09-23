@@ -73,6 +73,16 @@ import arhamaShiekh      from '../../../assets/image/Team-images/Arhama Shiekh.p
 import hPinkyRuthChanu   from '../../../assets/image/Team-images/H Pinky Ruth Chanu.png';
 import kanchanBafila     from '../../../assets/image/Team-images/Kanchan Bafila.png';
 import tanuja            from '../../../assets/image/Team-images/Tanuja.png';
+import garimaUpadhyay    from '../../../assets/image/Team-images/Garima Upadhyay.png';
+import srishtiDhillon    from '../../../assets/image/Team-images/Srishti Dhillon.png';
+import lRakshitha        from '../../../assets/image/Team-images/L. Rakshitha.png';
+import bhumikaSingh      from '../../../assets/image/Team-images/Bhumika Singh.png';
+import dikshaRao         from '../../../assets/image/Team-images/Diksha Rao.png';
+import devikaHC          from '../../../assets/image/Team-images/Devika H C.png';
+import priyankaGeed      from '../../../assets/image/Team-images/Priyanka Geed.png';
+import shivaniNandakumar from '../../../assets/image/Team-images/Shivani Nandakumar.png';
+import anushkaShukla     from '../../../assets/image/Team-images/Anushka Shukla.png';
+import preetiBora        from '../../../assets/image/Team-images/Preeti Bora.png';
 import placeholderAvatar from '../../../assets/image/Team-images/team-placeholder.jpg';
 
 const teamData = {
@@ -181,16 +191,16 @@ const teamData = {
     { nameMsg: 'team.name.hPinkyRuthChanu',       roleMsg: 'team.role.hPinkyRuthChanu', image: hPinkyRuthChanu, linkedin: 'https://www.linkedin.com/in/h-pinky-ruth-chanu-326a73215/' },
     { nameMsg: 'team.name.kanchanBafila',         roleMsg: 'team.role.kanchanBafila', image: kanchanBafila, linkedin: 'https://www.linkedin.com/in/kanchan-bafila/' },
     { nameMsg: 'team.name.tanuja',                roleMsg: 'team.role.tanuja', image: tanuja, linkedin: 'https://www.linkedin.com/in/tanuja-pant-44a165222/' },
-    { nameMsg: 'team.name.prathushya',            roleMsg: 'team.role.prathushya', image: placeholderAvatar },
-    { nameMsg: 'team.name.garimaVentureCenter',   roleMsg: 'team.role.garimaVentureCenter', image: placeholderAvatar },
-    { nameMsg: 'team.name.himaniUpadhyay',        roleMsg: 'team.role.himaniUpadhyay', image: placeholderAvatar },
-    { nameMsg: 'team.name.jessi',                 roleMsg: 'team.role.jessi', image: placeholderAvatar },
-    { nameMsg: 'team.name.nampallyMadhuri',       roleMsg: 'team.role.nampallyMadhuri', image: placeholderAvatar },
-    { nameMsg: 'team.name.srijanVerma',           roleMsg: 'team.role.srijanVerma', image: placeholderAvatar },
-    { nameMsg: 'team.name.theaCollinson',         roleMsg: 'team.role.theaCollinson', image: placeholderAvatar },
-    { nameMsg: 'team.name.nikitaTiwari',          roleMsg: 'team.role.nikitaTiwari', image: placeholderAvatar },
-    { nameMsg: 'team.name.garimaEnzene',          roleMsg: 'team.role.garimaEnzene', image: placeholderAvatar },
-    { nameMsg: 'team.name.gangaRawat',            roleMsg: 'team.role.gangaRawat', image: placeholderAvatar },
+    { nameMsg: 'team.name.garimaUpadhyay',        roleMsg: 'team.role.garimaUpadhyay', image: garimaUpadhyay, linkedin: 'https://www.linkedin.com/in/garima-upadhyay/' },
+    { nameMsg: 'team.name.srishtiDhillon',        roleMsg: 'team.role.srishtiDhillon', image: srishtiDhillon, linkedin: 'https://www.linkedin.com/in/srishti-dhillon-180921243/' },
+    { nameMsg: 'team.name.lRakshitha',            roleMsg: 'team.role.lRakshitha', image: lRakshitha, linkedin: 'https://www.linkedin.com/in/rakshitha-lokesh-a36653350/' },
+    { nameMsg: 'team.name.bhumikaSingh',          roleMsg: 'team.role.bhumikaSingh', image: bhumikaSingh, linkedin: 'https://www.linkedin.com/in/bhumika-singh-9b6213316/' },
+    { nameMsg: 'team.name.dikshaRao',             roleMsg: 'team.role.dikshaRao', image: dikshaRao, linkedin: 'https://www.linkedin.com/in/diksharao21/' },
+    { nameMsg: 'team.name.devikaHC',              roleMsg: 'team.role.devikaHC', image: devikaHC, linkedin: 'https://www.linkedin.com/in/devika-h-c-818863344/' },
+    { nameMsg: 'team.name.priyankaGeed',          roleMsg: 'team.role.priyankaGeed', image: priyankaGeed, linkedin: 'https://www.linkedin.com/in/priyanka-geed-28b14437b/' },
+    { nameMsg: 'team.name.shivaniNandakumar',     roleMsg: 'team.role.shivaniNandakumar', image: shivaniNandakumar, linkedin: 'https://www.linkedin.com/in/shivani-nandakumar-6871b2305/' },
+    { nameMsg: 'team.name.anushkaShukla',         roleMsg: 'team.role.anushkaShukla', image: anushkaShukla, linkedin: 'https://www.linkedin.com/in/anushka-shukla-b97849196/' },
+    { nameMsg: 'team.name.preetiBora',            roleMsg: 'team.role.preetiBora', image: preetiBora, linkedin: 'https://www.linkedin.com/in/preeti-bora/' },
   ],
 };
 
