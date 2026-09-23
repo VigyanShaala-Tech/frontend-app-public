@@ -53,6 +53,26 @@ import saurabhJoshi      from '../../../assets/image/Team-images/team_saurabh-jo
 import deepmalaRawal     from '../../../assets/image/Team-images/team_deepmala-rawal.jpg';
 import kiranBisht        from '../../../assets/image/Team-images/team_kiran-bisht.jpg';
 import pradeepBora       from '../../../assets/image/Team-images/Pradeep.jpg';
+import komalDiwakar      from '../../../assets/image/Team-images/Komal Diwakar.png';
+import shramanaGuchhait  from '../../../assets/image/Team-images/Shramana Guchhait.png';
+import gauriPatti        from '../../../assets/image/Team-images/Gauri Patti.png';
+import dikshaNagarkoti   from '../../../assets/image/Team-images/Diksha Nagarkoti.png';
+import saeeKamat         from '../../../assets/image/Team-images/Saee Kamat.png';
+import ishaKabara        from '../../../assets/image/Team-images/Isha Kabara.png';
+import purvaJoshi        from '../../../assets/image/Team-images/Purva Joshi.png';
+import tejaswiniVenkatramanan from '../../../assets/image/Team-images/Tejaswini Venkatramanan.png';
+import abhaBharge        from '../../../assets/image/Team-images/Abha Bharge.png';
+import tanishaGupta      from '../../../assets/image/Team-images/Tanisha Gupta.png';
+import muralika          from '../../../assets/image/Team-images/Muralika.png';
+import aparnaManoj        from '../../../assets/image/Team-images/Aparna Manoj.png';
+import ojaswitaPant      from '../../../assets/image/Team-images/Ojaswita Pant.png';
+import ahanaGhosh        from '../../../assets/image/Team-images/Ahana Ghosh.png';
+import lavanyaSachdev    from '../../../assets/image/Team-images/Lavanya Sachdev.png';
+import yashaswiniAjay    from '../../../assets/image/Team-images/Yashaswini Ajay.png';
+import arhamaShiekh      from '../../../assets/image/Team-images/Arhama Shiekh.png';
+import hPinkyRuthChanu   from '../../../assets/image/Team-images/H Pinky Ruth Chanu.png';
+import kanchanBafila     from '../../../assets/image/Team-images/Kanchan Bafila.png';
+import tanuja            from '../../../assets/image/Team-images/Tanuja.png';
 import placeholderAvatar from '../../../assets/image/Team-images/team-placeholder.jpg';
 
 const teamData = {
@@ -137,10 +157,40 @@ const teamData = {
   ],
 
   stemChampionsTeam: [
-    { nameMsg: 'team.name.saurabhJoshi',        role: 'team.role.chapterCoordinator (Champawat)', image: saurabhJoshi, linkedin: 'http://www.linkedin.com/in/saurabh-joshi-b28a1a243' },
-    { nameMsg: 'team.name.deepmalaRawal',       role: 'team.role.chapterCoordinator (Berinag)',   image: deepmalaRawal, linkedin: 'https://www.linkedin.com/in/deepmala-rawal-941a99293' },
-    { nameMsg: 'team.name.kiranBisht',          role: 'team.role.chapterCoordinator (Pithoragarh)',image: kiranBisht,    linkedin: 'https://www.linkedin.com/in/kiran-bisht-83b6a22b3' },
-    { nameMsg: 'team.name.pradeepSinghBora',    role: 'team.role.chapterCoordinator (Haldwani)',  image: pradeepBora },
+    { nameMsg: 'team.name.saurabhJoshi',        roleMsg: 'team.role.chapterCoordinator', location: 'Champawat',   image: saurabhJoshi,  linkedin: 'http://www.linkedin.com/in/saurabh-joshi-b28a1a243' },
+    { nameMsg: 'team.name.deepmalaRawal',       roleMsg: 'team.role.chapterCoordinator', location: 'Berinag',     image: deepmalaRawal, linkedin: 'https://www.linkedin.com/in/deepmala-rawal-941a99293' },
+    { nameMsg: 'team.name.kiranBisht',          roleMsg: 'team.role.chapterCoordinator', location: 'Pithoragarh', image: kiranBisht,    linkedin: 'https://www.linkedin.com/in/kiran-bisht-83b6a22b3' },
+    { nameMsg: 'team.name.pradeepSinghBora',    roleMsg: 'team.role.chapterCoordinator', location: 'Haldwani',    image: pradeepBora },
+    { nameMsg: 'team.name.komalDiwakar',          roleMsg: 'team.role.komalDiwakar', image: komalDiwakar, linkedin: 'https://www.linkedin.com/in/komal-diwakar-/' },
+    { nameMsg: 'team.name.aparnaManoj',           roleMsg: 'team.role.aparnaManoj', image: aparnaManoj, linkedin: 'https://www.linkedin.com/in/aparna-manoj' },
+    { nameMsg: 'team.name.shramanaGuchhait',      roleMsg: 'team.role.shramanaGuchhait', image: shramanaGuchhait, linkedin: 'https://www.linkedin.com/in/shramana-guchhait/' },
+    { nameMsg: 'team.name.gauriPatti',            roleMsg: 'team.role.gauriPatti', image: gauriPatti, linkedin: 'https://www.linkedin.com/in/gauri-patti/' },
+    { nameMsg: 'team.name.dikshaNagarkoti',       roleMsg: 'team.role.dikshaNagarkoti', image: dikshaNagarkoti, linkedin: 'https://www.linkedin.com/in/dikshanagarkoti/' },
+    { nameMsg: 'team.name.saeeKamat',             roleMsg: 'team.role.saeeKamat', image: saeeKamat, linkedin: 'https://www.linkedin.com/in/saee-kamat-03b733234/' },
+    { nameMsg: 'team.name.ishaKabara',            roleMsg: 'team.role.ishaKabara', image: ishaKabara, linkedin: 'https://www.linkedin.com/in/isha-kabara/' },
+    { nameMsg: 'team.name.purvaJoshi',            roleMsg: 'team.role.purvaJoshi', image: purvaJoshi, linkedin: 'https://www.linkedin.com/in/purva-joshi-2001ppj/' },
+    { nameMsg: 'team.name.tejaswiniVenkatramanan',roleMsg: 'team.role.tejaswiniVenkatramanan', image: tejaswiniVenkatramanan, linkedin: 'https://www.linkedin.com/in/tejaswini-venkatramanan' },
+    { nameMsg: 'team.name.abhaBharge',            roleMsg: 'team.role.abhaBharge', image: abhaBharge, linkedin: 'https://www.linkedin.com/in/abha-bharge' },
+    { nameMsg: 'team.name.tanishaGupta',          roleMsg: 'team.role.tanishaGupta', image: tanishaGupta, linkedin: 'https://www.linkedin.com/in/tanisha-gupta-a81158210/' },
+    { nameMsg: 'team.name.muralika',              roleMsg: 'team.role.muralika', image: muralika, linkedin: 'https://www.linkedin.com/in/muralika-m-821217145/' },
+    { nameMsg: 'team.name.ojaswitaPant',          roleMsg: 'team.role.ojaswitaPant', image: ojaswitaPant, linkedin: 'https://www.linkedin.com/in/ojaswita-pant/' },
+    { nameMsg: 'team.name.ahanaGhosh',            roleMsg: 'team.role.ahanaGhosh', image: ahanaGhosh, linkedin: 'https://www.linkedin.com/in/ahana-ghosh21' },
+    { nameMsg: 'team.name.lavanyaSachdev',        roleMsg: 'team.role.lavanyaSachdev', image: lavanyaSachdev, linkedin: 'https://www.linkedin.com/in/lavanya-sachdev' },
+    { nameMsg: 'team.name.yashaswiniAjay',        roleMsg: 'team.role.yashaswiniAjay', image: yashaswiniAjay, linkedin: 'https://www.linkedin.com/in/yashaswini-ajay-196004232' },
+    { nameMsg: 'team.name.arhamaShiekh',          roleMsg: 'team.role.arhamaShiekh', image: arhamaShiekh, linkedin: 'https://www.linkedin.com/in/arhama-shaikh-930017228/' },
+    { nameMsg: 'team.name.hPinkyRuthChanu',       roleMsg: 'team.role.hPinkyRuthChanu', image: hPinkyRuthChanu, linkedin: 'https://www.linkedin.com/in/h-pinky-ruth-chanu-326a73215/' },
+    { nameMsg: 'team.name.kanchanBafila',         roleMsg: 'team.role.kanchanBafila', image: kanchanBafila, linkedin: 'https://www.linkedin.com/in/kanchan-bafila/' },
+    { nameMsg: 'team.name.tanuja',                roleMsg: 'team.role.tanuja', image: tanuja, linkedin: 'https://www.linkedin.com/in/tanuja-pant-44a165222/' },
+    { nameMsg: 'team.name.prathushya',            roleMsg: 'team.role.prathushya', image: placeholderAvatar },
+    { nameMsg: 'team.name.garimaVentureCenter',   roleMsg: 'team.role.garimaVentureCenter', image: placeholderAvatar },
+    { nameMsg: 'team.name.himaniUpadhyay',        roleMsg: 'team.role.himaniUpadhyay', image: placeholderAvatar },
+    { nameMsg: 'team.name.jessi',                 roleMsg: 'team.role.jessi', image: placeholderAvatar },
+    { nameMsg: 'team.name.nampallyMadhuri',       roleMsg: 'team.role.nampallyMadhuri', image: placeholderAvatar },
+    { nameMsg: 'team.name.srijanVerma',           roleMsg: 'team.role.srijanVerma', image: placeholderAvatar },
+    { nameMsg: 'team.name.theaCollinson',         roleMsg: 'team.role.theaCollinson', image: placeholderAvatar },
+    { nameMsg: 'team.name.nikitaTiwari',          roleMsg: 'team.role.nikitaTiwari', image: placeholderAvatar },
+    { nameMsg: 'team.name.garimaEnzene',          roleMsg: 'team.role.garimaEnzene', image: placeholderAvatar },
+    { nameMsg: 'team.name.gangaRawat',            roleMsg: 'team.role.gangaRawat', image: placeholderAvatar },
   ],
 };
 
@@ -176,7 +226,8 @@ const ProfileCard = ({ person }) => {
           </a>
         ) : name}
       </h5>
-      {role && <p className="member-role text-muted small">{role}</p>}
+      {role && <p className={`member-role text-muted small${person.location ? ' mb-0' : ''}`}>{role}</p>}
+      {person.location && <p className="member-role member-location text-muted small">{person.location}</p>}
     </div>
   );
 };
